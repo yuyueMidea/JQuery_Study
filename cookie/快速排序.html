@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function (){			
+			
+				function count(_array){
+					var _duplicated = [];
+					_array.sort();
+					for(var i = 0; i < _array.length; i++){
+						if(_duplicated.indexOf(_array[i]) < 0 && _array[i] == _array[i + 1]){
+							_duplicated.push(_array[i]);
+						}
+					}
+					var _result = 0;
+					for(var i = 0; i < _array.length; i++){
+						if(_duplicated.indexOf(_array[i]) < 0){
+							_result += _array[i];
+						}
+					}
+					return _result;
+				}
+				var a =[3,4,1,2,5,6,6,5,4,3,3,6,7]
+				console.log(count(a));
+				//
+				var compose;
+				var f = compose (x => x * 4) (x => x + 3);
+//				f(2) // 20
+				console.log(f(3))
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

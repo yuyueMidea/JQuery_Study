@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			
+			//JSON : 一种数据表示方式（数据格式）
+			
+			
+			//json字符串
+			//json对象
+			
+			//json对象
+			var arr = [1,2,3];
+			var obj = {name:"zhangsan"};
+			var arr = [{name:"张三", age:33}, {name:"李四", age:44}];
+			
+			//json字符串
+			//对象中的key值需要加双引号""
+			var str = '[{"name":"张三", "age":33}, {"name":"李四", "age":44}]';
+			
+			
+			//json字符串转换成json对象 : JSON解析
+			//json对象转换成json字符串 : JSON序列化
+			
+			//JSON解析
+			//eval()
+			var str = '[{"name":"张三", "age":33}, {"name":"李四", "age":44}]';
+			var arr = eval(str); //转换成了数组
+			console.log(arr[0].name); //张三
+			
+			var str = '{"name":"张三", "age":33}';
+			var obj = eval( "("+str+")" );
+			console.log(obj);
+			
+			//JSON.parse() : 解析
+			var str = '[{"name":"张三", "age":33}, {"name":"李四", "age":44}]';
+			var arr = JSON.parse(str);
+			console.log(arr);
+			
+			//JSON.stringify() : 序列化
+			var arr = [{"name":"张三", "age":33}, {"name":"李四", "age":44}];
+			var str = JSON.stringify(arr);
+			console.log(str); //"[{"name":"张三","age":33},{"name":"李四","age":44}]"
+			console.log(typeof str); //string
+			
+			
+			
+			/*
+			 [
+			 	{id:id1, name:"单车", price:"100",num:1},
+			 	{id:id2, name:"摩托", price:"1000",num:1},
+			 	{id:id4, name:"坦克", price:"100000",num:1}
+			 ]
+			 
+			 */
+			
+			//setCookie("cart", JSON.stringify(arr), d);
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				var aInput = document.getElementsByTagName("input");
+				
+				
+				//事件监听器
+				//相同的事件不会覆盖
+				//addEventListener()  ： IE9+
+				//removeEventListener()
+				
+				//click : 事件类型
+				//fn1: 执行函数
+				//false: 表示使用事件冒泡， （是否使用捕获， false表示使用冒泡）
+				/*
+				aInput[0].addEventListener("click", fn1, false);
+				aInput[0].addEventListener("click", fn2, false);
+				function fn1(){
+					console.log("click-1");
+				}
+				function fn2(){
+					console.log("click-2");
+				}
+				
+				//按钮2
+				aInput[1].onclick = function(){
+					aInput[0].removeEventListener("click", fn1, false); //移除事件
+					aInput[0].removeEventListener("click", fn2, false); //移除事件
+				}
+				*/
+				
+				//IE8-
+				//attachEvent()
+				//detachEvent()
+				/*
+				aInput[0].attachEvent("onclick", fn1);
+				function fn1(){
+					alert("click-1");
+				}
+				
+				aInput[1].onclick = function(){
+					aInput[0].detachEvent("onclick", fn1);
+				}
+				*/
+				
+				//封装事件监听器
+				//添加事件
+				function addEvent(obj, type, fn, flag){
+					if (obj.addEventListener){ //IE9+，非IE
+						obj.addEventListener(type, fn, flag);
+					}
+					else { //IE8-
+						obj.attachEvent("on"+type, fn);
+					}
+				}
+				
+				//移除事件
+				function removeEvent(obj, type, fn, flag){
+					if (obj.removeEventListener){ //IE9+, 非IE
+						obj.removeEventListener(type, fn, flag);
+					}
+					else { //IE8-
+						obj.detachEvent("on"+type, fn);
+					}
+				}
+				
+				//按钮1添加点击事件
+				addEvent(aInput[0], "click", fn1, false);
+				function fn1(){
+					console.log("click-1");
+				}
+				
+				aInput[1].onclick = function(){
+					removeEvent(aInput[0], "click", fn1, false);
+				}
+				
+			}
+			console.log(document.cookie);
+		</script>
+	</head>
+	<body>
+		<input type="button" value="按钮1" />
+		<input type="button" value="按钮2-让按钮1不能点击" />
+	</body>
+</html>

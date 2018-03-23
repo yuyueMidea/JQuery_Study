@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a:hover{color: red;}
+			li{width: 100%;}
+		</style>
+		<script type="text/javascript">
+			onload=function(){
+				function $(id){
+					return document.getElementById(id)
+				}
+				
+				ali=document.getElementsByTagName("a");
+				for(var i=0;i<ali.length-1;i++){
+					ali[i].index=i;
+					var num=1;
+					
+					ali[i].onclick=function(){
+						var name=this.parentNode.children[1].innerHTML;//名称
+						var price=this.parentNode.children[2].innerHTML;//价格
+						
+						var li=document.createElement("li");
+						$("pur").appendChild(li);
+						li.innerHTML="商品名称："+name+"，价格："+price+"，数量："+num;
+					}
+				}
+				ali[6].onclick=function(){
+					$("cart").style.display="block";
+				}
+				
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 300px;height: 200px;border: 1px solid red;
+			background: pink;">
+			<h3>商品列表</h3>
+			<ul id="list"style="position: absolute;top: 40px;">
+				<li><span>id1</span> <span>单车</span> <span>$10</span>    <a href="#">加入购物车</a></li>
+				<li><span>id2</span> <span>摩托</span> <span>$100</span>   <a href="#">加入购物车</a></li>
+				<li><span>id3</span> <span>汽车</span> <span>$1000</span>   <a href="#">加入购物车</a></li>
+				<li><span>id4</span> <span>坦克</span> <span>$10000</span>   <a href="#">加入购物车</a></li>
+				<li><span>id5</span> <span>飞机</span> <span>$100000</span>   <a href="#">加入购物车</a></li>
+				<li><span>id6</span> <span>飞船</span> <span>$1000000</span>   <a href="#">加入购物车</a></li>
+				<li style="list-style: none;"><a href="#">查看购物车</a></li>
+			</ul>
+		</div>
+		<div id="cart" style="width: 400px;height: 300px;
+			border: 1px solid blueviolet;display: none;">
+			<h3>我的购物车</h3>
+			<ul id="pur">
+				
+			</ul>
+		</div>
+	</body>
+</html>

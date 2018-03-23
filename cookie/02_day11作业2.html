@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				var oImg = document.getElementsByTagName("img")[0];
+				
+				//onmousedown
+				var lastIndex = 0;
+				document.onmousedown = function(e){
+					e = e || event;
+					e.preventDefault();
+					
+					var startX = e.pageX;
+					
+					var index = 0;
+					document.onmousemove = function(e){
+						e = e || event;
+						
+						index = (parseInt((e.pageX - startX)/10) + lastIndex + 77*10)%77;
+						//console.log(index);
+						
+						oImg.src = "images/images3/"+ index +".jpg";
+					}
+					
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						//console.log(index);
+						lastIndex = index;
+					}
+					
+					//0-1-2...-76-0-1
+					//0    0
+					//-1  76
+					//-2  75
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<img src="images/images3/0.jpg" />
+	</body>
+</html>

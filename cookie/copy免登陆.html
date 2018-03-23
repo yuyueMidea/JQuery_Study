@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="cookie.js"></script>
+		<script type="text/javascript">
+			onload=function(){
+				var aput=document.getElementsByTagName("input");
+				var name=getCookie("name");
+				var pwd=getCookie("pwd");
+				aput[0].value=name;
+				aput[1].value=pwd;
+				//
+				aput[3].onclick=function(){
+					var d=new Date();
+					d.setDate(d.getDate()+10);
+					if(aput[2].checked){
+						setCookie("name",aput[0].value,d);
+						setCookie("pwd",aput[1].value,d);
+					}
+					
+				}
+				//
+				aput[4].onclick=function(){
+					aput[0].value="";
+					aput[1].value="";
+				}
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 250px;height: 100px;background: orange;
+			border: 1px solid cornflowerblue;margin: 20px;padding: 10px;">
+			姓名：<input type="text"placeholder="请输入姓名"/><br />
+			密码：<input type="text"placeholder="请输入密码"/><br />
+			<input type="checkbox" />十天内免登录<br />
+			<input type="button" value="登录" />
+			<input type="button" value="重置" />
+		</div>
+	</body>
+</html>

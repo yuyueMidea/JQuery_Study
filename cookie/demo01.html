@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				console.log( Number.parseInt('12.34') );
+				var a= Math.cbrt(8)
+				console.log(a)
+				const isEven = n => n%2==0
+				const square = n =>n *n
+				console.log(isEven(5))
+				console.log(square(3))
+				var arr1 = [1, 2, 3].map(function(x){
+					return x*x
+				})
+				var arr2 = [1,3,5].map(n =>n*n)
+				console.log(arr1)
+				console.log(arr2)
+				//
+				var hander = {
+					id: '123456',
+					init: function(){
+						document.addEventListener('click',event =>this.doSomething(event.type),false)
+					},
+					doSomething: function(type){
+						console.log('hander'+ type +'for'+ this.id)
+					}
+				}
+				hander.init()
+				//
+				function fact(n){
+					if(n===1) return 1;
+					return n* fact(n-1)
+				}
+				console.log(fact(1111))
+				function fact2(n, total){
+					if( n===1) return total;
+					return fact2(n-1, n* total)
+				}
+				console.log(fact2.arguments)
+				function sum(x, y){
+					if(y >0){
+						return sum(x+1, y-1)
+					}else{
+						return x
+					}
+				}
+//				console.log(sum(1, 10000))
+				var argu1 = [1,2,3]
+				var argu2 = [11,22,33]
+				argu2.push(...argu1)
+				console.log( argu2)
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

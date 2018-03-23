@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<style type="text/css">
+			</style>
+		<title></title>
+		<script type="text/javascript" src="cookie.js"></script>
+		<script type="text/javascript">
+			onload=function(){
+				
+				function $(id){
+					return document.getElementById(id)
+				}
+				
+				var left=getCookie("left");
+				var top=getCookie("top");
+				$("small").style.left=left+"px";
+				$("small").style.top=top+"px";
+				
+				$("small").onmousedown=function(e){
+					e=e||event;
+					e.preventDefault();
+					var disX=e.offsetX;
+					var disY=e.offsetY;
+					
+					document.onmousemove=function(e){
+						e=e||event;
+						
+						$("small").style.left=e.pageX-disX+"px";
+						$("small").style.top=e.pageY-disY+"px";
+					}
+					document.onmouseup=function(e){
+						e=e||event;//必须有e!!!
+						document.onmousemove=false;
+						document.onmouseup=false;
+						$("small").children[0].innerHTML=e.pageX-disX+"(X坐标)";
+						$("small").children[1].innerHTML=e.pageY-disY+"(Y坐标)";
+						var d=new Date();
+						d.setDate(d.getDate()+10);//
+						setCookie("left",e.pageX-disX,d);
+						setCookie("top",e.pageY-disY,d);
+					}
+				}
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+			<div id="small" style="width: 100px;height: 100px;
+				background: red;cursor: pointer;position: absolute;
+				left: 20px;top: 20px;">
+				<p>(X坐标)</p>
+				<p>(Y坐标)</p>
+			</div>
+	</body>
+</html>

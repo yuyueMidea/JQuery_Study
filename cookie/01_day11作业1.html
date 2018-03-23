@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#iphone {
+				background: url(images/images2/iphone.jpg);
+				width: 426px;
+				height: 640px;
+				position: absolute;
+				left: 30px;
+			}
+			#box {
+				width: 360px;
+				height: 62px;
+				/*background: red;*/
+				position: absolute;
+				left: 32px;
+				bottom: 33px;
+			}
+			#lock {
+				background: url(images/images2/unlock_btn.jpg);
+				width: 93px;
+				height: 62px;
+				position: absolute;
+				left: 0px;
+				top: 0;
+				cursor: pointer;
+			}
+			
+		</style>
+		<script>
+		
+			onload = function(){
+				
+				var oIphone = document.getElementById("iphone");
+				var oBox = document.getElementById("box");
+				var oLock = document.getElementById("lock");
+				
+				//拖拽
+				oLock.onmousedown = function(e){
+					e = e || event;
+					
+					var disX = e.offsetX;
+					var disY = e.offsetY;
+					
+					document.onmousemove = function(e){
+						e = e || event;
+						var x = e.pageX - disX - oIphone.offsetLeft - oBox.offsetLeft;
+						if (x <= 0) {
+							x = 0;
+						}
+						else if (x >= oBox.offsetWidth-oLock.offsetWidth){
+							x = oBox.offsetWidth - oLock.offsetWidth;
+						}
+						oLock.style.left = x + "px";
+					}
+					
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						document.onmouseup = null;
+						
+						if (oLock.offsetLeft < (oBox.offsetWidth-oLock.offsetWidth)/2){
+							oLock.style.left = 0;
+						}
+						else {
+							oLock.style.left = oBox.offsetWidth - oLock.offsetWidth + "px";
+						}
+					}
+					
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="iphone">
+			<div id="box">
+				<div id="lock"></div>
+			</div>
+		</div>
+	</body>
+</html>

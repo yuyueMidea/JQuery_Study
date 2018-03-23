@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//
+			//Cookie： 浏览器本地存储的一种技术, 存储字符串，每个cookie存4KB
+			//
+			
+			//document.cookie
+			//name=value; expires=过期时间; path=访问路径; domain=访问域名; secure;
+			
+			//添加cookie
+			document.cookie = "username=zhangsan";
+			document.cookie = "username2=lisi";
+			
+			//获取cookie
+			console.log(document.cookie); //"username=zhangsan; username2=lisi"
+			
+			//修改cookie
+			document.cookie = "username=wangwu";
+			console.log(document.cookie);
+			
+			//URI编码
+			//encodeURIComponent() : 对中文和特殊字符进行编码
+			document.cookie = "username3=" + encodeURIComponent("[赵六,");
+			console.log( decodeURIComponent( document.cookie ) );
+			
+			//删除
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

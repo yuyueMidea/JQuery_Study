@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			ul{position: absolute;left: 0px;top: 20px;}
+			li{list-style: none;float: left;border: 1px solid black;
+			width: 20px;height: 20px;line-height: 20px;text-align: center;
+			cursor: pointer;color: white;margin-left: 1px;
+			margin-top: 1px;}
+			li:first-child{margin-left: 0;}
+			li:nth-child(11){margin-left: 11px;}
+			li:nth-child(20){margin-left: 22px;}
+		</style>
+		<script type="text/javascript">
+			onload=function(){
+				
+				function $(id){
+					return document.getElementById(id)
+				}
+				//水平拖动键盘
+				$("blue").onmousedown=function(e){
+					e=e||event;e.preventDefault();
+					var disX=e.offsetX;
+					document.onmousemove=function(e){
+						e=e||event;
+						var left=parseInt( $("key").style.marginLeft);
+						if(0<left&&left<1100){
+							$("key").style.marginLeft=e.pageX-disX+"px";
+						}
+						else{
+							$("key").style.marginLeft="100px";
+						}
+					}
+					document.onmouseup=function(e){
+						e=e||event;
+						document.onmousemove=false;
+						document.onmouseup=false;
+					}
+				}
+				//end
+				//小写字母变色
+				var ali=document.getElementsByTagName("li");
+				for(var i=0;i<ali.length;i++){
+					ali[i].index=i;
+					ali[i].onclick=function(){
+						for(var j=0;j<ali.length;j++){
+							if(j==this.index){
+								this.style.background="red";
+							}
+							else{ali[j].style.background="gray";}
+						}
+						
+					}
+				}
+				//end
+				document.ondblclick=function(){
+					$("key").style.display="none";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="key" style="width: 230px;height: 90px;
+			background: gray;border: 1px solid black;position: relative;
+			margin-left: 100px;margin-top: 100px;">
+			<div id="blue" style="width: 100%;height: 20px;
+				background: deepskyblue;position: absolute;
+				top: 0;left: 0;cursor: crosshair;"></div>
+			<ul>
+				<li>q</li>
+				<li>w</li>
+				<li>e</li>
+				<li>r</li>
+				<li>t</li>
+				<li>y</li>
+				<li>u</li>
+				<li>i</li>
+				<li>o</li>
+				<li>p</li>
+				<li>a</li>
+				<li>s</li>
+				<li>d</li>
+				<li>f</li>
+				<li>g</li>
+				<li>h</li>
+				<li>j</li>
+				<li>k</li>
+				<li>l</li>
+				<li>z</li>
+				<li>x</li>
+				<li>c</li>
+				<li>v</li>
+				<li>b</li>
+				<li>n</li>
+				<li>m</li>
+			</ul>
+		</div>
+	</body>
+</html>

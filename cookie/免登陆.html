@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="cookie.js"></script>
+		<script type="text/javascript">
+			onload=function(){
+				
+			
+				//cookie的封装
+				function setCookie(name,value,expires,path){
+					var cookieText=encodeURIComponent(name)+"="+encodeURIComponent(value);
+					if(expires instanceof Date){
+						cookieText +=";expires=" +expires;
+					}
+					if(path){
+						cookieText +=";path="+path;
+					}
+					document.cookie=cookieText;
+					return decodeURIComponent( document.cookie );
+				}
+				//end
+				//获取cookie
+				function getCookie(name){
+					var cookieStr=decodeURIComponent(document.cookie);
+					var arr=cookieStr.split("; ");
+					for(var i=0;i<arr.length;i++){
+						var str=arr[i];
+						var arr2=str.split("=");
+						if(arr2[0]==name){
+							return arr2[1];
+						}
+					}
+					return "";
+				}
+				
+				
+				//end
+				var aput=document.getElementsByTagName("input");
+				
+				
+				var username = getCookie("username");
+				var pass = getCookie("pass");
+				aput[0].value=username;
+				aput[1].value=pass;
+				 
+				getCookie("pass",aput[1].value);
+				aput[3].onclick=function(){
+					var d=new Date();
+					d.setDate(d.getDate()+10);//
+				
+					if(aput[2].checked){
+						setCookie("username",aput[0].value,d);
+						setCookie("pass",aput[1].value,d);
+					}
+					
+				}
+				aput[4].onclick=function(){
+					aput[0].value="";
+					aput[1].value="";
+				}
+				
+			}	
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 250px;height: 100px;
+			border: 1px solid red;background: #008b8b;padding: 10px;">
+		账号：<input type="text"/><br />
+		密码：<input type="password"/><br />
+			<input type="checkbox" />十天内免登陆<br />
+			<input type="submit" />
+			<input type="reset" />
+		</div>
+	</body>
+</html>
