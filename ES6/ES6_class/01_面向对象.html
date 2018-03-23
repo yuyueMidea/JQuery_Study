@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				//面向对象
+				
+				//var obj = {
+				//	
+				//};
+				//obj.name = "zhangsan";
+				
+				
+				//类，构造函数
+				//new String();
+				//new Date();
+				//new Array();
+				//new Object();
+				//new RegExp();
+				
+				
+				//自己定义构造函数（类）
+				//类 对象
+				//类是对象的抽象， 对象是类的具体
+				//类： 杯子 
+				//对象： 这个杯子
+				
+				//类： Array
+				//var arr1 = new Array();
+				//var arr2 = new Array();
+				//var arr3 = new Array();
+				//..
+				//arr1.length : 属性
+				//arr1.push() : 方法
+				//arr1.pop(): 方法
+				
+				//Object: 顶级的类
+				//var obj = new Object();
+				
+				
+				
+				/*
+				 示例: 
+				    小狗吃食（闻一闻smell、舔一舔lick、咬一咬bite）
+				    分别采用面向过程和面向对象来分析
+				
+				面向过程 :  先闻一闻, 然后再舔一舔, 最后再咬一咬 (注重过程) 
+				面向对象 :  小狗是一个对象, 它可以闻一闻食物, 可以舔一舔食物, 可以咬一咬食物. (不注重过程, 注重对象)
+				 */
+				
+				//面向过程
+				function smell(){
+					console.log("闻一闻");
+				}
+				function lick(){
+					console.log("舔一舔");
+				}
+				function bite(){
+					console.log("咬一咬");
+				}
+				smell();
+				lick();
+				bite();
+				
+				
+				//面向对象
+				var dog = {
+					smell: function(){
+						console.log("闻一闻");
+					},
+					lick: function(){
+						console.log("舔一舔");
+					},
+					bite: function() {
+						console.log("咬一咬");
+					}
+				}
+				dog.smell();
+				dog.lick();
+				dog.bite();
+				
+				
+				
+				
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

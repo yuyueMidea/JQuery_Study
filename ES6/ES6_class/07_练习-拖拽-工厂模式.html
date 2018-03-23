@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div {
+				width: 100px; height: 100px;
+				position: absolute;
+				left: 10px;
+			}
+			#box {
+				top: 10px;
+				background: green;
+			}
+			#box1 {
+				top: 120px;
+				background: red;
+			}
+		</style>
+		<script>
+			onload = function(){
+				
+				function createDrag(id){
+					
+					var dragObj = {};
+					
+					//属性
+					dragObj.box = document.getElementById(id);
+					dragObj.box.onmousedown = function(e){
+						e = e||event;
+						dragObj.startMove(e.pageX, e.pageY); //开始移动
+					}
+					
+					//方法
+					//startMove
+					dragObj.startMove = function(x, y){
+						this.disX = x - dragObj.box.offsetLeft;
+						this.disY = y - dragObj.box.offsetTop;
+						
+						//onmousemove
+						document.onmousemove = function(e){
+							e = e||event;
+							dragObj.moving(e.pageX, e.pageY); //移动过程
+						}
+						//onmouseup
+						document.onmouseup = function(){
+							dragObj.stopMove(); //停止移动
+						}
+					}
+					//moving
+					dragObj.moving = function(x, y){
+						dragObj.box.style.left = x - this.disX + "px";
+						dragObj.box.style.top = y - this.disY + "px";
+					}
+					//stopMove 
+					dragObj.stopMove = function(){
+						document.onmousemove = null;
+						document.onmouseup = null;
+					}
+					return dragObj;
+				}
+				
+				createDrag("box");
+				createDrag("box1");
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box1"></div>
+	</body>
+</html>

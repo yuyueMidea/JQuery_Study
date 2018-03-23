@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//class: 在ES5是保留字， 在ES6是关键字
+			
+			//ES5：构造函数
+			function Person1(name, age){
+				this.name = name;
+				this.age = age;
+				this.run = function(){
+					console.log("run");
+				}
+			}
+			new Person1();
+			
+			//ES6：类
+			class Person {
+				//添加属性
+				constructor(name, age){
+					this.name = name;
+					this.age = age;
+				}
+				//添加方法
+				run(){   
+					console.log("run");
+				}
+			}
+			var p = new Person("李四", 44);
+			console.log(p.name + "," + p.age);
+			p.run();
+			
+			//constructor: 构造器， 定义属性, 会在创建对象的时候自动调用
+			class Person1 {
+				constructor(name,age){
+					this.name = name ;
+					this.age = age;
+				}
+				run1(){
+					console.log("run");
+				}
+			}
+			var p1 = new Preson1("张三",33);
+			console.log(p1.name);
+			p1.run();
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

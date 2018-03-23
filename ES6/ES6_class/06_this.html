@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				//this关键字
+				//哪个对象调用了函数，则该函数中this就是这个对象
+				
+				document.onclick = function(){
+					console.log(this);
+					//console.log(this.id); //1
+				}
+				document.onclick(); //this: document
+				var obj = {id:1};
+				obj.fn = document.onclick;
+				obj.fn();  //this: obj
+				
+				
+				//事件中的this : 是事件类型前面的对象
+				document.getElementById("box").onclick = function(){
+					console.log(this); //div
+				}
+				
+				//普通函数中的this： window对象
+				function fn(){
+					console.log(this); //window
+				}
+				fn();
+				
+				
+				//定时器，延时器中this: window对象
+				//setInterval(function(){
+				//	console.log(this); //window
+				//}, 2000);
+				
+				setTimeout(function(){
+					console.log(this); //window
+				}, 2000)
+				
+				//构造函数中的this: p对象
+				function Person(){
+					this.name = "张三";
+				}
+				var p = new Person();
+				var p2 = new Person();
+				
+				
+				//对象方法中的this ： 哪个对象调用了函数，则该函数中this就是这个对象
+				var obj = {
+					name: "张三",
+					fn: function(){
+						console.log(this.name); //这里的this: obj
+					}
+				};
+				obj.fn(); //张三
+				
+				var obj2 = {name:"李四"};
+				obj2.fn = obj.fn;
+				obj2.fn(); //李四
+				
+				
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">div</div>
+	</body>
+</html>

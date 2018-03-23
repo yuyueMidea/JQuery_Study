@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//闭包
+			
+			
+			//函数名： 既是函数名称， 也是指向该函数的对象（变量）
+			//普通函数
+			fn1();
+			function fn1(){
+				console.log("fn1");
+			}
+			
+			//匿名函数
+			//console.log(fn2); //undefined
+			//fn2(); //报错
+			var fn2 = function(){
+				console.log("fn2"); 
+			}
+			fn2();
+			
+			
+			//函数嵌套
+			function fn3(){
+				function fn4(){
+					console.log("fn4");
+				}
+				return fn4;
+			}
+			var res = fn3(); //res = fn4
+			res(); //fn4()
+			
+			function fn5(){
+				return function(){
+					console.log("fn6");
+				}
+			}
+			fn5()();
+			
+			
+			//自运行函数
+			(function (n){
+				console.log("f1, n = " + n);
+			})(10);
+			
+			/*
+			var f1 = function (){
+				console.log("f1");
+			}
+			f1();
+			*/
+			
+			//自运行函数传参
+			var f2 = (function(a){ //var a=3;
+				
+				return function(b){
+					console.log('f2, a='+ a + ",b=" + b);
+				}
+				
+			})(3)
+			f2(4);
+			
+			
+			//闭包
+			//1, 闭包的概念
+      		//闭包是这样一种机制: 函数嵌套函数, 内部函数可以引用外部函数的参数和变量,
+      		//                   参数和变量不会被垃圾回收机制所收回.
+			
+			//var a = 10; //4Btye,  1KB = 1024Byte
+			//iphone7 2G RAM
+			//           ROM 
+			//
+			
+			//
+//			var a = 10;
+//			var b = a;
+			
+			//
+//			var obj = {name:"张三"}; //1
+//			var obj2 = obj; //2
+//			obj2 = 2; //1
+//			obj = 2; //0
+			
+			
+			//函数作用域
+			//全局变量， 局部变量
+			
+			//全局变量: 不会被回收，可以在其他地方修改
+			var a = 10;
+			function func1(){
+				a++;
+			}
+			func1();
+			console.log(a);
+			
+			
+			//局部变量: 会被回收， 不会在其他地方被修改
+			function func2(){
+				var b = 10;
+			}
+			func2();
+			//console.log(b); //报错
+			
+			
+			//闭包是这样一种机制: 函数嵌套函数, 内部函数可以引用外部函数的参数和变量,
+      		//                   参数和变量不会被垃圾回收机制所收回.
+			var f6 = (function f5(){
+						
+						var c = 10;
+						return function(){
+							console.log("f6, c=" + c++);
+						}
+						
+					})();
+			f6();
+			f6();
+			f6();
+			f6();
+			
+			
+			//
+			onload = function(){
+				
+				var ali = document.getElementsByTagName("li");
+				for (var i=0; i<ali.length; i++){
+					/*
+					ali[i].index = i;
+					ali[i].onclick = function(){
+						console.log(this.index);
+					}
+					*/
+					
+					/*
+					(function(i){
+						
+						ali[i].onclick = function(){
+							console.log(i);
+						}
+						
+					})(i);
+					*/
+					
+					
+					ali[i].onclick = (function(i){ 
+										 return function(){
+										 	console.log(i);
+										 }
+									})(i);
+					
+					
+					/*
+					(function(index){
+						
+						setInterval(function(){
+							console.log(index);
+						}, 1000)
+						
+					})(i);
+					*/
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+			<li>5555</li>
+		</ul>
+	</body>
+</html>

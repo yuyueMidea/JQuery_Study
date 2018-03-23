@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div {
+				width: 100px; height: 100px;
+				position: absolute;
+				left: 10px;
+			}
+			#box {
+				top: 10px;
+				background: green;
+			}
+			#box1 {
+				top: 120px;
+				background: red;
+			}
+		</style>
+		<script>
+			onload = function(){
+				
+				//拖拽-构造函数
+				function Drag(id){
+					
+					var that = this;
+					
+					//属性
+					this.box = document.getElementById(id);
+					this.box.onmousedown = function(e){
+						e = e||event;
+						that.startMove(e.pageX, e.pageY); //开始移动
+					}
+					
+					//方法
+					this.startMove = function(x,y){
+						this.disX = x - this.box.offsetLeft;
+						this.disY = y - this.box.offsetTop;
+						
+						this.moving(); //移动过程中
+						this.stopMove(); //停止移动
+					}
+					
+					this.moving = function(){
+						document.onmousemove = function(e){
+							e = e||event;
+							that.box.style.left = e.pageX - that.disX + "px";
+							that.box.style.top = e.pageY - that.disY + "px";
+						}
+					}
+					
+					this.stopMove = function(){
+						document.onmouseup = function(){
+							document.onmousemove = null;
+							document.onmouseup = null;
+						}
+					}
+				}				
+				var drag = new Drag("box");
+				var drag1 = new Drag("box1");
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box1"></div>
+	</body>
+</html>

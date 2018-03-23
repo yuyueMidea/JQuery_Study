@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//构造函数
+			
+			
+			//定义对象
+			//var obj = new Object();
+			
+			//var str = "";
+			//var arr = [];
+			var obj = {};
+			obj.name = "老王";
+			obj.age = 33;
+			obj.run = function(){
+				console.log("跑步");
+			}
+			
+			
+			//创建对象
+			var person = new Object();
+			person.name = "张三";
+			person.show = function(){
+				console.log(person.name);
+			}
+			var person2 = new Object();
+			person2.name = "李四";
+			person2.show = function(){
+				console.log(person2.name);
+			}
+			var person3 = new Object();
+			person3.name = "王五";
+			person3.show = function(){
+				console.log(person3.name);
+			}
+			
+			
+			//工厂模式 : 一种设计模式（共23种）
+			// 批量创建对象
+			function createObj(name){
+				var obj = new Object();
+				obj.name = name;
+				obj.show = function(){
+					console.log(this.name);
+				}
+				return obj;
+			}
+			var person1 = createObj("张三");
+			var person2 = createObj("李四");
+			var person3 = createObj("王五");
+			var person4 = createObj("赵六");
+			person1.show();
+			person2.show();
+			person3.show();
+			person4.show();
+			
+			
+			//普通函数
+			function fn(){
+				//console.log("fn");
+				//console.log(this); //[object Window]
+			}
+			fn();
+			
+			//构造函数(类)			
+			//区别于普通函数： 是否使用了new
+			function Person(name, age){
+				//console.log("Person");
+				//console.log(this); //[object Object]
+				
+				//var obj = new Object();
+				//this = obj;
+				this.name = name;
+				this.age = age;
+				this.show = function(){
+					console.log(this.name);
+				}
+				
+				//return this;
+			}
+			
+			//Person中的this就是p1
+			//使用Person类创建了p1对象
+			var p1 = new Person("李四",44);
+			console.log(p1.name);
+			console.log(p1.age);
+			p1.show();
+			console.log( p1 instanceof Person ); //p1是从属于Person(p1是由Person类创建出来的)
+			
+			var p2 = new Person("王五",55); 
+			var p3 = new Person("王五",55); 
+			console.log(p2.name == p3.name); //true, 值比较
+			console.log(p2.age == p3.age); //true
+			console.log(p2.show == p3.show); //false，引用类型，比较内存地址
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
