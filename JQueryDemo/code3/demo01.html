@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				//
+//				$("#btn1").bind("click",function(){
+//					console.log( "bind-click" )
+//				})
+				$("#btn1").bind({"mouseenter":function(){
+					console.log( "mouseenter" )
+				},
+				"mouseleave":function(){
+					console.log( "mouseleave" )
+				}
+				})
+				//
+				$("#btn2").one("click",function(){
+					console.log("我会被执行一次")
+				})
+				//
+//				$("#btn3").on("click",function(){
+//					console.log( "click" )
+//				})
+				$("#btn3").click(function(e){
+					console.log(e.pageX+","+e.pageY);
+					console.log( e.type )//click
+					console.log(e.target);//[object HTMLInputElement]
+					console.log(e.which);//1
+					console.log(e.button);//0
+					
+					
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box" style="width: 100px;height: 100px;background: red;">
+			<input type="button" id="btn1" value="按钮1" /><br />
+			<input type="button" id="btn2" value="按钮2" /><br />
+			<input type="button" id="btn3" value="按钮3" /><br />
+		</div>
+	</body>
+</html>

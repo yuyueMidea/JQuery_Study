@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				background: pink;
+				margin-bottom: 10px;
+			}
+		</style>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//index(): 获取下标
+				
+				$("div p").click(function(){
+					
+					var index = $(this).index("div p");
+					console.log(index);
+					
+					
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			<a>dd</a>
+			<p>000</p>
+			<p>111</p>
+		</div>
+		<div>
+			<p>222</p>
+		</div>
+		<div>
+			<p>333</p>
+		</div>
+	</body>
+</html>

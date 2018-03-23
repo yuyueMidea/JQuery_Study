@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			
+			$(function(){
+				
+				//each: 遍历
+				
+				//遍历数组
+				$.each([1,2,3,4], function(index, value) {
+//					console.log(arguments[0])
+					console.log(index + ": " + value );
+				});
+				
+				//遍历对象
+				$.each({name:"张三",age:33}, function(key, value) {
+					console.log(key + ": " + value );
+				});
+				
+				//遍历节点
+				$("img").each(function(){
+					console.log( $(this).attr("src") );
+				})
+			})
+			
+		</script>
+	</head>
+	<body>
+		<img src="1.jpg" />
+		<img src="2.jpg" />
+		<img src="3.jpg" />
+	</body>
+</html>

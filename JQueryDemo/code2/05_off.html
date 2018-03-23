@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				$("input").first().click(function(){
+					console.log("按钮1");
+				})
+				$("input").first().on("mouseenter", function(){
+					console.log("移入 按钮1");
+				})
+				
+				$("input").eq(1).click(function(){
+					console.log("按钮2");
+					//$("input").first().off(); //移除所有事件
+//					$("input").first().off("click mouseenter"); //移除两个事件
+					$("input").first().off("click"); //移除一个
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<input type="button" value="按钮1"/>
+		<input type="button" value="按钮2"/>
+	</body>
+</html>

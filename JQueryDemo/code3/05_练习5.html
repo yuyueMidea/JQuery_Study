@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul, li {list-style: none;}
+			body {
+				background: #ccc;
+			}
+			#box {
+				width: 150px;
+				height: 20px;
+				border: 1px solid white;
+				cursor: pointer;
+			}
+			#list {
+				width: 100px;
+				height: 150px;
+				background: black;
+				border: 1px solid white;
+				display: none;
+			}
+			#list li {
+				color: white;
+				border-bottom: 1px dashed white;
+				height: 29px;
+				line-height: 29px;
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				/*
+				 制作下拉菜单: 
+			       1, 最开始效果如左图1
+			       2, 鼠标滑过”请选择游戏名称”区域时,效果如图2
+			       3, 鼠标滑过下拉选项区域时, 让下拉选项可以继续显示,移开后隐藏
+			       4, 鼠标在选项中滑过时, 显示效果图3
+			       5, 选择某一项, 将顶部的名称改成你选择的游戏名称
+				*/
+				
+				$("#box,#list").mouseenter(function(){
+					$("#list").show();
+				})
+				$("#box,#list").mouseleave(function(){
+					$("#list").hide();
+				})
+				
+				$("#list li").mouseenter(function(){
+					$(this).css({"background":"gray"})
+						   .siblings().css({background:"black"});
+				})
+				
+				$("#list li").click(function(){
+					$("#box").html( $(this).html() );
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">请选择游戏名称</div>
+		<ul id="list">
+			<li>英雄联盟</li>
+			<li>魔兽世界</li>
+			<li>大话西游</li>
+			<li>天龙八部</li>
+			<li>九阴真经</li>
+		</ul>
+	</body>
+</html>

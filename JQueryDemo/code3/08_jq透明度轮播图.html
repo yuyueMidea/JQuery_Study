@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul, li {
+				list-style: none;
+			}
+			 #box {
+			 	width: 600px;
+			 	height: 300px;
+			 	margin: 100px auto;
+			 	position: relative;
+			 	/*overflow: hidden;*/
+			 	border: 10px solid blue;
+			 }
+			
+			#list1 {
+				width: 600px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#list1 li, #list1 img {
+				width: 600px;
+				height: 300px;
+			}
+			#list1 li {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#list2 {
+				width: 600px;
+				height: 30px;
+				position: absolute;
+				left: 10%;
+				bottom: -60px;
+			}
+			#list2 li, #list2 img {
+				width: 120px;
+				height: 60px;
+				float: left;
+				border: 1px solid red;
+				margin-right: 5px;
+				cursor: pointer;
+			}
+			
+			#list2 li {
+				opacity: 0.3;
+			}
+			#list2 .active {
+				/*background: green;*/
+				opacity: 1;
+			}
+			
+		</style>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript" src="move.js"></script>
+		<script>
+			$(function(){
+				
+				$("#list1 li").first().show().siblings().hide();
+				//
+				$("#list2 li").click(function(){
+					$(this).css("opacity","1").siblings().css("opacity","0.3")
+					$("#list1 li").eq( $(this).index() ).show().siblings().hide();
+					//console.log( $(this).index() )
+				})
+				//
+				var i = $("#list1 li").index();
+				console.log(i)
+				var timer = setInterval(function(){
+					i++;
+					if(i>=4){i=0}
+					//console.log(i);
+					$("#list1 li").eq(i).fadeIn(1000).siblings().hide();
+					$("#list2 li").eq(i).css("opacity","1").siblings().css("opacity","0.3")
+				},2000)
+				
+				
+				
+				
+				
+				
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list1">
+				<li><img src="images/b1.jpg" /></li>
+				<li><img src="images/b2.jpg" /></li>
+				<li><img src="images/b3.jpg" /></li>
+				<li><img src="images/b4.jpg" /></li>
+			</ul>
+			<ul id="list2">
+				<li class="active"><img src="images/b1.jpg" /></li>
+				<li><img src="images/b2.jpg" /></li>
+				<li><img src="images/b3.jpg" /></li>
+				<li><img src="images/b4.jpg" /></li>
+			</ul>
+			
+		</div>
+		
+	</body>
+</html>

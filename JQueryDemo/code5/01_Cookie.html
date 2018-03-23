@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script>
+			$(function(){
+				
+//cookie_JS 
+//document.cookie = "name=value;expires=过期时间;path=访问路径;domain=访问域名;secure"
+//
+
+//cookie_JQ
+//
+//$.cookie()
+
+//增删改查
+////增，改， （添加，修改）
+//$.cookie("username1", "zhangsan", {expires:10,path:"/"});
+//$.cookie("username1", "张三", {expires:10,path:"/"});
+//
+////查， （获取cookie）
+////$.cookie("name")
+//console.log( $.cookie("username1") ); //张三
+//
+////删除cookie
+//$.cookie("username1", "", {expires:-1, path:"/"});	
+//console.log( $.cookie("username1") ); //undefined
+
+
+//保存对象
+var obj = {name:"李四", age:44};
+//$.cookie("obj", obj, {expires:30, path:"/"});
+//console.log( $.cookie("obj") ); //"[object Object]"
+//console.log( typeof $.cookie("obj") ); //string
+
+$.cookie("obj2", JSON.stringify(obj), {expires:30, path:"/"});
+console.log( $.cookie("obj2") ); //"{"name":"李四","age":44}"
+console.log( ($.cookie("obj2")).name );
+
+//保存数组
+//var obj1 = {name:"王五", age:55};
+//var obj2 = {name:"赵六", age:66};
+//var arr = [obj1, obj2];
+//
+//$.cookie("arr", JSON.stringify(arr), {expires:30, path:"/"});
+//console.log( $.cookie("arr") ); //"[{"name":"王五","age":55},{"name":"赵六","age":66}]"
+
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

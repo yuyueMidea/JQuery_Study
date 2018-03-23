@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.pox {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//getAttribute()
+				//setAttribute()
+				//removeAttribute()
+				
+				//attr():  设置或获取属性
+				//removeAttr(): 移除指定的属性
+				
+				//attr()
+				//获取属性
+//				console.log( $("img").attr("src") );
+				
+				//设置属性
+				//$("img").attr("src", "images/2.jpg");
+//				$("img").attr({"src":"images/2.jpg", "title":"标题"});
+				
+				//移除属性
+//				$("img").removeAttr("src");
+				
+				
+				//prop() : 设置checked, disabled, selected
+				//removeProp() :移除
+				console.log( $("input").attr("checked") ); //"checked"
+				console.log( $("input").prop("checked") ); //true
+				
+				$("input").prop("disabled", true);
+				
+				//
+				$("img").attr("aa", "zhangsan");
+				$("img").prop("bb", "lisi");
+				console.log( $("img").prop("bb") ); //"lisi"
+				$("img").removeProp("bb"); //移除属性bb
+				console.log( $("img").prop("bb") ); //undefined
+				
+				
+				//addClass() : 添加一个类
+				//removeClass() ： 移除一个类
+				//$("div").addClass("pox");
+				//$("div").removeClass("pox");
+				
+				//toggleClass() : 切换添加或移除一个类
+				$("div").click(function(){
+					$("div").toggleClass("pox");
+				})
+				
+				
+				//html() : innerHTML
+				//text() : innerText
+				//val() : value
+				console.log( $("input:text").val() ); //I am good man
+				$("input:text").val("I am bad man");
+			})
+			
+		</script>
+	</head>
+	<body>
+		<img src="images/1.jpg" />
+		<input type="checkbox" checked="checked"  />
+		<div>div</div>
+		<input type="text" value="I am good man" />
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn1").click(function(){
+					$(".box").slideToggle(2000);
+					
+				})
+				//
+				
+				//
+				$("#btn3").click(function(){
+					$("div").animate({left:100},1000)
+							.animate({left:200},1000)
+							.animate({top:100},1000)
+							.animate({top:300},1000)
+				})
+				//
+				$("#btn2").click(function(){
+					$(".box").stop(true)
+					
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btn1" value="start" />
+		<input type="button" id="btn2" value="stop" />
+		<input type="button" id="btn3" value="finish" />
+		<div class="box" style="width: 100px;height: 100px;background: red;position: absolute;top: 40px;left: 0;"></div>
+		<div class="box" style="width: 100px;height: 100px;background: yellowgreen;position: absolute;top: 140px;left: 0;"></div>
+		<div class="box" style="width: 100px;height: 100px;background: pink;position: absolute;top: 240px;left: 0;"></div>
+		<div class="box" style="width: 100px;height: 100px;background: darkblue;position: absolute;top: 340px;left: 0;"></div>
+	</body>
+</html>

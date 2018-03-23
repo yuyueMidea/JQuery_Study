@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.each([1,4,2,8,5], function(index,value) {
+					console.log(index+":"+value)
+				});
+				//
+				$.each({"name":"zhangsan","age":33}, function(key,value) {
+					console.log(key+":"+value)
+				});
+				//
+				$("li").each(function(){
+					console.log( $(this).html() )
+				})
+				//
+				$("img").each(function(){
+					console.log( $(this).attr("src") )
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>1111</li>
+			<li>33333</li>
+			<li>55555</li>
+			<li>9999</li>
+		</ul>
+		<img src="1.jpg"/>
+		<img src="2.jpg"/>
+		<img src="3.jpg"/>
+	</body>
+</html>

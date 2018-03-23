@@ -1,0 +1,31 @@
+
+[
+	{
+		"id": 101,
+		"img": "images/b1.jpg",
+		"name": "单车",
+		"price": "1000",
+		"unit": "$"
+	},
+	{
+		"id": 102,
+		"img": "images/b2.jpg",
+		"name": "摩托",
+		"price": "10000",
+		"unit": "$"
+	},
+	{
+		"id": 103,
+		"img": "images/b3.jpg",
+		"name": "汽车",
+		"price": "100000",
+		"unit": "$"
+	},
+	{
+		"id": 104,
+		"img": "images/b4.jpg",
+		"name": "飞机",
+		"price": "1000000",
+		"unit": "$"
+	}
+]

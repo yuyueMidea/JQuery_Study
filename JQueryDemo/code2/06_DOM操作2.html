@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//重点： 
+				//replaceWith()
+				//remove()
+				//clone()
+				//empty()
+				
+				
+				//wrap() : 用一个指定的节点包裹匹配的元素
+				$("#btn1").click(function(){
+					$("#box p").wrap("<b></b>");
+				})
+				
+				//unwrap(): 移除父元素
+				$("#btn2").click(function(){
+					$("#box p").unwrap();
+				})
+				
+				//wrapAll() : 将匹配的元素当成整体包裹
+				$("#btn3").click(function(){
+					$("#box p").wrapAll("<b></b>");
+				})
+				
+				//wrapInner() : 在匹配的元素内部用指定节点包裹
+				$("#btn4").click(function(){
+					$("#box p").wrapInner("<b></b>");
+				})
+				
+				
+				//replaceAll
+				//replaceWith
+				$("#btn5").click(function(){
+					
+					//$("#box2 #first").replaceWith("<b>b</b>");
+					//$("#box2 #first").replaceWith( $("#box2 .pox") ); 
+					//如果用已经存在的节点去替换，其实只是移动了节点替换
+					
+					//跟replaceWith用法相反
+					$("#box2 .pox").replaceAll( $("#box2 #first") );
+				})
+				
+				//empty() : 清空节点
+				$("#btn6").click(function(){
+					$("#box2").empty();
+				})
+				
+				//remove() : 移除节点
+				$("#btn7").click(function(){
+					$("#box2 #first").remove();
+					//$("#box2 #first").detach(); //保留绑定的事件，附加数据
+				})
+				
+				//clone() : 复制节点
+				//clone(true) : 复制节点,还会复制绑定的事件
+				$("#btn8").click(function(){
+					$("#btn5").clone(true).insertAfter("#btn8");
+				})
+				
+			})
+		</script>
+		
+	</head>
+	<body>
+		
+		<!--<button id="btn1">wrap</button>
+		<button id="btn2">unwrap</button>
+		<button id="btn3">wrapAll</button>
+		<button id="btn4">wrapInner</button>
+		
+		<div id="box">
+			<p>hello</p>
+			<p>bye bye</p>
+		</div>-->
+		
+		
+		<button id="btn5">replaceAll</button>
+		<button id="btn6">empty</button>
+		<button id="btn7">remove</button>
+		<button id="btn8">clone</button>
+		
+		<div id="box2">
+			<p id="first">hello</p>
+			<p>你好</p>
+			<p class="pox">拜拜</p>
+		</div>
+		
+	</body>
+</html>

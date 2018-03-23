@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//鼠标事件：
+				//click, dblclick, mousedown, mouseup, mousemove
+				//mouseenter, mouseleave, mouseover, mouseout
+				
+				//键盘事件：
+				//keydown, keypress, keyup
+				
+				//html事件：
+				//load,ready,unload,change,selec,focus,blur
+				//focurin,focusout,submit,reset,resize,scroll...
+				
+				$("#btn").click(function(e){
+					console.log("click");
+					console.log(e.pageX + "，" + e.pageY);
+					console.log(e.clientX + "，" + e.clientY);
+					console.log(e.offsetX + "," + e.offsetY);
+					console.log(e.screenX + "," + e.screenY);
+					console.log(e.type); //click
+					console.log(e.button);
+					console.log(e.which);
+					console.log(e.target);
+				})
+				
+				
+				//focusin()
+				//focusout()
+				$("#box").focusin(function(){
+					//console.log(this);
+					$("#box").css("background", "pink");
+				})
+				$("#box").focusout(function(){
+					$("#box").css("background", "white");
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		
+		<div id="box" style="width: 180px; height: 60px; border: 3px solid red;">
+			<input type="text" placeholder="用户名"/> <br>
+			<input type="password" placeholder="密码"/> <br>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//hasClass() : 是否有某个类
+				console.log( $(".pox").hasClass("pox") ); //true
+				console.log( $("#box").hasClass("pox") ); //false
+				
+				//filter() : 过滤
+				$("div").filter("#box,.foo").css("background", 'red');
+				
+				//is()
+				//parent(): 父节点
+				//parents() : 祖先元素
+				console.log( $("#txt").parent().is("form") );
+				
+				console.log( $("#box2").parent()[0] ); //[object HTMLSpanElement]
+				console.log( $("#box2").parent().size() ); //1	
+				console.log( $("#box2").parents().size() );	//4
+				console.log( $("#box2").parents()[0] );	 //[object HTMLSpanElement]
+				console.log( $("#box2").parents()[1] );	 //[object HTMLDivElement]
+				console.log( $("#box2").parents()[2] );	 //[object HTMLBodyElement]
+				console.log( $("#box2").parents()[3] );	 //[object HTMLHtmlElement]
+				console.log( $("#box2").parents("#box1").attr("id") ); //box1
+				
+				
+				//slice()
+				//$("#slice input").slice(3).css("border", "3px solid orange");
+				//$("#slice input").slice(2,4).css("border", "3px solid orange"); //[2,4)
+				//$("#slice input").slice(-5,-3).css("border", "3px solid orange"); //[2,4)
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">div1</div>
+		<div class="pox">div2</div>
+		<div class="pox">div3</div>
+		<div class="foo">div4</div>
+		
+		<form>
+			<input type="text" id="txt" />
+		</form>
+		
+		<div id="box1">
+			<span>
+				<div id="box2">div2</div>
+			</span>
+		</div>
+		
+		<div id="slice">
+			<input type="text" value="1"/>
+			<input type="text" value="2"/>
+			<input type="text" value="3"/>
+			<input type="text" value="4"/>
+			<input type="text" value="5"/>
+			<input type="text" value="6"/>
+		</div>
+		
+		
+	</body>
+</html>

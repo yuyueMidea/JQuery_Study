@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				$(document).mousemove(function(e){
+					$("#box").css({left:e.pageX-50, top:e.pageY-50});
+				})
+				
+			})
+		</script>
+	</head>
+	<body style="background: black; width: 1000px; height: 1000px;">
+		<div id="box" style="width: 100px; height: 100px; background: url(images/girl.gif) center; position: absolute; left: 10px; top: 10px;"></div>
+	</body>
+</html>

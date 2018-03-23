@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;margin: 0;border: none;
+			}
+			ul li{list-style: none;}
+			#list li{
+				width: 200px;height: 200px;border: 1px solid red;margin: 20px;
+			}
+			#list li img{
+				width: 200px;height: 100px;
+			}
+			.pox{color: red;}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var arr = [];
+				//
+				$("#list").on("click","li",function(){
+					var index = $(this).index("#list li");
+					console.log(index);
+					location.href="08_detail.html"
+					
+					
+					
+				})
+				//
+				//先获取数据
+				$.get("json/market.json",function(d){
+					arr = d;
+					for(var i=0;i<arr.length;i++){
+						var obj = arr[i];
+						var li = $("<li></li>").appendTo("#list");
+						$("<img src=" +obj.img+ " >").appendTo(li);
+						$("<p>"+ obj.name +"</p>").appendTo(li);
+						$("<p class='pox'>"+ obj.price +"</p>").appendTo(li);
+						var p = $("<p>剩余:<span>00</span>天<span>00</span>时<span>00</span>分<span>00</span>秒</p>").appendTo(li);
+						
+						
+						//
+						//活动结束时间
+						var endTime = obj.endTime;
+						(function(p,endTime){
+							var timer = setInterval(function(){
+								var d1 = new Date(endTime);//活动结束时间
+								var d2 = new Date();//当前时间
+								var timeInterval = parseInt((d1 - d2)/1000);//秒数
+								//console.log(timeInterval)
+								if(timeInterval<=0){
+									clearInterval(timer);
+									alert("活动结束")
+									return;
+								}
+								//
+								var day = parseInt(timeInterval/(3600*24));
+								var hour = parseInt((timeInterval/3600)%24);
+								var min = parseInt((timeInterval/60)%24);
+								var sec = parseInt(timeInterval%60);
+								//console.log(sec)
+								day = day>=10 ?day :"0"+day;
+								hour = hour>=10 ?hour :"0"+hour;
+								min = min>=10 ?min :"0"+min;
+								sec = sec>=10 ?sec :"0"+sec;
+								//
+								p.find("span").eq(0).html(day);
+								p.find("span").eq(1).html(hour);
+								p.find("span").eq(2).html(min);
+								p.find("span").eq(3).html(sec);
+								
+								
+							},1000)
+							
+							
+							
+						})(p,endTime)
+						
+					}
+					
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<!--<li>
+				<img src="images/b1.jpg"/>
+			</li>
+			<li>
+				<img src="images/b2.jpg"/>
+			</li>
+			<li>
+				<img src="images/b3.jpg"/>
+			</li>
+			<li>
+				<img src="images/b4.jpg"/>
+			</li>-->
+		</ul>
+		<!--<ul id="list2">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>-->
+	</body>
+</html>

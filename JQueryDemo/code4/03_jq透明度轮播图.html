@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			ul, li {
+				list-style: none;
+			}
+			 #box {
+			 	width: 600px;
+			 	height: 300px;
+			 	margin: 100px auto;
+			 	position: relative;
+			 	/*overflow: hidden;*/
+			 	border: 10px solid blue;
+			 }
+			
+			#list1 {
+				width: 600px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#list1 li, #list1 img {
+				width: 600px;
+				height: 300px;
+			}
+			#list1 li {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#list2 {
+				width: 600px;
+				height: 30px;
+				position: absolute;
+				left: 10%;
+				bottom: -60px;
+			}
+			#list2 li, #list2 img {
+				width: 120px;
+				height: 60px;
+				float: left;
+				border: 1px solid red;
+				margin-right: 5px;
+				cursor: pointer;
+			}
+			
+			#list2 li {
+				opacity: 0.3;
+			}
+			#list2 .active {
+				/*background: green;*/
+				opacity: 1;
+			}
+			
+		</style>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				var _ul1 = $("#list1");
+				var _ul2 = $("#list2");
+				var _li1 = $("#list1 li");
+				var _li2 = $("#list2 li");
+				
+				//初始化显示第一张图
+				_li1.eq(0).show().siblings().hide();
+				
+				//图片总数量
+				var size = $("#list1 li").size(); //4
+				
+				//自动轮播
+				var i = 0; //记录图片下标
+				var timer = setInterval(function(){
+					i++;
+					move(); 
+				}, 2000);
+				
+				//移动的函数
+				function move(){
+					
+					//如果i超出了图片总数量
+					if (i == size) {
+						i = 0; //即将移动到2张图
+					}
+					
+					//透明度切换到第i张图
+					_li1.eq(i).stop().fadeIn().siblings().stop().fadeOut();
+					
+					//改变ul2的按钮状态
+					_li2.eq(i).removeClass().addClass("active").siblings().removeClass("active"); 
+					
+				}
+								
+				
+				//li2上面的按钮
+				_li2.hover(function(){
+					var index = $(this).index();
+					//console.log(index);
+					i = index;
+					move();
+				})
+				
+				//移入box, 移出box
+				$("#box").hover(function(){
+					//移入, 关闭定时器
+					clearInterval(timer);
+				}, 
+				function(){
+					//移出, 重新开启定时器
+					timer = setInterval(function(){
+						i++;
+						move();
+					}, 2000);
+				})
+				
+				
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list1">
+				<li><img src="images/b1.jpg" /></li>
+				<li><img src="images/b2.jpg" /></li>
+				<li><img src="images/b3.jpg" /></li>
+				<li><img src="images/b4.jpg" /></li>
+			</ul>
+			<ul id="list2">
+				<li class="active"><img src="images/b1.jpg" /></li>
+				<li><img src="images/b2.jpg" /></li>
+				<li><img src="images/b3.jpg" /></li>
+				<li><img src="images/b4.jpg" /></li>
+			</ul>
+			
+		</div>
+		
+	</body>
+</html>

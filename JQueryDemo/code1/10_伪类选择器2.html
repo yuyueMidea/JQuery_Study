@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//:first-child : 每个ul的第一个li
+				//$("ul li:first").css("background", "red");
+				//$("ul li:first-child").css("background", "red");
+				
+				//:last-child : 每个ul的最后一个li
+				//$("ul li:last-child").css("background", "orange");
+				
+				//:nth-child(index) : index从1开始
+				//$("ul li:nth-child(1)").css("background", "pink");
+				//$("ul li:nth-child(2n+1)").css("background", "pink");
+				
+				//:only-child : 匹配只有一个子元素的元素
+				$("ul li:only-child").css("background", "pink");
+				
+			})
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>
+		<ul>
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+			<li>44</li>
+			<li>55</li>
+			<li>66</li>
+			<li>77</li>
+			<li>88</li>
+		</ul>
+		<ul>
+			<li>1000</li>
+		</ul>
+	</body>
+</html>

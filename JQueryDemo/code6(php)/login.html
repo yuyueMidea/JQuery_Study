@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        onload = function(){
+            var aInput = document.getElementsByTagName("input");
+
+            //登录
+            aInput[2].onclick = function(){
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://127.0.0.1/31-35/day31/code/login.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("username="+ aInput[0].value + "&password=" + aInput[1].value);
+                xhr.onreadystatechange = function(){
+                    if (xhr.readyState==4 && xhr.status==200) {
+                        console.log(xhr.responseText);
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <h2>登录</h2>
+    <input type="text" placeholder="用户名"/> <br />
+    <input type="password" placeholder="密码"/> <br />
+    <input type="button" value="登录"/>
+</body>
+</html>

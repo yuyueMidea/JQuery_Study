@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//关闭页面上所有的动画
+				//$.fx.off = true;
+				
+				//设置动画的显示帧速。
+				//$.fx.interval = 100;
+				
+				
+				$("#btn1").click(function(){
+					
+					//$("#box").animate({left:200});
+					//$("#box").animate({left:200, top:200});
+//					$("#box").animate({left:200, top:200, width:200, height:300}, 3000, function(){
+//						console.log("动画结束");
+//					});
+					
+					//队列动画
+					$("#box").animate({left:200}, 1000)
+							 .animate({top:200}, 1000)
+							 .animate({width:200}, 1000)
+							 .animate({height:300}, 1000);
+										
+				})
+				
+				//stop
+				$("#btn2").click(function(){
+					//$("#box").stop(); //停止当前正在执行的动画
+					$("#box").stop(true); //停止box所有动画
+				})
+				
+				//finish
+				$("#btn3").click(function(){
+					$("#box").finish(); //停止所有动画，并直接变化到最终位置
+				})
+				
+				//delay() : 延迟执行
+				$("#btn4").click(function(){
+					$("#box").fadeOut(1000)
+							 .delay(3000)
+							 .fadeIn()
+							 .animate({left:200})
+							 .delay(3000)
+							 .animate({left:10});
+							 
+					
+				})
+				
+				//一般在使用动画时前面添加一个stop()
+				//$("#box").stop().animate()
+				$("#btn5").click(function(){
+					var a = Math.random();
+					$("#box").stop().animate({opacity:a}, 2000);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<button id="btn1">开始运动</button>
+		<button id="btn2">stop</button>
+		<button id="btn3">finish</button>
+		<button id="btn4">delay</button>
+		<button id="btn5">变化颜色</button>
+		
+		<div id="box" style="width: 100px; height: 100px; background: red; position: absolute;left: 10px; top: 50px;"></div>
+	</body>
+</html>

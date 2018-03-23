@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;margin: 0;border: none;
+			}
+			ul,li{list-style: none;}
+			.head{width: 100%;height: 800px;background: greenyellow;}
+			.foot{width: 100%;height: 800px;background: palevioletred;}
+			.head,.footer,.floor{text-align: center;line-height: 800px;
+				font-size: 400px;}
+			.stair{
+				width: 30px;border: 1px solid #ccc;position: fixed;
+				left: 50px;top: 20%;}
+			.stair li{
+				width: 30px;height: 29px;border-bottom: 1px dashed #ccc;
+				line-height: 29px;text-align: center;position: relative;
+				font-size: 14px;cursor: pointer;}
+			.stair li span{display: none;width: 30px;height: 29px;
+				position: absolute;top: 0;left: 0;}
+			.stair li:hover span{background: #f45;display: block;color: #fff;}
+			.floor{width: 100%;height: 800px;}
+			.stair li span.active{background: white;color: red;display: block;}
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				//点击楼层， 滚动页面
+				$(".stair li").click(function(){
+					var index = $(this).index();
+					$(this).find("span").addClass("active").parent()
+					.siblings().find("span").removeClass("active");
+					var top = $(".floor").eq(index).offset().top;
+					//滚动页面
+					$("html,body").animate({scrollTop:top},200)
+					
+				})
+				
+				//滚动页面
+				$(window).scroll(function(){
+					var scrollTop = $(window).scrollTop();
+					var index = 0;
+					$(".floor").each(function(){
+						var top = $(this).offset().top;
+						if(scrollTop >= top){
+							index = $(this).index();
+						}
+					})
+					//console.log(index)
+					//修改楼梯按钮的选中状态
+					$(".stair li").eq(index).find("span").addClass("active")
+					.parent().siblings().find("span").removeClass();
+					
+					
+				})
+				
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<ul class="stair">
+			<li>1<span>家居</span></li>
+			<li>2<span>运动</span></li>
+			<li>3<span>户外</span></li>
+			<li>4<span>家电</span></li>
+			<li>5<span>母婴</span></li>
+			<li>6<span>幼儿</span></li>
+			<li>7<span>食品</span></li>
+			<li>8<span>建材</span></li>
+			<li>9<span>健身</span></li>
+			<li>10<span>宜家</span></li>
+		</ul>
+		<div class="head">head</div>
+		<div class="main">
+			<div class="floor" style="background: red;">家居</div>
+			<div class="floor" style="background: deeppink;">运动</div>
+			<div class="floor" style="background: blueviolet;">户外</div>
+			<div class="floor" style="background: cadetblue;">家电</div>
+			<div class="floor" style="background: yellowgreen;">母婴</div>
+			<div class="floor" style="background: orange;">幼儿</div>
+			<div class="floor" style="background: darkgreen;">食品</div>
+			<div class="floor" style="background: blanchedalmond;">建材</div>
+			<div class="floor" style="background: red;">健身</div>
+			<div class="floor" style="background: mediumblue;">宜家</div>
+		</div>
+		<div class="foot">foot</div>
+	</body>
+</html>

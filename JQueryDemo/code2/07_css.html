@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//css
+				//获取样式属性值
+				//console.log( $("div").css("width") ); //100px
+				
+				//设置样式属性
+				//$("div").css("background", "pink");
+				//$("div").css({"background": "pink", color: "white"});
+				
+				//链式写法
+				$("div").eq(0).css("background","red").css("color","green").html("LOL")
+						.siblings().css("background","pink").css("color","blue");
+				
+				$("div").click(function(){
+					
+					//$(this).css("height", function(index, val){
+						//console.log(arguments.length);
+						//console.log(arguments[0]);
+						//console.log(arguments[1]);
+						
+					//	return parseInt(val)*2;
+					//});
+					
+					$(this).css({height:function(index, val){
+						return parseInt(val) * 2;
+					}, 
+					fontSize:function(index, val){
+						return parseInt(val) * 2;
+					}})
+					
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 100px;">div1</div>
+		<div id="box2" style="width: 200px;">div2</div>
+	</body>
+</html>

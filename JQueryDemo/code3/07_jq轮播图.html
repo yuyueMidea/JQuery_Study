@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0; border: none;}
+			ul, li {list-style: none;}
+			#box {
+				width: 600px;
+				height: 300px;
+				margin: 100px auto;
+				overflow: hidden;
+				border: 10px solid blue;
+				position: relative;
+			}
+			#list1 {
+				width: 3100px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#list1 li, #list1 img {
+				width: 600px;
+				height: 300px;
+			}
+			#list1 li {
+				float: left;
+			}
+			#list2  {
+				width: 150px;
+				height: 20px;
+				position: absolute;
+				right: 30px;
+				bottom: 30px;
+			}
+			#list2 li {
+				width: 18px;
+				height: 18px;
+				border: 1px solid black;
+				background: yellow;
+				text-align: center;
+				line-height: 18px;
+				margin-left: 5px;
+				float: left;
+				cursor: pointer;
+			}
+			
+			#list2 li.active {
+				background: green;
+			}
+			
+			#prev, #next {
+				width: 50px;
+				height: 22px;
+				background: orange;
+				position: absolute;
+				top: 45%;
+				cursor: pointer;
+			} 
+			#prev {
+				left: 10px;
+			}
+			#next {
+				right: 10px;
+			}
+			
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				var i = $("#list1 li").index();
+				var timer = setInterval(function(){
+					i++;
+					fn();
+				},2000)
+				//
+				function fn(){
+					if(i>=5){
+						i=1;
+						$("#list1").css("left",0);
+					};
+					if(i<0){i=3}
+					$("#list1").animate({left:-600*i});
+					$("#list2 li").eq(i%4).addClass("active").siblings().removeClass()
+				}
+				//
+				$("#prev").click(function(){
+					i--;
+					fn();
+				})
+				$("#next").click(function(){
+					i++;
+					fn();
+				})
+				//
+				$("#box").mouseenter(function(){
+					clearInterval(timer)
+				})
+				$("#box").mouseleave(function(){
+					clearInterval(timer);
+					timer = setInterval(function(){
+						i++;
+						fn();
+					},2000)
+				})
+				//
+				$("#list2 li").mouseenter(function(){
+					i = $(this).index();
+					fn();
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list1">
+				<li><img src="images/b1.jpg" /></li>
+				<li><img src="images/b2.jpg" /></li>
+				<li><img src="images/b3.jpg" /></li>
+				<li><img src="images/b4.jpg" /></li>
+				<li><img src="images/b1.jpg" /></li>
+			</ul>
+			<ul id="list2">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+			<div id="prev">上一页</div>
+			<div id="next">下一页</div>
+		</div>
+	</body>
+</html>

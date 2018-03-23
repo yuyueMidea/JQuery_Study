@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//属性选择器
+				//匹配存在属性name的input元素
+				//$("input[name]").css("border", "3px solid red");
+				
+				//匹配存在属性type,且值为text的input元素
+				//$("input[type=text]").css("border", "3px solid orange");
+				
+				//匹配存在属性type,且值不为text的input元素 或者不存在属性type的input元素
+				//$("input[type!=text]").css("border", "3px solid red");
+				
+				//属性value的值以user开头
+				//$("input[value^=user]").css("border", "3px solid red");
+				
+				//属性value的值以name结尾
+				//$("input[value$=name]").css("border", "3px solid red");
+				
+				//属性value的值包含n
+				//$("input[value*=e]").css("border", "3px solid red");
+				
+				//
+				$("input[value^=user]").css("border", "3px solid red");
+				
+			})
+		</script>
+	</head>
+	<body>
+		<input type="text" value="username" name="user"/> <br>
+		<input type="text" value="name" /> <br>
+		<input type="password" value="userpassword" /> <br>
+
+	</body>
+</html>

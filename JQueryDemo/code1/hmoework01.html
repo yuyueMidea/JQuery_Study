@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;margin: 0;border: none;
+			}
+			ul li{
+				list-style: none;float: left;
+			}
+			li,img{
+				width: 290px;height: 220px;
+			}
+			#box{
+				width: 900px;height: 300px;border: 3px solid red;
+				padding: 5px;
+			}
+			#small{
+				width: 290px;height: 220px;border: 3px dashed yellowgreen;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#box li").click(function(){
+					var src = $(this).html();
+					//console.log(src)
+					$("#small li").html(src);
+				})
+				
+				
+				
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/22.jpg"/></li>
+				<li><img src="images/1.jpg"/></li>
+			</ul>
+		</div>
+		<div id="small">
+			<ul>
+				<li></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//:input 
+				//console.log( $(":input").length );
+				console.log( $(":input").size() ); //13
+				
+				//:text  : type=text
+				console.log( $(":text") );
+				
+				//:hidden : 不可见元素
+				//console.log( $("input:hidden").size() );
+				//console.log( $(":hidden").size() ); 
+				console.log( $(":hidden") ); 
+				
+				//:visible : 可见元素
+				console.log( $(":visible").size() );
+				
+				//:enabled : 可用元素
+				//:disabled : 不可用元素
+				console.log( $("input:enabled") );
+				console.log( $("input:enabled").size() );
+				
+				console.log( $("input:disabled").size() );
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<form>
+		    <input type="button" value="InputButton"/> <br>
+		    <input type="checkbox" checked="checked"/> <br>
+		
+		    <input type="file" /> <br>
+		    <input type="hidden" /> <br>
+		    <input type="image" /> <br>
+		
+		    <input type="password" /> <br>
+		    <input type="radio" /> <br>
+		    <input type="reset" /> <br>
+		
+		    <input type="submit" /> <br>
+		    <input type="text" /> <br>
+		    <select>
+		    	<option selected="selected">Option111</option>
+		    	<option selected="selected">Option222</option>
+		    	<option selected="selected">Option3333</option>
+		    </select>  <br>
+		
+		    <textarea></textarea>  <br>
+		    <button>Button</button>  <br>
+	
+		</form>
+	</body>
+</html>

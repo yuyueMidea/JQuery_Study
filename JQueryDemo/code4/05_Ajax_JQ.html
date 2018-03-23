@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//$.ajax()
+				//$.get()
+				//$.post()
+				
+				$("#btn").click(function(){
+					/*
+					$.ajax({
+//						type: "get", //默认是get
+						url: "json/lunbotu.json",
+//						data: {},
+//						async: true, //默认为true
+						
+						success: function(data){
+							console.log(2);
+							console.log(data);
+						},
+						error: function(){
+							console.log("error");
+							console.log(arguments[0]);
+							console.log(arguments[1]);
+							console.log(arguments[2]);
+						},
+						complete: function(){
+							console.log("完成");
+						}
+					});
+					
+					console.log("1");
+					*/
+					
+					//简化之后
+//					$.ajax({
+//						url:"json/lunbotu.json",
+//						success: function(data) {
+//							console.log(data);
+//						}
+//					});
+					
+					
+					//get
+					// http://60.205.181.47/myPHPCode2/checkname.php?regname=zhangsan
+//					$.get("json/lunbotu.json", function(data){
+//						console.log(data);
+//					})
+					
+//					$.get("http://60.205.181.47/myPHPCode2/checkname.php?regname=zhangsan", function(data){
+//						console.log("get");
+//					})
+					
+					$.get("http://60.205.181.47/myPHPCode2/checkname.php", {regname:"zhangsan"}, function(data){
+						console.log("get");
+					})
+					
+					//post
+					$.post("http://60.205.181.47/myPHPCode2/checkname.php", {regname:"zhangsan"}, function(data){
+						//console.log(data);
+						console.log("post");
+					})
+					
+					
+					//$.getJSON() : 获取json文件的内容
+					$.getJSON("json/lunbotu.json", function(d){
+						console.log(d);
+					})
+					
+					//$.getScript() : 加载一个js文件
+					$.getScript("js/demo.js");
+					
+					
+					//$.load()
+					$("p").load("demo.html #list1");
+					
+				})
+				
+			})
+		</script>
+		
+	</head>
+	<body>
+		<button id="btn">点我获取数据</button>
+		<p></p>
+	</body>
+</html>

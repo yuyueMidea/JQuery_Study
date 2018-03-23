@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box2 {
+				width: 100%;
+				height: 60px;
+				background: rgba(200,100,100,0.8);
+				position: fixed;
+				top: 0;
+				display: none;
+			}
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				var box3Top = $("#box3").offset().top;
+				
+				$(window).scroll(function(){
+					var scrollTop = $(window).scrollTop();
+					
+					if (scrollTop >= box3Top) {
+						$("#box2").fadeIn();
+					}
+					else  {
+						$("#box2").fadeOut();
+					}
+				})
+				
+			})
+		</script>
+	</head>
+	<body style="height: 2000px;">
+		<div id="box1">box1
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+		</div>
+		<div id="box2">box2</div>
+		<div id="box3">box3
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+			<p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+		</div>
+	</body>
+</html>

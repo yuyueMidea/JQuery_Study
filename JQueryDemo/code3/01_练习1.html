@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			//代码从这里开始写
+			$(function(){
+				
+				//事件委托
+				$("#tab").on("click", "a", function(){
+					console.log(1);
+				})
+				
+				//
+				$("#save").click(function(){
+					
+					var uid = $("#uid").val();
+					var uname = $("#name").val();
+					var uphone = $("#phone").val();
+					
+					//创建tr节点
+					//var tr = $("<tr><td>"+ uid +"</td><td>"+ uname +"</td><td>"+ uphone +"</td><td><a href='#' >删除</a></td></tr>");
+					//$("#tab").append(tr);
+					
+					var tr = $("<tr></tr>").appendTo("#tab");
+					$("<td>"+ uid +"</td>").appendTo(tr);
+					$("<td>"+ uname +"</td>").appendTo(tr);
+					$("<td>"+ uphone +"</td>").appendTo(tr);
+					$("<td><a href='#' >删除</a></td>").appendTo(tr);					
+					
+//					tr.find("a").click(function(){
+//						//console.log(1);
+//						$(this).parents("tr").remove();
+//					})
+					
+				})
+//				$("tr").find("a").click(function(){
+//					//console.log(1);
+//					$(this).parents("tr").remove();
+//				})
+				
+			})
+			
+		</script>
+	</head>
+	<body>
+		ID <input type="text" id="uid"/>
+		姓名<input type="text" id="name"/>
+		电话<input type="text" id="phone"/>
+		<input id="save" type="button" value="保存" />
+		
+		<table border="1" id="tab">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Tel</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>30</td>
+				<td>张三</td>
+				<td>13554354534</td>
+				<td><a href="#" >删除</a></td>
+			</tr>
+			<tr>
+				<td>40</td>
+				<td>李四</td>
+				<td>1355443434</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

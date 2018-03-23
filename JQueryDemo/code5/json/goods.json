@@ -1,0 +1,35 @@
+
+[
+	{
+		"id": 101,
+		"img": "images/b1.jpg",
+		"name": "单车",
+		"price": "1000",
+		"unit": "$",
+		"endTime": "2017-12-11 10:10:10"
+	},
+	{
+		"id": 102,
+		"img": "images/b2.jpg",
+		"name": "摩托",
+		"price": "10000",
+		"unit": "$",
+		"endTime": "2017-12-12 10:10:10"
+	},
+	{
+		"id": 103,
+		"img": "images/b3.jpg",
+		"name": "汽车",
+		"price": "100000",
+		"unit": "$",
+		"endTime": "2017-12-13 10:10:10"
+	},
+	{
+		"id": 104,
+		"img": "images/b4.jpg",
+		"name": "飞机",
+		"price": "1000000",
+		"unit": "$",
+		"endTime": "2017-12-14 10:10:10"
+	}
+]

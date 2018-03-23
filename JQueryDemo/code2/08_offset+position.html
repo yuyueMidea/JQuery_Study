@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//offset() : 相对于页面的左边或上边
+				console.log( $("#box").offset().left ); //50
+				console.log( $("#box1").offset().left ); //100
+				console.log( $("#box").offset().top ); //50
+				console.log( $("#box1").offset().top ); //75
+				
+				//$("#box").offset({left:100, top:200});
+				$("#box").css({left:100, top:200});
+				
+				//position() : 相对于父级定位参照物的位置
+				console.log( $("#box").position().left ); //50
+				console.log( $("#box1").position().left ); //50
+				console.log( $("#box").position().top ); //50
+				console.log( $("#box1").position().top ); //25
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 200px; height: 100px; background:red; position: absolute;left: 50px; top: 50px;"> 
+			<div id="box1" style="width: 100px; height: 50px; background:green; position: absolute;left: 50px; top: 25px;"></div>
+		</div>
+	</body>
+</html>

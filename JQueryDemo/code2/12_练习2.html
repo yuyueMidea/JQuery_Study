@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				$("#box").mousedown(function(e){
+					var disX=e.offsetX;
+					var disY = e.offsetY;
+					//console.log(disX+","+disY)
+					$(document).mousemove(function(e){
+						var x=e.pageX-disX+"px";
+						var y=e.pageY-disY+"px";
+						$("#box").css("left",x)
+						$("#box").css("top",y)
+					})
+					//
+					$(document).mouseup(function(){
+						$(document).off("mousemove")
+					})
+				})
+				
+				
+			})
+		</script>
+	</head>
+	<body style="background: black; width: 1000px; height: 1000px;">
+		<div id="box" style="width: 100px; height: 100px; background: url(images/girl.gif) center; position: absolute; left: 10px; top: 10px;"></div>
+	</body>
+</html>

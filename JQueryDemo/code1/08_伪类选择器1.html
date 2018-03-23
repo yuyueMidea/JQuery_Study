@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				
+				//重点： eq(), first()
+				
+				
+				//:first
+//				$("tr:first").css("background", "orange");
+//				$("tr").first().css("background", "orange");
+				
+				//:last
+				//$("tr:last").css("background", "blue");
+				//$("tr").last().css("background", "blue");
+				
+				//:even
+//				$("tr:even").css("background", "green");
+				
+				//:odd
+				//$("tr:odd").css("background", "pink");
+				
+				//:eq
+//				$("tr:eq(2)").css("background", "yellow");
+//				$("tr").eq(-2).css("background", "yellow");
+				//$("tr").eq(2).css("background", "yellow");
+				
+				//:gt()
+//				$("tr:gt(3)").css("background","orange");
+				
+				//:lt()
+//				$("tr:lt(3)").css("background","pink");
+				
+				//:not()
+				//$("tr:not(#not,.trNot)").css("background", "red")
+//				$("tr").not("#not,.trNot").css("background", "red")
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		 <table border="1">
+			<tr><th>指定范围选择器</th><th>描述</th></tr>
+			<tr><td>:first</td><td>匹配找到的第一个元素</td></tr>
+			<tr><td>:last</td><td>匹配找到的最后一个元素</td></tr>
+			<tr><td>:even</td><td>匹配所有索引值为偶数的元素</td></tr>
+			<tr><td>:odd</td><td>匹配所有索引值为奇数的元素</td></tr>
+			<tr><td>:gt(index)</td><td>匹配所有索引大于给定索引值的元素</td></tr>
+			<tr id="not"><td>:lt(index)</td><td>匹配所有索引小于给定索引值的元素</td></tr>
+			<tr class="trNot"><td>:not()</td><td>匹配所有索引小于给定索引值的元素</td></tr>
+		</table>
+
+	</body>
+</html>

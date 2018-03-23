@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//获取scrollTop
+				console.log( $(window).scrollTop() );
+				console.log( $(document).scrollTop() );
+				
+				//设置scrollTop
+				$("#btn").click(function(){
+					
+//					$(window).scrollTop(100);
+					$("html,body").scrollTop(0);
+				})
+				
+			})
+		</script>
+	</head>
+	<body style="height: 2000px;">
+		<p>1</p><p>1</p><p>1</p>
+		<button id="btn" style="position: fixed;bottom: 20px;">scrollTop</button>
+	</body>
+</html>

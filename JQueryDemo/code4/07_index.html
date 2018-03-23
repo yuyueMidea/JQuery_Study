@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul, li{list-style: none;}
+			#list li {
+				width: 200px;
+				height: 200px;
+				border: 1px solid gray;
+				float: left;
+				margin: 10px;
+				cursor: pointer
+			}
+			#list li img {
+				width: 200px;
+				height: 100px;
+			}
+			.pox {
+				color: red;
+			}
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				var arr = [];
+				
+				//ul中的li加点击事件
+				$("#list").on("click", "li", function(){
+					//console.log(1);
+					
+					var index = $(this).index("#list li");
+					//console.log(index);
+					
+					//获取当前点击的商品的id
+					var id = arr[index].id;
+					
+					//跳转到08_detail.html
+					location.href = "08_detail.html?id=" + id;
+				})
+				
+				//先获取数据
+				$.get("json/goods.json", function(d){
+					
+					//console.log(d);
+					arr = d;
+					
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						
+						var li = $("<li></li>").appendTo("#list");
+						$("<img src="+ obj.img +">").appendTo(li);
+						$("<p>"+ obj.name +"</p>").appendTo(li);
+						$("<p class='pox'>"+ obj.unit + obj.price +"</p>").appendTo(li);
+						var p = $("<p>剩余: <span>00</span>天 <span>00</span>:<span>00</span>:<span>00</span></p>").appendTo(li);
+						
+						//活动结束时间
+						var endTime = obj.endTime;
+						
+						(function(p, endTime){
+							
+							var timer = setInterval(function(){
+								var d1 = new Date(endTime); //活动结束时间
+								var d2 = new Date(); //当前时间
+								var timeInterval = parseInt( (d1-d2)/1000 ); //相差的总秒数
+								//console.log(timeInterval);
+								
+								//活动结束
+								if (timeInterval <= 0) {
+									alert("活动结束");
+									clearInterval(timer); //关闭定时器
+									return;
+								}
+								
+								var day = parseInt(timeInterval/(3600*24)); //天
+								var hour = parseInt(timeInterval/3600) % 24; //时
+								var min = parseInt(timeInterval/60) % 60; //分
+								var sec = timeInterval % 60; //秒
+								
+								day = day>=10 ? day : '0'+day;
+								hour = hour>=10 ? hour : '0'+hour;
+								min = min>=10 ? min : '0'+min;
+								sec = sec>=10 ? sec : '0'+sec;
+								
+								p.find("span").eq(0).html( day );
+								p.find("span").eq(1).html( hour );
+								p.find("span").eq(2).html( min );
+								p.find("span").eq(3).html( sec );
+								
+							}, 1000);
+							
+						})(p, endTime)
+						
+						
+					
+					}
+					
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<!--<li>
+				<img src="images/b1.jpg"/>
+				<p>单车</p>
+				<p class="pox">$1000</p>
+			</li>
+			<li>
+				<img src="images/b2.jpg"/>
+				<p>摩托</p>
+				<p>$10000</p>
+			</li>
+			<li>
+				<img src="images/b3.jpg"/>
+				<p>汽车</p>
+				<p>$100000</p>
+			</li>
+			<li>
+				<img src="images/b4.jpg"/>
+				<p>飞机</p>
+				<p>$1000000</p>
+			</li>-->
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			#smallImg {
+				position: absolute;
+				left: 50px;
+				top: 100px;
+			}
+			#smallImg, #smallImg img {
+				width: 200px;
+				height: 200px;
+			}
+			#smallArea {
+			 	display: none; 
+			 	width: 50px; height: 50px; background: rgba(200, 222,111, 0.3); 
+			 	position: absolute; left: 50px; top: 0;
+			}
+			
+			#bigArea {
+				 display: none; overflow: hidden; 
+				 width: 200px; height: 200px; background: rgba(200,111,222,0.3); 
+				 position: absolute; left: 300px; top: 100px;
+			}
+			#bigImg {
+				width: 800px; height: 800px;
+				position: absolute; left: 0; top: 0;
+			}
+			
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-1.12.3.js" ></script>
+		<script>
+			$(function(){
+				$("#smallImg").mouseenter(function(e){
+//					var dx=e.offsetX;
+//					var dy=e.offsetY;
+					$("#smallArea").css("display","block");
+					$("#bigArea").css("display","block");
+					//
+					$("#smallImg").mousemove(function(e){
+						var x = e.offsetX-25; //e.pageX-50-25;
+						var y = e.offsetY-25;//e.pageY-100-25;
+						if(x<=0){x=0}
+						else if(x>=150){x=150}
+						if(y<=0){y=0}
+						else if(y>=150){y=150}
+						$("#smallArea").css({left:x,top:y})
+						//
+						var scale = 4;
+						$("#bigImg").css({left:-x*scale,top:-y*scale})
+					});
+					//
+					$("#smallImg").mouseleave(function(){
+						$("#smallArea").css("display","none");
+						$("#bigArea").css("display","none")
+					})
+				})
+				
+					//
+					
+					//
+					
+					
+					
+				
+				
+				
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="smallImg">
+			<img src="images/星际穿越.jpg" />
+			<div id="smallArea"></div>
+			<div id="smallImg2" style="position:absolute; left:0; top:0px; background: rgba(222,200,100,0.3); width: 100%; height: 100%;"></div>
+			
+
+		</div>
+		<div id="bigArea">
+			<img id="bigImg" src="images/星际穿越.jpg" />
+		</div>		
+	</body>
+</html>

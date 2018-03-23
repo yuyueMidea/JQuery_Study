@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			#box{width: 1200px;height: 100px;border: 3px solid red;}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var pNode = $("<p>append</p>");
+				$("#box").append(pNode);
+				$("<b>append to</b>").appendTo( $("#box") );
+				var bNode = $("<b>after</b>");
+				$("#box").after(bNode);
+				
+				var be = $("<b>before</b>");
+				$("#box").before(be);
+			//wrap()
+			$("#btn1").click(function(){
+				$("#p1").wrap("<b></b>")
+			})
+			//
+			$("#btn2").click(function(){
+				$("#p2").wrap("<i></i>").siblings().wrap("<i></i>")
+			})
+			//
+			$(".box5").css("background","blueviolet")
+			$(".box5").click(function(){
+				$(this).css({ height:function(index,val){
+					return parseInt(val)*2;
+				},
+				fontSize:function(index,val){
+					return parseInt(val)*2;
+				}})
+				
+				
+			})
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<p>hello</p>
+			<p>byebye</p>
+		</div>
+		<br /><br />
+		<div class="pox">
+			<p id="p1">加粗</p>
+			<p id="p2">变斜</p>
+			<p>hello</p>
+			<p>byebye</p>
+		</div>
+		<button id="btn1">wrap</button><br />
+		<button id="btn2">wrap2</button><br />
+		<button id="btn3">remove</button><br />
+		<button id="btn4">clone</button><br />
+		<div class="box5">box5</div>
+	</body>
+</html>

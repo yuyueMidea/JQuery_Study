@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//on() ： 添加事件
+				//off() : 移除事件
+				
+				//添加一个事件
+				$("#btn1").on("click", function(){
+					console.log("click-on");
+				})
+				
+				//同时添加多个事件
+				$("#btn1").on({"mouseenter":function(){
+					console.log("mouseenter");
+				}, 
+				"mouseleave": function(){
+					console.log("mouseleave");
+				}})
+				
+				//off() 
+				$("#btn1").off("mouseenter mouseleave");
+				
+				
+				//on的事件委托
+				
+				//将class=btn的元素的事件委托id=box的div节点去添加
+				$("#box").on("click", ".btn", function(){
+					console.log(1);
+				})
+//				$(".btn").on("click", function(){
+//					console.log(1);
+//				})
+				
+				$("<input class='btn' type='button' value='按钮2' />").appendTo("#box");
+				
+				
+				//JS中的事件委托
+				/*
+				var box = document.getElementById("box");
+				box.onclick = function(e){
+					
+					if (e.target.className == "btn") {
+						console.log(2);
+					}
+				}
+				$("<input class='btn' type='button' value='按钮3' />").appendTo("#box");
+				*/
+			})
+		</script>
+	</head>
+	<body>
+		<button id="btn1">按钮1</button>
+		<div id="box" style="width: 200px; height: 50px; border: 3px solid red;">
+			点我试试<input class="btn" type="button" value="按钮2" /><a href="#">dd</a>
+		</div>
+	</body>
+</html>

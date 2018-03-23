@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//重点： append, appendTo
+				
+				//append() : 在子元素末尾追加内容
+				//创建一个新节点
+				var pNode = $("<p><span>append</span></p>");
+				$("#box").append(pNode);
+				
+				//appendTo() 
+				$("<b>appendTo</b>").appendTo("#box");
+				
+				
+				//prepend() : 在子元素前面添加内容
+				var bNode = $("<b>prepend</b>");
+				$("#box").prepend(bNode);
+				
+				//prependTo()
+				$("<b>prependTo</b>").prependTo("#box");
+				
+				
+				//after() : 在同级的后面追加一个元素
+				var bNode = $("<b>after</b>");
+				$("#box").after(bNode);
+				
+				//insertAfter()
+				$("<b>insertAfter</b>").insertAfter("#box");
+				
+				
+				//before() : 在同级的前面加入一个元素
+				var bNode = $("<b>before</b>");
+				$("#box").before(bNode);
+				
+				//insertBefore()
+				$("<b>insertBefore</b>").insertBefore("#box");
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<p>hello</p>
+			<p>byebye</p>
+		</div>
+	</body>
+</html>

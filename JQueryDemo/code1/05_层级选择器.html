@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//层级选择器
+				
+				//后代选择器
+//				$("#box input").css("border", "3px solid red");
+				//$("#box").find("input").css("border", "3px solid red");
+				
+				//子选择器
+//				$("#box > input").css("border", "3px solid red");
+// 				$("#box").children("input").css("border", "3px solid red");
+				
+				//同级的下一个节点
+				$("#box + input").css("border", "3px solid red");
+//				$("#box").next("input").css("border", "3px solid red");
+				
+				//同级的后面所有节点
+				//$("#box ~ input").css("border", "3px solid red");
+//				$("#box").nextAll("input").css("border", "3px solid red");
+				
+				//同级的前面节点
+// 				$("#box").prev("input").css("border", "3px solid red");
+				
+				//同级的前面所有节点
+ 				//$("#box").prevAll("input").css("border", "3px solid red");
+				
+				
+				//siblings() : 所有指定的同级节点
+				//$("#box").siblings("input").css("border", "3px solid red");
+				
+			})
+		</script>
+	</head>
+	<body>
+		
+		<input class="pox" type="text" value="1"/>
+		<div>
+			<input type="text" value="2"/>	
+		</div>
+		<input type="text" value="3"/>
+		
+		<div id="box">
+			<input type="text" value="4"/>
+			<div>
+				<input type="text" value="5"/>
+			</div>
+		</div>
+		
+		<input type="text" value="6"/>
+		<div>
+			<input type="text" value="7"/>	
+		</div>
+		<input type="text" value="8"/>
+		
+	</body>
+</html>

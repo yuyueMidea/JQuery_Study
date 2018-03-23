@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				$("input").click(function(){
+					
+					//show() : 显示元素
+					//$("div").show();
+					//$("div").show(3000);
+					//$("div").show("normal"); //fast:0.4，normal:0.6，slow:0.8
+//					$("div").show(3000, function(){
+//						console.log("show动画完成");
+//					});
+					
+					//hide() : 隐藏元素
+					//$("div").hide();
+					//$("div").hide("fast");
+//					$("div").hide(3000, function(){
+//						console.log("hide动画完成");
+//					});
+
+					//toggle() : 切换显示隐藏， 如果之前是显示的，则隐藏， 如果之前是隐藏的，则显示
+					//$("div").toggle();
+					//$("div").toggle(3000);
+					
+					
+					//slideDown() : 通过改变高度（向下变高）来显示元素
+					//$("div").slideDown();
+//					$("div").slideDown(3000, function(){
+//						console.log("slideDown动画完成");
+//					});
+					
+					//slideUp() : 通过改变高度（向上变矮）来隐藏元素
+					//$("div").slideUp();
+//					$("div").slideUp(3000, function(){
+//						console.log("slideUp动画完成");
+//					});
+					
+					//slideToggle() 
+					//$("div").slideToggle();
+					//$("div").slideToggle(3000);
+					
+					
+					//fadeIn() : 淡入显示， 通过改变透明度，将透明度变成不透明， display:block
+					//$("div").fadeIn();
+//					$("div").fadeIn(3000, function(){
+//						console.log("fadeIn动画完成");
+//					});
+					
+					//fadeOut(): 淡出隐藏，通过改变透明度， 将透明度变成透明， display:none
+					//$("div").fadeOut();
+//					$("div").fadeOut(3000, function(){
+//						console.log("fadeOut动画完成");
+//					});
+					
+					//fadeTo() : 将透明度改变到指定的透明度
+//					$("div").fadeTo(3000, 0.3, function(){
+//						console.log("动画完成fadeTo");
+//					})
+					
+					//fadeToggle(): 切换淡入，淡出
+//					$("div").fadeToggle();
+//					$("div").fadeToggle(3000);
+					
+					
+					//show(), hide()
+					//fadeIn(), fadeOut(), fadeTo()
+					
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		
+		<input type="button" value="开始运动" />
+		<div id="box" style="width: 100px;height: 100px; background: red;"></div>
+		<div id="box2" style="display: none; width: 100px;height: 100px; background: green;"></div>
+		<!--<div id="box3" style="display: none; width: 100px;height: 100px; background: yellow;"></div>
+		<div id="box4" style="width: 100px;height: 100px; background: pink;"></div>-->
+		
+	</body>
+</html>

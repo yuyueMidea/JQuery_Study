@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul,li{list-style: none;}
+			#box {
+				width: 640px;
+				height: 140px;
+				margin: 100px auto;
+				position: relative;
+			}
+			#box #list {
+				height: 140px;
+				border-left: 1px solid #ccc;
+			}
+			#box #list li {
+				width: 50px;
+				height: 138px;
+				border: 1px solid #ccc;
+				border-left: none;
+				float: left;
+				position: relative;
+				overflow: hidden;
+			}
+			#box #list li.active {
+				width: 434px; 
+			}
+			#box #list li h3 {
+				width: 14px;
+				height: 98px;
+				padding: 40px 18px 0;
+				font-size: 14px;
+			}
+			#box #list li h3.hover {
+				background: #f45;
+				color: white;
+			}
+			#box #list li div {
+				width: 384px;
+				height: 138px;
+				position: absolute;
+				left: 50px;
+				top: 0;
+			}
+			#box #list li.last {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+			
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			
+			$(function(){
+				
+				$("#list li").mouseenter(function(){
+					
+					//$(this).addClass("active").find("h3").addClass("hover")
+					//.parent().siblings().removeClass("active").find("h3").removeClass("hover");
+					
+					$(this).stop().animate({width:434},200).siblings().stop().animate({width:50},200);
+					
+					$(this).find("h3").addClass("hover").html("红玫瑰")
+					.parent().siblings().find("h3").removeClass("hover").html("白玫瑰");
+					
+				})
+				
+			})
+			
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li >
+					<h3 >白玫瑰</h3>
+					<div style="background: green;"></div>
+				</li>
+				<li class="active">
+					<h3 class="hover">红玫瑰</h3>
+					<div style="background: blue;"></div>
+				</li>
+				<li>
+					<h3>白玫瑰</h3>
+					<div style="background: red;"></div>
+				</li>
+				<li>
+					<h3>白玫瑰</h3>
+					<div style="background: yellow;"></div>
+				</li>
+				<li class="last">
+					<h3>白玫瑰</h3>
+					<div style="background: pink;"></div>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

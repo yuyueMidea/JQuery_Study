@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				
+				//拖拽
+				$("#box").mousedown(function(e){
+					var disX = e.offsetX;
+					var disY = e.offsetY;
+					//
+					$(document).mousemove(function(e){
+						var x=e.pageX-disX+"px";
+						var y=e.pageY-disY+"px";
+						$("#box").css("left",x);
+						$("#box").css("top",y);
+						
+					})
+					//
+					$(document).mouseup(function(){
+						$(document).off("mousemove");
+					})
+				})
+				
+				
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 100px; height: 100px; background: red; position: absolute; left: 20px; top: 20px;"></div>
+	</body>
+</html>

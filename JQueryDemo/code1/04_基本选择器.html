@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//基本选择器
+				//id选择器
+//				$("#box").css("background", "red");
+				$("#box").css({"background":"red", color:"green", fontSize:30});
+				
+				//标签选择器
+				$("div").css("border", "1px solid blue");
+				
+				//class选择器
+				$(".pox").css("background", "orange");
+				
+				//通配符选择器
+				$("*").css("font-family", "microsoft yahei");
+				
+				//群组选择器
+				$("#box,.foo").css({backgroundColor: "yellow"});
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div id="box">div</div>
+		<div class="pox">div1</div>
+		<div class="pox">div2</div>
+		<div class="foo">div3</div>
+	</body>
+</html>

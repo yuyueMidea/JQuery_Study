@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			//代码从这里开始写
+			$(function(){
+				$("#save").click(function(){
+					var td1 = $("<td>"+$("#uid").val()+"</td>");
+					var td2 = $("<td>"+$("#name").val()+"</td>");
+					var td3 = $("<td>"+$("#phone").val()+"</td>");
+					var td4 = $("<td><a href='#' >删除</a></td>");
+					var tr = $("<tr></tr>");
+					tr.append(td1);
+					tr.append(td2);
+					tr.append(td3);
+					tr.append(td4);
+					$("#tab").append( tr );
+					//
+					$("td a").click(function(){
+						$(this).parent().parent().remove()
+					})
+					
+				})
+				//
+				
+				
+			})
+			
+		</script>
+	</head>
+	<body>
+		ID <input type="text" id="uid"/>
+		姓名<input type="text" id="name"/>
+		电话<input type="text" id="phone"/>
+		<input id="save" type="button" value="保存" />
+		
+		<table border="1" id="tab">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Tel</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>30</td>
+				<td>张三</td>
+				<td>13554354534</td>
+				<td><a href="#" >删除</a></td>
+			</tr>
+			<tr>
+				<td>40</td>
+				<td>李四</td>
+				<td>1355443434</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

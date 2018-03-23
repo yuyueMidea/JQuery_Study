@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;margin: 0;border: none;
+			}
+			ul{
+				width: 400px;height: 400px;padding: 5px;border: 3px solid pink;
+			}
+			ul li{
+				list-style: none;float: left;width: 80px;height: 80px;
+				border: 1px solid orange;color: white;line-height: 80px;
+				text-align: center;background: #ccc;font-size: 30px;
+				margin: 5px;cursor: pointer;
+			}
+			#box{
+				width: 200px;height: 200px;border: 2px solid greenyellow;
+				line-height: 200px;text-align: center;font-size: 40px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.12.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("li").click(function(){
+					var index = $(this).html();
+					//console.log(index);
+					$("#box span").html(index);
+					$(this).css("background","antiquewhite").siblings().css("background","#CCCCCC")
+				})
+				
+				
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+		</ul>
+		<div id="box">
+			<span>1</span>月份好
+		</div>
+	</body>
+</html>

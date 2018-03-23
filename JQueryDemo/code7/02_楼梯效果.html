@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul,li {list-style: none;}
+			#loutiNav {
+				width: 30px;
+				position: fixed;
+				top: 35%;
+				left: 50px;
+				border: 1px solid black;
+			}
+			#loutiNav li {
+				width: 30px;
+				height: 29px;
+				border-bottom: 1px dashed #ccc;
+				font-size: 14px;
+				text-align: center;
+				line-height: 29px;
+				position: relative;
+			}
+			#loutiNav li span {
+				display: none;
+				position: absolute;
+				width: 30px;
+				height: 29px;
+				left: 0;
+				top: 0;
+			}
+			#loutiNav li:hover span {
+				display: block;
+				background: #f45;
+				color: white;
+			}
+			#loutiNav li span.active {
+				display: block;
+				background: white;
+				color: #f45;
+			}
+			
+			#head, #foot, #main div {
+				width: 1000px;
+				margin: 0 auto;
+				height: 600px;
+				font-size: 100px;
+				text-align: center;
+				line-height: 600px;
+			}
+			
+		</style>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//点击楼层， 滚动页面
+				var bMoving = false; //表示楼层按钮是否点击后正在滚动页面
+				$("#loutiNav li").click(function(){
+					
+					$(this).find("span").addClass("active")
+					.parent().siblings().find("span").removeClass("active");
+					
+					var index = $(this).index();
+					var top = $(".louti").eq(index).offset().top;
+					
+					//滚动页面
+					//$(window).scrollTop(top);
+					bMoving = true; 
+					$("html,body").stop().animate({scrollTop:top}, 200, function(){
+						bMoving = false;
+					});
+				})
+				
+				
+				//滚动页面
+				$(window).scroll(function(){
+					
+					//当bMoving=false时
+					if ( !bMoving ) {
+					
+						var scrollTop = $(window).scrollTop();
+						
+						var index = 0;
+						$(".louti").each(function(){
+							var top = $(this).offset().top;
+							if (scrollTop >= top) {
+								index = $(this).index();
+							}
+						})
+						//console.log(index);
+						
+						//修改楼梯按钮的选中状态
+						$("#loutiNav li").eq(index).find("span").addClass("active")
+						.parent().siblings().find("span").removeClass("active");
+					}
+				})
+				
+				
+				
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="loutiNav">
+			<ul>
+				<li>1F<span class="active">服饰</span></li>
+				<li>2F<span>美妆</span></li>
+				<li>3F<span>手机</span></li>
+				<li>4F<span>家电</span></li>
+				<li>5F<span>数码</span></li>
+				<li>6F<span>运动</span></li>
+				<li>7F<span>居家</span></li>
+				<li>8F<span>母婴</span></li>
+				<li>9F<span>食品</span></li>
+				<li>10F<span>图书</span></li>
+				<li>11F<span>服务</span></li>
+			</ul>
+		</div>
+		
+		<div id="head" style="background: #33cc99;">head</div>
+		<div id="main">
+			<div class="louti" style="background: #993399;">1F服饰</div>
+			<div class="louti" style="background: #ff3333;">2F美妆</div>
+			<div class="louti" style="background: #cc3399;">3F手机</div>
+			<div class="louti" style="background: #66cc99;">4F家电</div>
+			<div class="louti" style="background: #6633cc;">5F数码</div>
+			<div class="louti" style="background: #ee3399;">6F运动</div>
+			<div class="louti" style="background: #66cc99;">7F居家</div>
+			<div class="louti" style="background: #6633cc;">8F母婴</div>
+			<div class="louti" style="background: #66aa99;">9F食品</div>
+			<div class="louti" style="background: #aa3399;">10F图书</div>
+			<div class="louti" style="background: #663399;">11F服务</div>
+		</div>
+		<div id="foot" style="background: #33cc99;">foot</div>
+		
+		
+	</body>
+</html>

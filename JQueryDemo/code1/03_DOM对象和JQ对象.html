@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			
+			$(function(){
+				
+			//$==jQuery
+			//jQuery(function(){
+				
+				//DOM对象和JQ对象
+				
+				//DOM对象： 元素节点对象
+				//var box = document.getElementById("box");
+				//box.innerHTML = "王者荣耀";
+				//box.html(); //报错
+				
+				//JQ对象
+				//var box = $("#box");
+				//box.html("LOL");
+				//box.innerHTML = "张三"; innerHTML在JQ对象中不可以使用
+				
+				
+				//DOM对象（JS元素节点对象） 和 JQ对象之间的转换
+				//DOM对象转JQ对象
+				var box = document.getElementById("box");
+				console.log(box); //[object HTMLDivElement], DOM对象
+				console.log($(box)); //[object Object]， JQ对象
+				$(box).html("Dota2");
+				
+				//JQ对象转DOM对象
+				var box = $(".pox");
+			    box[0].innerHTML = "LOL";
+				box[1].innerHTML = "Dota";
+//				box.get(1).innerHTML = "Dota";
+				
+				
+				
+			})
+		</script>
+		
+	</head>
+	<body>
+		<div id="box">div</div>
+		<div class="pox">div1</div>
+		<div class="pox">div2</div>
+	</body>
+</html>

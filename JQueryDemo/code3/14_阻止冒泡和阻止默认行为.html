@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				$(document).click(function(){
+					console.log("document");
+				})
+				
+				$(document.body).click(function(){
+					console.log("body");
+				})
+				$("div").click(function(e){
+					console.log("div");
+					
+					//阻止冒泡
+					e.stopPropagation();
+					
+					//阻止默认行为
+					e.preventDefault();
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box">div</div>
+	</body>
+</html>

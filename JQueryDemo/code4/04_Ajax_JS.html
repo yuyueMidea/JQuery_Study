@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			function createXHR(){
+				if (window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				}
+				return new ActiveXObject("Microsoft.XMLHTTP"); //IE6
+			}
+			
+			//GET
+			var xhr = createXHR();
+			xhr.open("GET", "url", true);
+			xhr.send(null);
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState==4 && xhr.status==200) {
+					console.log(xhr.responseText);
+				}
+			}
+			
+			//POST
+			var xhr = createXHR();
+			xhr.open("POST", "url", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send("regname=zhangsan&pwd=111");
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState==4 && xhr.status==200) {
+					console.log(xhr.responseText);
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

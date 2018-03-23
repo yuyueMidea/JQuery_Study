@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.3.js"></script>
+		<script>
+			$(function(){
+				
+				//width()  : 宽度
+				//innerWidth() ： 宽度+padding
+				//outerWidth() : 宽度+pading+border
+				//outerWidth(true) : 宽度+padding+border+margin
+				
+				//获取宽度
+				console.log( $("#box").width() ); //100
+				console.log( $("#box").innerWidth() ); //120
+				console.log( $("#box").outerWidth() ); //140
+				console.log( $("#box").outerWidth(true) ); //160
+				
+				//设置宽度
+				$("#box").width(50);
+				
+				//height 和 width类似
+			})
+		</script>
+	</head>
+	<body>
+		<div id="box" style="width: 100px; height: 100px; background: red; padding: 10px; border: 10px solid green; margin: 10px;"></div>
+	</body>
+</html>
