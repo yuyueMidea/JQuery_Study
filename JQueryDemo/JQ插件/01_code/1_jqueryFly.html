@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+			.u-flyer{display:block; width:50px; height:50px; border-radius:50px; position:fixed; z-index: 9999;}
+		</style>
+		
+		<script src="js/jquery-1.12.3.js"></script>
+		<script src="js/jquery.fly.min.js"></script>
+		
+		<script>
+			$(function(){
+				
+				//点击加入购物车
+				$("#addToCart").click(function(e){
+					
+					var flyer = $("<img class='u-flyer'/>"); //创建img节点, 给一个class=u-flyer
+					flyer.attr("src", "lg.jpg"); //给img一张图
+					
+					//调用fly, 让图片飞
+					flyer.fly({
+						
+						//起始位置
+						start: {
+							left: e.clientX,
+							top: e.clientY,
+							width: 90,
+							height: 90				 		
+						},
+						//结束位置
+						end: {
+							left: $("#cart").offset().left,
+							top: $("#cart").offset().top,
+							width: 0,
+							height: 0 
+						},
+						//结束后
+						onEnd: function(){
+							flyer.fadeOut();
+							console.log("加入购物车成功!");
+						}
+					});
+					
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<button id="addToCart" style="position: absolute; left: 10px; top: 200px;">加入购物车</button>
+		<button id="cart" style="position: absolute; right: 0; top: 100px;">购物车</button>
+	</body>
+</html>

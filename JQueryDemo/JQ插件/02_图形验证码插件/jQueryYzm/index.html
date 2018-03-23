@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图形验证码</title>
+	</head>
+	<body>
+		<div id="v_container" style="width: 200px;height: 50px;"></div>
+		<input type="text" id="code_input" value="" placeholder="请输入验证码"/><button id="my_button">验证</button>
+	</body>
+	<script src="js/gVerify.js"></script>
+	<script>
+		var verifyCode = new GVerify("v_container");
+
+		document.getElementById("my_button").onclick = function(){
+			var res = verifyCode.validate(document.getElementById("code_input").value);
+			if(res){
+				alert("验证正确");
+			}else{
+				alert("验证码错误");
+			}
+		}
+		
+		
+	</script>
+	
+	
+	<!--
+		
+		插件描述：根据html5的canvas写的一个图形验证码插件
+		
+		使用方法:
+
+			1, 先创建一个容器：比如div，设置宽高， 设置div的id，比如：container，
+				初始化图形验证码：
+				var verifyCode = new GVerify("container");
+			
+			
+			2, 调用函数，设置参数：
+				只传一个id的时候，默认类型为数字和字母混合：“blend”
+				也可传多个参数：number：纯数字类型，letter：纯字母类型
+				var verifyCode = new GVerify({
+						id:"container",
+						type:"number"
+				});
+			
+			方法：
+			verifyCode.refresh();刷新图形验证码
+			verifyCode.validate(code);验证图形验证码，参数code为用户输入的验证码，返回值：正确：true,错误：false
+					
+	-->
+	
+</html>

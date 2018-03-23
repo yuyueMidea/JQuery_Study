@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>xSlider幻灯片插件</title>
+
+
+<link rel="stylesheet" href="build/css/app.css">
+</head>
+<body style="background-color: #1D1D1D">
+<h1 id="title">xSlider轮播图插件</h1>
+
+<div class="slider">
+  <div class="slider-img">
+    <ul class="slider-img-ul">
+      <li><img src="build/images/slider-5.jpg"></li>
+      <li><img src="build/images/slider-1.jpg"></li>
+      <li><img src="build/images/slider-2.jpg"></li>
+      <li><img src="build/images/slider-3.jpg"></li>
+      <li><img src="build/images/slider-4.jpg"></li>
+      <li><img src="build/images/slider-5.jpg"></li>
+      <li><img src="build/images/slider-1.jpg"></li>
+    </ul>
+  </div>
+</div>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="build/js/xSlider.js"></script>
+<script>
+		var config={current:0,speed:500,intervalTime:2e3};
+		$(".slider").xSlider(config);
+		
+</script>
+</body>
+</html>

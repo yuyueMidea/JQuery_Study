@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript" src="move.js" ></script>
+	<script>
+		window.onload = function(){
+			var hehe = document.getElementById("hehe");
+			var shadow = document.getElementById("shadow");
+			
+			hehe.onmouseenter = function(evt){
+				var e = evt || event;
+				var x = (e.pageX - this.offsetLeft - (this.offsetWidth/2)) * (this.offsetWidth > this.offsetHeight ? this.offsetHeight/this.offsetWidth : 1);
+				var y = (e.pageY - this.offsetTop - (this.offsetHeight/2)) * (this.offsetHeight > this.offsetWidth ? this.offsetWidth/this.offsetHeight : 1);
+				var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI))) / 90) + 5) % 4; 
+				switch(direction) {
+					case 0 : console.log("从上面划入");
+						shadow.style.left = 0; 
+						shadow.style.top = -shadow.offsetHeight+"px";
+						animate(shadow,{left:0, top: 0});
+						break;
+					case 1 : console.log("从右面划入");
+						shadow.style.left = shadow.offsetWidth+"px";
+						shadow.style.top = 0;
+						animate(shadow, {left:0, top: 0});
+						break;
+					case 2 : console.log("从下面划入");
+						shadow.style.top = shadow.offsetHeight+"px";
+						shadow.style.left = 0;
+						animate(shadow, {left:0, top: 0});
+						break;
+					case 3 : console.log("从左面划入");
+						shadow.style.left = -shadow.offsetWidth+"px";
+						shadow.style.top = 0;
+						animate(shadow, {left:0, top: 0});
+						break;
+				}
+			}
+			hehe.onmouseleave = function(evt){
+				var e = evt || event;
+				var x = (e.pageX - this.offsetLeft - (this.offsetWidth/2)) * (this.offsetWidth > this.offsetHeight ? this.offsetHeight/this.offsetWidth : 1);
+				var y = (e.pageY - this.offsetTop - (this.offsetHeight/2)) * (this.offsetHeight > this.offsetWidth ? this.offsetWidth/this.offsetHeight : 1);
+				var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI))) / 90) + 5) % 4; 
+				switch(direction) {
+					case 0 : console.log("从上面划出");
+						animate(shadow,{left:0, top: -shadow.offsetHeight});
+						break;
+					case 1 : console.log("从右面划出");
+						animate(shadow, {left:shadow.offsetWidth,top: 0});
+						break;
+					case 2 : console.log("从下面划出");
+						animate(shadow, {left:0, top:shadow.offsetHeight});
+						break;
+					case 3 : console.log("从左面划出");
+						animate(shadow, {left: -shadow.offsetWidth,top: 0});
+						break;
+				}
+			}
+		}
+	</script> 
+	<body>
+		<div id="hehe" style="overflow:hidden;position: fixed; background:red ; top: 100px; left:200px; width:150px; height:200px;">
+			<div id="shadow" style="position: absolute; background: rgba(0,0,0,0.6); left:0; top:200px;width: 150px; height: 200px;"></div>
+		</div>
+	</body>
+
+</html>
