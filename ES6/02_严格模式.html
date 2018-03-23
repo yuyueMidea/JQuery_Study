@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//ES5的严格模式：
+			//  所谓严格模式，从字面上就很好理解，即更严格的模式 在这种模式下执行，浏览器会对JS的要求更苛刻，语法格式要求更细致，更符合逻辑。
+			//  怪异模式：就是我们之前一直使用的开发模式，就叫怪异模式。因为很多时候出来的结果是非常怪异的，所以才称之为怪异模式。
+			
+			//进入严格模式（全局）
+//			"use strict";
+			
+			
+//			function fn(){
+//				//进入严格模式（局部）
+//				"use strict";
+//				
+//			}
+			
+			/*
+			 Javascript 为什么要设立严格模式：
+				1.消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+				2.代码运行的一些不安全之处，保证代码运行的安全；
+				3.提高编译器效率，增加运行速度；
+				 
+				例如以下几点:
+				 1. 不可以省略var声明变量
+				 2. 禁止使用this关键字指向全局变量
+				 3. 禁止使用八进制方法
+				 4. 不允许在非函数的代码块内声明函数
+				
+			*/
+			
+			"use strict";
+			
+			//1. 不可以省略var声明变量
+			//a = 10;
+			//console.log(a); //报错， a is not defined
+			
+			//2. 禁止使用this关键字指向全局变量
+			//function fn(){
+			//	console.log(this); //[object Window],window对象, 严格模式下是undefined
+			//}
+			//fn();
+			
+			
+			//3. 禁止使用八进制方法
+			//var b = 011;
+			//console.log(b);
+			
+			//4. 不允许在非函数的代码块内声明函数
+//			if (1){
+//				function fn(){
+//					console.log("fn");
+//				}
+//			}
+			
+			
+			
+			//5, 对象的属性名不能重复
+			//var obj = {
+			//	name: 1,
+			//	name: 2
+			//}
+			
+			
+			
+			//ES5-bind
+    		//绑定一个新对象， 让函数中的this指向该对象， 一般在定时器中使用较多。
+//			var name = "aa";
+//			var obj1 = {name: "张三"};
+//			var obj2 = {
+//				name: "李四",
+//				fn: function(){
+//					//console.log(this); //[object Window]
+//					//console.log(this.name); //aa
+//				},
+//				fn2: function(){
+//					console.log(this.name); //张三
+//				}
+//			}
+//			//obj2.fn();
+//			
+//			//setInterval(obj2.fn, 2000);
+//			
+//			//将obj1传入fn2函数，让fn2函数中的this=obj1
+//			setInterval(obj2.fn2.bind(obj1), 2000);
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

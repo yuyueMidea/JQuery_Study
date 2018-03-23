@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			/*
+			 ES6-Map:
+			    Map 是一个“超对象”，其 key 除了可以是 String 类型之外，还可以为其他类型（如：对象）
+			
+			他的方法和 Set 差不多:
+			size：返回成员总数。
+			set(key, value)：设置一个键值对。
+			get(key)：读取一个键。
+			has(key)：返回一个布尔值，表示某个键是否在Map数据结构中。
+			delete(key)：删除某个键。
+			clear()：清除所有成员。
+			keys()：返回键名的遍历器。
+			values()：返回键值的遍历器。
+			entries()：返回所有成员的遍历器。
+			*/
+			
+			var map = new Map([[1,"a"],[2,"b"],[3,"c"]]); 
+			console.log(map); //Map { 1: "a", 2: "b", 3: "c" }
+			
+			//
+			console.log(map.size); //3
+			
+			//
+			var arr = [];
+			var map = new Map(); 
+			map.set("name", "张三");
+			map.set(arr, "李四");
+			map.set({}, "王五");
+			console.log(map); //Map { name: "张三", Array[0]: "李四", Object: "王五" }
+			console.log( map.get("name") ); //张三
+			console.log( map.get(arr) ); //李四
+			
+			console.log( map.has("name") ); //true
+			map.delete("name");
+			console.log(map); //Map { Array[0]: "李四", Object: "王五" }
+			
+			map.clear(); 
+			console.log(map); //Map {  }
+			
+			
+			//for-of
+			var map = new Map([[1,"a"],[2,"b"],[3,"c"]]); 
+			for (let n of map){
+				console.log(n); //key-value, Array [ 1, "a" ]
+			}
+			for (let key of map.keys()) {
+				console.log(key); //key
+			}
+			
+			for (let value of map.values()) {
+				console.log(value); //value
+			}
+			for (let n of map.entries()) {
+				console.log(n); //key-value, Array [ 1, "a" ]
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

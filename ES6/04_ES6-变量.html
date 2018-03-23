@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//var: 声明变量
+			//let: 声明变量
+			//let 是ES6中新增关键字。它的作用类似于var，用来声明变量，
+			//     但是所声明的变量，只在let命令所在的代码块内有效。
+			
+			
+			let a = 10;
+			console.log(a);
+			
+			//1, 会形成代码块, 所谓代码块，就是{}所包含的的部分
+			if (1){
+				let b = 10;
+				var c = 20;
+				console.log(b); //10
+				console.log(c); //20
+			}
+			//console.log(b); //报错， b is not defined
+			console.log(c); //20
+			
+			
+			//不能重复声明
+			//let a = 20;
+			//console.log(a); //报错， redeclaration of let a
+			
+			
+			//不会提前声明
+			//can't access lexical declaration `b' before initialization
+			//console.log(b); //报错
+			//let b = 20;  
+			
+			for (var i=0; i<2; i++){
+				for (var i=0; i<3; i++){
+					console.log("var i=" + i);
+				}
+			}
+			for (let i=0; i<2; i++){
+				for (let i=0; i<3; i++){
+					console.log("let i=" + i);
+				}
+			}
+			
+			for (var j=0; j<10; j++) {
+			}
+			console.log(j);
+			
+			for (let k=0; k<10; k++) {
+			}
+			//console.log(k); //k is not defined
+			
+			
+			//const : 声明常量
+			//跟let类似的有： 也会形成块级作用域， 不可以重复声明
+			const PI = 3.1415926;
+			//const PI = 3.1415926; //报错
+			//PI = 3.14;  //常量不可以修改
+			console.log(PI);
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var arr=[1,2,3,4,5];
+			var arr2=arr.map(function(value,index,array){
+				return value*3;
+			})
+			console.log(arr2);
+			//
+			var arr=[11,22,33,44,55];
+			for(let i of arr.keys()){
+				console.log(i);//下标
+			}
+			//
+			var [a,b]=[1,5];
+			[a,b]=[b,a];
+			console.log(a+","+b);//5,1
+			//
+			var obj1 = {a:1, b:2};
+			var obj2 = {b:3, c:4};
+			var obj3 = {c:5, d:6};
+			var obj = Object.assign( obj1 , obj2 , obj3 );
+			console.log(obj);//Object {a: 1, b: 3, c: 5, d: 6}
+			console.log(obj1);//Object {a: 1, b: 3, c: 5, d: 6}
+			console.log(obj2);//{b: 3, c: 4}
+			console.log(obj3);//{c: 5, d: 6}
+			//
+			var f = function(n){
+				return n*n;
+			}
+			console.log( f(5) );
+			//
+			var f2 = n=>n*2;
+			console.log( f2(3) );
+			//
+			f3 = (a,b)=>(a+b);
+			console.log( f3(12,6) );
+			//
+			
+			const isEven = function(n){
+				return n%2==0;
+			}
+			console.log( isEven(6) );//true
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

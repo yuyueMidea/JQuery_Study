@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				
+				var aInput = document.getElementsByTagName("input");
+				var oTab = document.getElementById("tab"); 
+				
+				//保存按钮点击
+				aInput[3].onclick = function(){
+					var id = aInput[0].value;
+					var name = aInput[1].value;
+					var phone = aInput[2].value;
+					//console.log(id + "," + name + "," + phone);
+					
+					//创建tr节点
+					var tr = document.createElement("tr");
+					oTab.children[0].appendChild(tr);
+					
+					//tr.innerHTML = "<td>"+ id +"</td><td>"+ name +"</td><td>"+ phone +"</td><td><a href='#'>删除</a></td>";
+					//创建td节点
+					var td1 = document.createElement("td");
+					var td2 = document.createElement("td");
+					var td3 = document.createElement("td");
+					var td4 = document.createElement("td");
+					
+					td1.innerHTML = id;
+					td2.innerHTML = name;
+					td3.innerHTML = phone;
+					td4.innerHTML = "<a href='#'>删除</a>";
+					
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tr.appendChild(td4);
+					
+					/*
+					 <tr>
+						<td>30</td>
+						<td>张三</td>
+						<td>13566666666</td>
+						<td><a href="#">删除</a></td>
+					</tr>
+					*/
+					
+					//给当前添加的td4中的a标签添加点击事件
+					var a = td4.getElementsByTagName("a")[0];
+					a.onclick = function(){
+						//console.log(1);
+						//a.parentNode.parentNode : tr
+						this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+					}
+					
+				}
+				
+				
+				var a = document.getElementsByTagName("a");
+				for (var i=0; i<a.length; i++) {
+					a[i].onclick = function(){
+						this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+						//oTab.deleteRow(this.parentNode.parentNode.rowIndex);
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		ID:<input type="text"  /> <br>
+		姓名:<input type="text"  /> <br>
+		电话:<input type="text"  /> 
+		<input type="button" value="保存" /> <br><br>
+		<table border="1" id="tab">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Tel</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>30</td>
+				<td>张三</td>
+				<td>13566666666</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+			<tr>
+				<td>40</td>
+				<td>李四</td>
+				<td>13566666666</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			
+			ul, li {
+				list-style: none;
+			}
+			
+			body {
+				background: #444;
+				font-size: 13px;
+				color: white;
+				font-family: "微软雅黑";
+			}
+			
+			form {
+				width: 400px;
+				height: 600px;
+				margin: 10px auto;
+				padding: 20px;
+				margin-top: 30px;
+			}
+			
+			.title { 
+				font-size: 20px;
+				color: darkcyan;
+			}
+			
+			tr {
+				height: 40px;
+				width: 200px;
+			}
+			
+			.col1 {
+				width: 120px;
+				padding-left: 30px;
+			}
+			
+			input {
+				width: 200px;
+				height: 30px;
+				border-radius: 3px;
+				background: #555;
+				padding-left: 5px;
+				color: white;
+			}
+			
+			#level span {
+				float: left;
+				width: 60px;
+				height: 26px;
+				border-right: 1px solid #ddd;
+				background: white;
+				text-align: center;
+				line-height: 26px;
+			}
+			
+			#level .default {
+				background: gray;
+			}
+			
+			.codes {
+				width: 80px;
+			}
+			
+			.regtd {
+				height: 60px;
+				padding-top: 10px;
+			}
+			
+			#reg {
+				background: green;
+				border: 1px solid black;
+				height: 40px;
+				width: 160px;
+				color: white;
+				font-size: 22px;
+				margin-left: 100px;
+			}
+			
+			#checkbox {
+				margin-left: 100px;
+				width: 15px;
+				height: 15px;
+			}
+			
+			#toast {
+				margin: 0 auto;
+				width: 400px;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+				background: darkmagenta;
+				border: 1px solid #999;
+				border-radius: 6px;
+				margin-top: 20px;
+			}
+		</style>
+		<script src="cookie.js"></script>
+		<script>			
+			/*
+			    1. 输入框中要有默认提示文字;
+			    2. 所有的错误提示信息，要放在底部紫色区域显示, 每个输入框都实时对本输入框信息进行验证, 如果输入信息合法则显示xx输入合法, 否则显示xx输入不合法(如用户名输入合法/用户名输入不合法)
+			    3. 用户名检测用户名称只能包含数字、字母、下划线, 且不能以数字开头，并且长度不小于8位;
+			    4. 密码长度在6-20位之间, 根据密码的复杂程度不同，
+			          显示密码的安全级别（低[灰色]、中[橙色]、高[绿色]）, 
+			          其中低级别为:密码长度在6-10, 中级别为:密码长度11-15, 高级别为:密码长度16-20，安全级别根据登录密码的不同而变化;
+			    5. 两次密码输入必须一致;
+			    6. 身份证号码必须合法;
+			    7. 验证手机号码合法;
+			    8. 可以点击数字验证码，随机更换一个新的4位数字, 且验证码要输入正确;
+			    9. 在【10天内免登陆】前面打勾，点击注册将用户名和密码保存至cookie当中, 刷新页面后可以显示之前保存过的用户名和密码(使用火狐浏览器测试cookie)
+			*/
+			
+			onload = function() {
+			
+				var aInput = document.getElementsByTagName("input");
+				var oToast = document.getElementById("toast");
+				
+				
+				//获取上次登录的用户
+				var user = getCookie("user");
+				var pwd = getCookie("pwd");
+				aInput[0].value = user;
+				aInput[1].value = pwd;
+				
+				var flag1 = false; //表示用户名是否正确
+				var flag2 = false; //表示密码是否正确
+				var flag3 = false; //表示重复密码是否正确
+				var flag4 = false; //表示身份证是否正确
+				var flag5 = false; //表示手机号是否正确
+				var flag6 = false; //表示验证码是否正确
+				
+				//用户名
+				aInput[0].onkeyup = function(){
+					var value = this.value;
+					var reg = /^[a-zA-Z_]\w{7,}$/;
+					if (reg.test(value)){
+						oToast.innerHTML = "用户名合法";
+						flag1 = true;
+					}
+					else {
+						oToast.innerHTML = "用户名不合法";
+						flag1 = false;
+					}
+				}
+				
+				//密码
+				var oLevel = document.getElementById("level");
+				var aSpan = oLevel.getElementsByTagName("span");
+				
+				aInput[1].onkeyup = function(){
+					var value = this.value;
+					var reg = /^.{6,20}$/;
+					if (reg.test(value)){
+						oToast.innerHTML = "密码合法";
+						flag2 = true;
+						
+						var index = 0;
+						if (value.length <= 10){ //低
+							index = 0;
+						}
+						else if (value.length <= 15) { //中
+							index = 1;
+						}
+						else { //高
+							index = 2;
+						}
+						
+						var arr = ["gray", "orange", "green"];
+						for (var i=0; i<aSpan.length; i++){
+							if (i == index){
+								aSpan[i].style.background = arr[i];
+							}
+							else {
+								aSpan[i].style.background = "white";
+							}
+						}						
+					}
+					else {
+						oToast.innerHTML = "密码不合法";
+						flag2 = false;
+					}
+				}
+				
+				//重复密码
+				aInput[2].onkeyup = function(){
+					var value = this.value;
+	
+					if (value == aInput[1].value){
+						oToast.innerHTML = "重复密码合法";
+						flag3 = true;
+					}
+					else {
+						oToast.innerHTML = "重复密码不合法";
+						flag3 = false;
+					}
+				}
+				
+				//身份证
+				aInput[3].onkeyup = function(){
+					var value = this.value;
+					var reg = /^\d{17}(\d|X)$/;
+					if (reg.test(value)){
+						oToast.innerHTML = "身份证合法";
+						flag4 = true;
+					}
+					else {
+						oToast.innerHTML = "身份证不合法";
+						flag4 = false;
+					}
+				}
+				
+				//手机号
+				aInput[4].onkeyup = function(){
+					var value = this.value;
+					var reg = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[05-9]))\d{8}$/;
+					if (reg.test(value)){
+						oToast.innerHTML = "手机号合法";
+						flag5 = true;
+					}
+					else {
+						oToast.innerHTML = "手机号不合法";
+						flag5 = false;
+					}
+				}
+				
+				//验证码
+				aInput[5].onkeyup = function(){
+					//var value = this.value;
+					fn();
+				}
+				
+				//验证码按钮
+				aInput[6].onclick = function(){
+					var str = "";
+					for (var i=0; i<4; i++){
+						str += parseInt(Math.random()*10);
+					}
+					this.value = str;
+					
+					fn();
+				}
+				
+				function fn(){
+					if (aInput[5].value == aInput[6].value){
+						oToast.innerHTML = "验证码合法";
+						flag6 = true;
+					}
+					else {
+						oToast.innerHTML = "验证码不合法";
+						flag6 = false;
+					}
+				}
+				
+				//注册
+				aInput[8].onclick = function(){
+					
+					if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6) {
+						
+						if (aInput[7].checked){
+							var d = new Date();
+							d.setDate(d.getDate()+10);
+							setCookie("user", aInput[0].value, d); //保存用户名到cookie
+							setCookie("pwd", aInput[1].value, d); //保存密码到cookie
+						}
+						console.log("注册成功！");
+					}
+					else {
+						oToast.innerHTML = "输入有误， 请检查";
+					}
+					return false;
+				}
+				
+				
+				
+			}
+		</script>
+	</head>
+
+	<body>
+		
+		<form>
+			<table id="tb">
+				<tr>
+					<td colspan="2" class="title">账户详细资料</td>
+				</tr>
+				<tr>
+					<td class="col1">用户名称</td>
+					<td><input type="text" placeholder="请输入用户名"></td>
+				</tr>
+				<tr>
+					<td class="col1">登录密码</td>
+					<td><input type="password" placeholder="请输入密码"></td>
+				</tr>
+				<tr>
+					<td class="col1">密码安全级别</td>
+					<td id="level"><span class="default">低</span><span>中</span><span>高</span></td>
+				</tr>
+				<tr>
+					<td class="col1">重复登录密码</td>
+					<td><input type="password" placeholder="重复登录密码"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" class="title">个人信息资料</td>
+				</tr>
+
+				<tr>
+					<td class="col1">身份证</td>
+					<td><input type="text" placeholder="请输入身份证号码"></td>
+				</tr>
+				<tr>
+					<td class="col1">手机</td>
+					<td><input type="text" placeholder="输入中奖通知手机"></td>
+				</tr>
+				<tr>
+					<td class="col1">验证码</td>
+					<td>
+						<input class="codes" type="text" placeholder="输入验证码">
+						<input type="button" style="width: 80px; background: white; font-size: 20px; margin-left: 10px; color: black;" value="3242" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="regtd">
+						<input id="checkbox" type="checkbox" />10天内免登录 <br /><br />
+						<input id="reg" type="submit" value="注册" />
+					</td>
+				</tr>
+			</table>
+			<div id="toast">提示文字</div>
+		</form>
+	</body>
+
+</html>

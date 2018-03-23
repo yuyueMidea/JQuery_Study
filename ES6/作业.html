@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//使用reduce求数组元素的乘积
+			var arr=[2,3,4,5,6,7];
+			var result=arr.reduce(function(pre,cur){
+				return pre*cur;
+			})
+			console.log(result);
+			
+			//使用reduce求数组元素最大值
+			var arr=[2,4,6,6,3,7,1,5];
+			var res=arr.reduce(function(pre,cur,index,array){
+				if(pre<cur){return cur;}
+				else if(pre>cur){return pre;}
+				else if(pre=cur){return pre;}
+			})
+			console.log(res);
+			
+			//使用indexOf完成数组去重
+			var arr=[2,4,6,6,3,4,7,7,1,5];
+			var arr2=[];
+			for(var v of arr){
+				if(arr2.indexOf(v)==-1){
+					arr2.push(v);
+				}
+			}
+			console.log(arr2);
+			//掌握数组去重的多种方法
+			var arr=[2,4,6,6,3,4,7,7,1,5];
+			var arr3=[];
+			for(var i=0;i<arr.length;i++){
+				if( arr.indexOf(arr[i])==i ){  //indexOf元素第一次出现的下标。
+					arr3.push( arr[i] );
+				}
+			}
+			console.log( arr3 );
+			//
+			//数据结构Set类似于数组，但是成员的值都是唯一的，没有重复的值。
+			var arr=[2,4,6,6,3,4,7,7,1,5];
+			var set=new Set(arr);
+			var arr4=new Array(...set);
+			console.log(arr4);
+			
+			
+			//掌握各种循环的使用
+			
+			
+			//使用for-of求5！
+			var arr=[1,2,3,4,5];
+			var s=1;
+			for(var v of arr){
+				s *=v;
+			}
+			console.log( s );
+			
+			
+			
+			//使用for-of求5！+4！+...+1！
+			function fn(n){
+				if(n==1){return 1;}
+				else{return fn(n-1)*n;} 
+			}//递归函数
+			
+			var arr=[1,2,3,4,5];
+			var sum=0;
+			for(var i of arr){
+				sum +=fn(i);
+			}
+			console.log( sum );
+			//
+			//使用for-of求5！+4！+...+1！
+			var arr=[1,2,3,4,5];
+			var tmp=1;
+			var sum=0;
+			for(var i of arr){
+				tmp *=i;
+				sum +=tmp;
+			}
+			console.log( sum );
+			
+			
+			
+			//使用for-of求数组中的最大值最小值
+			var arr=[2,4,6,6,3,7,1,5];
+			var max=arr[0];
+			var min=arr[0];
+			for(var i of arr){
+				if(i>max){
+					max=i;
+				}
+				if(i<min){
+					min=i;
+				}
+			}
+			console.log(max);
+			console.log(min);
+			//
+			var arr=[2,4,6,6,3,7,1,5];
+			var max=arr[0];
+			var min=arr[0];
+			for(n of arr){
+				max=max<n ?n :max;
+				min=min>n ?n :min;
+			}
+			console.log(max+","+min);
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

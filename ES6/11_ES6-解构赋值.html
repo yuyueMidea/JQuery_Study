@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//解构赋值
+			var [a,b] = [1,2];
+			console.log(a); //1
+			console.log(b); //2
+			
+			var [a,[b, c]] = [1,[2,3],4];
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			
+			
+			//交换两个变量
+			var a = 10;
+			var b = 20;
+			[a,b] = [b,a];
+			console.log(a + "," + b); //20,10
+			
+			var {name, age} = {name:"张三", age:33};
+			console.log(name + "," + age); //张三,33
+			
+			//元组
+			//var a = 1;
+			//[a,b,c] = [1,2,3]
+			function fn([a,b]){
+				console.log(a); //1
+				console.log(b); //2
+			}
+			fn([1,2])
+			
+			
+			
+			//严格模式: "use strict"
+			//变量： let, const 
+			//字符串： 模板字符串
+			//Array: for-of
+			//函数： 扩展运算符...   箭头函数
+			//对象： 属性和方法的简写
+			//Set, Map
+			//解构赋值
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

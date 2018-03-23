@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//ES5 - Array
+			
+			// indexOf() : 判断数组中是否包含某个元素， 和字符串的indexOf用法类似
+			
+			// forEach() : 用来遍历数组中的每一项；这个方法执行是没有返回值的，对原来数组也没有影响
+//			var arr = [10,20,30,40];
+//			arr.forEach(function(value, index, array){
+//				console.log(value + "," + index +",数组：" + array);
+//				if (index == 2){
+////					break;  //不可以使用break和continue
+////					continue;
+//				}
+//			})
+			
+			//普通for:  使用最多， 一般用在循环次数已知的情况下
+			//while ： 一般使用在循环次数不确定的情况下
+			//do-while: 使用较少
+			//for-in: 一般用于遍历对象
+			//forEach() : 写法简洁， 不能使用break,continue
+			//map(): 遍历，类似forEach(), 返回新数组
+			//for-of: 遍历
+			
+			//map(): 和forEach非常相似，都是用来遍历数组中的每一项的，区别是map的回调函数中支持return返回
+//			var arr = [10,20,30,40];
+//			var arr2 = arr.map(function(value, index, array){
+//				console.log(value + "," + index + ";数组：" + array);
+//				return value*2;
+//			})
+//			console.log(arr2); //[20,40,60,80]
+			
+			//注意：forEach和map不支持IE8及以下
+
+			
+			//reduce()用法： 接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终为一个值，是ES5中新增的一个数组逐项处理方法
+  			var arr = [10,20,30,40];
+  			var result = arr.reduce(function(pre, cur, index, array){
+  				console.log("上一个值：" + pre + "; 当前值：" + cur + ";下标:" + index + ";数组：" + array);
+  				return cur*2;
+  			}, 100);
+  			console.log(result);
+  			/*
+			reduce接收四个两个参数， 第二个参数可选（为pre的初始值）
+			第一个参数是回调函数，该回调函数中又包含四个参数， 分别为：
+			    pre：上一次调用回调函数时的返回值，或者初始值
+			    cur：当前正在处理的数组元素
+			    index : 当前正在处理的数组元素下标
+			    array : 调用reduce()方法的数组
+			result: 遍历完数组后的最终结果
+			*/
+			
+			//累加
+			var arr = [10,20,30,40];
+			var result = arr.reduce(function(pre,cur){return pre+cur;});
+			console.log(result); //100
+			
+			var arr = [10,20,30,40];
+			var pre = arr[0];
+			for (var i=1; i<arr.length; i++){
+				var cur = arr[i];
+				pre = pre + cur;
+			}
+			console.log(pre);
+			
+			
+			//filter() : 过滤
+			var arr = [10,20,30,40];
+			var arr2 = arr.filter(function(value, index, array){
+				return value>=30;
+			});
+			console.log(arr2); //30,40
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//ES6-函数
+			
+			//默认参数
+			/*
+			//ES5
+			function fn1(n){
+				var str = n || "千锋";
+				console.log(str);
+			}
+			fn1("1000phone");
+			
+			//ES6
+			function fn2(n="千锋"){
+				console.log(n);
+			}
+			fn2("1000phone");
+			*/
+			
+			//扩展运算符: ...
+			/*
+			//扩展运算符(spread)是三个点（...）,将一个数组转为用逗号分隔的参数序列;
+			function fn3(a,b,c){
+				console.log(a + "," + b + "," + c);
+			}
+			var arr = [1,2,3,4];
+			fn3(...arr); //fn3(1,2,3,4)
+			
+			//...
+			var arr1 = [1,2,3];
+			var arr2 = [4,5,6];
+			//arr1.concat(arr2);
+			var arr = [...arr1, ...arr2];
+			console.log(arr); // [ 1, 2, 3, 4, 5, 6 ]
+			*/
+			
+			
+			
+			//箭头函数
+//			function fn(n){
+//				return n;
+//			}
+			
+//			var fn = function(n){
+//				return n;
+//			}
+			
+			//箭头函数: 一个参数，一个返回值
+			var fn = n=>n; //function(n){return n;}
+			console.log( fn(3) );
+			
+			//没有参数， 函数体中不止一条语句
+			//需要在箭头前面添加(), 箭头后面添加{}
+			var fn2 = ()=>{var a=10; return a;}
+			//var fn2 = function(){var a=10; return a;}
+			console.log( fn2() );
+			
+			//多个参数
+			var fn3 = (a,b)=>a+b;
+			//var fn3 = function(a,b){return a+b;}
+			console.log( fn3(1,2) );
+			
+			//如果要返回一个对象
+			var fn4 = id=>({name:"张三",id:id});
+			//var fn4 = id=>{return {name:"张三",id:id}}
+			//var fn4 = function(id){return {name:"张三",id:id}}
+			console.log( fn4(101) ); //{name:"张三",id:101}
+			
+			
+			//匿名函数
+			//回调函数
+			//forEach(function(){})
+			var arr = [10,20,30,40];
+//			var arr2 = arr.map(function(v){
+//				return v*2;
+//			});
+			var arr2 = arr.map(v=>v*2);
+			console.log(arr2); //[ 20, 40, 60, 80 ]
+			
+			
+			const isEven = n => n%2==0;
+			//isEvent = function(n){return n%2==0}
+    		const square = n => n*n;
+			//square = function(n){return n*n};
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
