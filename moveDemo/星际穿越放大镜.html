@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;margin: 0;border: none;
+			}
+			#small{
+				width: 200px;height: 200px;position: absolute;
+				top: 50px;left: 50px;
+			}
+			#smallImg{
+				width: 200px;height: 200px;
+			}
+			#smallZone{
+				width: 100px;height: 100px;position: absolute;
+				top: 0;left: 0;background: rgba(220,220,200,0.4);
+				display: none;
+			}
+			#bigZone{
+				width: 400px;height: 400px;position: absolute;
+				top: 50px;left: 350px;overflow: hidden;
+				display: none;
+			}
+			#bigImg{
+				width: 800px;height: 800px;position: absolute;
+				top: 0;left: 0;
+			}
+		</style>
+		<script type="text/javascript">
+			onload=function(){
+				var small=document.getElementById("small");
+				var smallImg=document.getElementById("smallImg");
+				var smallZone=document.getElementById("smallZone");
+				var bigZone=document.getElementById("bigZone");
+				var bigImg=document.getElementById("bigImg");
+				//
+				small.onmouseenter=function(){
+					smallZone.style.display="block";
+					bigZone.style.display="block";
+				}
+				small.onmouseleave=function(){
+					smallZone.style.display="none";
+					bigZone.style.display="none";
+				}
+				//
+				function getStyleAttr(obj,attr){
+					if(window.getComputedStyle){
+						return getComputedStyle(obj,null)[attr];
+						
+					}
+					return obj.currentStyle[attr];
+				}
+				function t(obj,attr){
+					return parseInt(getStyleAttr(obj,attr));
+				}
+				//
+				smallZone.style.width=t(bigZone,"width")*t(smallImg,"width")/t(bigImg,"width");
+				smallZone.style.height=t(bigZone,"height")*t(smallImg,"height")/t(bigImg,"height");
+				//
+				small.onmousemove=function(e){
+					e=e||event;
+					var x=e.pageX-small.offsetLeft-smallZone.offsetWidth/2;
+					var y=e.pageY-small.offsetTop-smallZone.offsetHeight/2;
+					//
+					var scale=t(bigImg,"height")/t(smallImg,"height");
+					//
+					if(x<=0){x=0}
+					else if(x>=small.offsetWidth-smallZone.offsetWidth){
+						x = small.offsetWidth-smallZone.offsetWidth;
+					}
+					if(y<=0){y=0}
+					else if(y>=small.offsetHeight-smallZone.offsetHeight){
+						y = small.offsetHeight-smallZone.offsetHeight;
+					}
+					//
+					smallZone.style.left=x+"px";
+					smallZone.style.top=y+"px";
+					//
+					bigImg.style.left= -x*scale+"px";
+					bigImg.style.top= -y*scale+"px";
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="small">
+			<img id="smallImg" src="images/星际穿越.jpg"/>
+			<div id="smallZone"></div>
+		</div>
+		<div id="bigZone">
+			<img id="bigImg" src="images/星际穿越.jpg"/>
+		</div>
+	</body>
+</html>

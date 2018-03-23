@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul, li{list-style: none;}
+			#box {
+				width: 360px;
+				height: 450px;
+				border: 1px solid #ccc;
+				padding: 10px;
+				position: absolute;
+				left: 50px;
+				top: 50px;
+			}
+			#box #middleImg {
+				width: 350px;
+				padding: 5px;
+				border: 1px solid #ccc;
+				position: relative;
+			}
+			#box #middleImg img {
+				width: 340px;
+				height: 340px;
+			}
+			#box #middleArea {
+				width: 100px;
+				height: 100px;
+				background: rgba(200,200,100, 0.3);
+				position: absolute;
+				left: 100px;
+				top: 100px;
+				display: none;
+			}
+			#small {
+				width: 360px;
+				height: 50px;
+				/*background: red;*/
+				margin-top: 10px;
+			}
+			#small li, #small li img {
+				width: 50px;
+				height: 50px;
+			}
+			#small li {
+				float: left;
+				padding: 5px;
+				border: 1px solid #ccc;
+				margin-left: 10px;
+				cursor: pointer;
+			}
+			#bigArea {
+				width: 400px;
+				height: 400px;
+				overflow: hidden;
+				position: absolute;
+				left: 450px;
+				top: 50px;
+				border: 1px solid #ccc;
+				display: none;
+			}
+			#bigImg {
+				width: 800px;
+				height: 800px;
+				position: absolute;
+				left: 0; top: 0;
+			}
+		</style>
+		<script>
+			
+			//北京： 首都，天安门广场，故宫博物馆，中南海，人民大会堂，八达岭长城，
+			//      圆明园， 颐和园，天坛，清华，北大，香山
+			//
+			//上海： 外滩，迪士尼公园，中国馆
+			//
+			//广州： 广州塔（小蛮腰）
+			//
+			//深圳： 世界之窗，欢乐谷，海上世界，欢乐海岸，红树林（深圳湾），
+			//       东部华侨城（大峡谷，茶溪谷），大梅沙，小梅沙， 南澳西涌，
+			//       惠州巽寮湾， 十里银滩， 双月湾，东西冲穿越，梧桐山，凤凰山，南山
+			//       弘法寺，仙湖植物园，深大，中银大厦
+			//
+			//杭州： 西湖，雷锋塔
+			//嘉兴： 粽子
+			//
+			//湖南：长沙橘子洲，岳麓山，张家界，南岳山，凤凰古城，
+			//
+			//贵州：梵净山
+			//
+			//桂林：山水甲天下，阳朔，桂林米粉，
+			//
+			//西安：兵马俑
+			//
+			
+			
+			//
+			onload = function(){
+				
+				function $(id){
+					return document.getElementById(id);
+				}
+				//获取obj的css样式属性attr的值
+				function getStyleAttr(obj, attr){
+					if (window.getComputedStyle) {
+						return window.getComputedStyle(obj,null)[attr];
+					}
+					return obj.currentStyle[attr];
+				}
+				function _(obj, attr){
+					return parseInt( getStyleAttr(obj, attr) );
+				}
+				
+				//
+				var middleImg = $("middleImg"); //中图
+				var middleArea = $("middleArea"); //中区域
+				var bigImg = $("bigImg"); //大图
+				var bigArea = $("bigArea"); //大区域
+				
+				//初始化
+				//中图/大图 = 中区域/大区域
+				middleArea.style.width = _(bigArea,"width") * _(middleImg,"width") / _(bigImg, "width") + "px";   
+				middleArea.style.height = _(bigArea,"height") * _(middleImg,"height") / _(bigImg, "height") + "px";   
+				
+				//放大系数（方法倍数）
+				var scale = _(bigImg,"width") / _(middleImg, "width");
+				
+				//在middleImg移动
+				middleImg.onmousemove = function(e){
+					e = e||event;
+					
+					bigArea.style.display = "block";
+					middleArea.style.display = "block";
+					
+					var x = e.pageX - $("box").offsetLeft - middleImg.offsetLeft - middleArea.offsetWidth/2;
+					var y = e.pageY - $("box").offsetTop - middleImg.offsetTop - middleArea.offsetHeight/2;
+					
+					//控制边界
+					if (x<=0) x=0; 
+					else if (x>=middleImg.offsetWidth-middleArea.offsetWidth) {
+						x = middleImg.offsetWidth-middleArea.offsetWidth;
+					}
+					if (y<=0) y=0;
+					else if (y>=middleImg.offsetHeight-middleArea.offsetHeight) {
+						y = middleImg.offsetHeight-middleArea.offsetHeight;
+					}
+					
+					//移动中区域
+					middleArea.style.left = x + "px";
+					middleArea.style.top = y + "px";
+					
+					//移动大图
+					bigImg.style.left = -x*scale + "px";
+					bigImg.style.top = -y*scale + "px";
+				}
+				
+				//移出
+				middleImg.onmouseleave = function(){
+					bigArea.style.display = "none";
+					middleArea.style.display = "none";
+				}
+				
+				//小图
+				var aLi = $("small").getElementsByTagName("li");
+				for (var i=0; i<aLi.length; i++) {
+					aLi[i].index = i;
+					aLi[i].onclick = function(){
+						middleImg.children[0].src = "images/images2/"+ (this.index+1) +"_2.jpeg";
+						bigImg.src = "images/images2/"+ (this.index+1) +"_3.jpeg";
+					}
+				}
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div id="middleImg">
+				<img src="images/images2/1_2.jpeg" />
+				<div id="middleArea"></div>
+			</div>
+			<div id="small">
+				<ul>
+					<li><img src="images/images2/1_1.jpeg"/></li>
+					<li><img src="images/images2/2_1.jpeg"/></li>
+					<li><img src="images/images2/3_1.jpeg"/></li>
+					<li><img src="images/images2/4_1.jpeg"/></li>
+					<li><img src="images/images2/5_1.jpeg"/></li>
+				</ul>
+			</div>
+			<div id="bigArea">
+				<img id="bigImg" src="images/images2/1_3.jpeg" />
+			</div>
+		</div>
+	</body>
+</html>

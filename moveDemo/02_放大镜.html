@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				//小图/大图 = 小区域/大区域
+				//小图/小区域 = 大图/大区域
+				function $(id){
+					return document.getElementById(id);
+				}
+				//获取obj的css样式属性attr的值
+				function getStyleAttr(obj, attr){
+					if (window.getComputedStyle) {
+						return window.getComputedStyle(obj,null)[attr];
+					}
+					return obj.currentStyle[attr];
+				}
+				function _(obj, attr){
+					return parseInt( getStyleAttr(obj, attr) );
+				}
+				
+				var smallImg = $("smallImg"); //小图
+				var smallArea = $("smallArea"); //小区域
+				var bigImg = $("bigImg"); //大图
+				var bigArea = $("bigArea"); //大区域
+				
+				//初始化
+				//小区域 = 大区域*小图/大图
+				smallArea.style.width = _(bigArea,"width") * _(smallImg, "width") / _(bigImg,"width") + "px";
+				smallArea.style.height = _(bigArea,"height") * _(smallImg, "height") / _(bigImg,"height") + "px";
+				
+				//放大系数（放大倍数）
+				var scale = _(bigImg,"width")/_(smallImg,"width"); 
+				//4
+				
+				//onmousemove
+				smallImg.onmousemove = function(e){
+					e = e||event;
+					
+					//显示大区域,小区域
+					bigArea.style.display = "block";
+					smallArea.style.display = "block";
+					
+					var x = e.pageX - smallImg.offsetLeft - smallArea.offsetWidth/2;
+					var y = e.pageY - smallImg.offsetTop - smallArea.offsetHeight/2;
+					
+					//判断不超出边界
+					if (x<=0) x=0; //左边界
+					else if (x >= smallImg.offsetWidth-smallArea.offsetWidth) //右边界
+						x = smallImg.offsetWidth-smallArea.offsetWidth;
+					if (y<=0) y=0; //上边界
+					else if (y>=smallImg.offsetHeight-smallArea.offsetHeight) //下边界
+						y = smallImg.offsetHeight-smallArea.offsetHeight;
+						
+					//移动小区域
+					smallArea.style.left = x + "px";
+					smallArea.style.top = y + "px";
+					
+					//移动大图
+					bigImg.style.left = -x*scale + "px";
+					bigImg.style.top = -y*scale + "px";
+				}
+				
+				//onmouseleave
+				smallImg.onmouseleave = function(){
+					//隐藏大区域，小区域
+					bigArea.style.display = "none";
+					smallArea.style.display = "none";
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="smallImg" style="width: 200px; height: 200px; position: absolute; left: 50px; top: 100px;">
+			<img src="images/星际穿越.jpg"  style="width: 200px; height: 200px;"/>
+			<div id="smallArea" style="display: none; width: 50px; height: 50px; background: rgba(100,200,100,0.3); position: absolute; left: 50px; top: 50px;"></div>
+		</div>
+		<div id="bigArea" style="display: none; overflow: hidden; width: 300px; height: 300px; background: rgba(100,150,200,0.3); position: absolute; left: 300px; top: 100px;">
+			<img id="bigImg" src="images/星际穿越.jpg" style="width: 800px; height: 800px; position: absolute; left: 0; top: 0;" />
+		</div>
+	</body>
+</html>
