@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        onload = function(){
+            var aInput = document.getElementsByTagName("input");
+            aInput[2].onclick = function () {
+
+                //ajax
+                var xhr = new XMLHttpRequest();
+                var url = "http://localhost/21-25/day23/phpcode/05_checkName.php?regname="+aInput[0].value;
+                xhr.open("get", url, true);
+                xhr.send(null);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState==4 && xhr.status==200) {
+                        //console.log(xhr.responseText);
+                        var obj = JSON.parse(xhr.responseText);
+                        alert(obj.msg);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" placeholder="用户名"> <br>
+    <input type="password" placeholder="密码"> <br>
+    <input type="button" value="注册">
+</body>
+</html>
