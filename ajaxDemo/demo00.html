@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="ajax.js"></script>
+		<script type="text/javascript">
+			onload = function(){
+				var obox = document.getElementsByTagName("div")[0];
+				obox.onclick = function(){
+					var xhr = createXHR();
+					xhr.open("get","http://60.205.181.47/myPHPCode2/checkname.php?regname=",true);
+					xhr.send(null);
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState == 200 && xhr.status ==4){
+							//JSON解析
+							var obj = JSON.parse(xhr.responseText);
+							if(obj.status == 1){
+								alert("注册成功")
+							}
+							else if(obj.status == 2){
+								alert("已经注册过了")
+							}
+							else if(obj.status == 0){
+								alert("已经注册过了")
+							}
+						}
+					}
+					
+				}
+			
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box" style="width: 100px;height: 100px;background: red;
+			font-size: 50px;">
+				div1 
+		</div>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {padding: 0;margin: 0;}
+			ul{position: relative;}
+			ul li{list-style: none;
+			/*float: left;*/
+			}
+			
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				function createXHR(){
+					if(window.XMLHttpRequest){
+						return new XMLHttpRequest()
+					}
+					return new ActiveXObject("Microsoft.XMLHTTP")
+				}
+				//
+				var xhr=createXHR();
+				xhr.open("get","day0718.json",true);
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if(xhr.status==200 && xhr.readyState==4){
+						//console.log(xhr.responseText);
+						var arr=JSON.parse(xhr.responseText);
+						//console.log(arr)
+						for(var i=0;i<arr.length;i++){
+							var oul=document.getElementsByTagName("ul")[0];
+							var li=document.createElement("li");
+							var obj=arr[i];
+							console.log(obj.img)
+							li.innerHTML="<img src="+ obj.img +"/>";
+							oul.appendChild(li);
+						}
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<ul>
+			
+		</ul>
+	</body>
+</html>

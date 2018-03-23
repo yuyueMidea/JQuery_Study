@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				//表单验证(服务器端)
+				//接口：http://60.205.181.47/myPHPCode2/checkname.php?regname=zhangsan
+				//get请求传递参数给服务器端，可以在url的?后面添加键值对
+				
+				//
+				//接口文档 API （后台工程师编写）
+				// 
+				// 接口
+				// url: http://60.205.181.47/myPHPCode2/checkname.php?regname=zhangsan&pwd=123456
+				// 请求方式： get
+				// 参数： regname: 用户名  string
+				// 返回值： {
+				//	           status: 1,
+				//             msg: "请求成功",
+				//             data: [
+				//                       {},
+				//                       {}
+				//                   ]
+				//         }
+				//
+				// 返回值的说明
+				//
+				
+				
+				var aInput = document.getElementsByTagName("input");
+				
+				//点击注册
+				aInput[2].onclick = function(){
+					
+					var xhr = createXHR();
+					xhr.open("GET", "http://60.205.181.47/myPHPCode2/checkname.php?regname="+aInput[0].value, true);
+					xhr.send(null);
+					xhr.onreadystatechange = function(){
+						if (xhr.readyState==4 && xhr.status==200) {
+							//console.log("success");
+							//console.log(xhr.responseText);
+							
+							//JSON解析
+							var obj = JSON.parse(xhr.responseText);
+							//console.log(obj.status + obj.msg);
+							if (obj.status == 1) {
+								alert("可以注册");
+							}
+							else if (obj.status == 0) {
+								alert("该用户已经被注册过了");
+							}
+							else {
+								alert("该用户已经被注册过了");
+							}
+							
+						}
+					}
+					
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h2>注册</h2>
+		<input type="text" placeholder="用户名" /> <br />
+		<input type="password" placeholder="密码" /> <br />
+		<input type="button" value="注册" />
+	</body>
+</html>

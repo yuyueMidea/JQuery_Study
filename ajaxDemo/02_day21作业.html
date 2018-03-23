@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul, li {list-style: none;}
+			#box {
+				width: 500px;
+				height: 500px;
+				border: 3px solid #ccc;
+				padding: 10px;
+				margin: 30px auto;
+			}
+			#list {
+				width: 480px;
+				height: 400px;
+				border: 1px dashed #ccc;
+				padding: 10px;
+				overflow: auto;
+			}
+			#list li span{
+				display: inline-block;
+				height: 24px;
+				background: #0099FF;
+				border-radius: 5px;
+				margin-bottom: 5px;
+				line-height: 24px;
+				padding: 5px;
+			}
+			textarea {
+				width: 500px;
+				height: 40px;
+				border: 1px solid orange;
+				margin-top: 10px;
+			}
+			input {
+				width: 60px;
+				height: 30px;
+			}
+			
+		</style>
+		
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				//发送消息
+				//接收所有消息
+				
+				/*
+				 2. 使用Ajax实现聊天室 
+					    实现聊天功能, 显示效果图如下: 
+					    1, 在输入框中输入内容后, 点击发送按钮可以发送出去;
+					    2, 可以定时从服务器获取数据;
+					    发送数据的URL:   
+						http://60.205.181.47/myPHPCode2/chat.php, 
+						参数: type=send
+		         	         sender=发送者填入的用户名
+		                       msg=发送者的发送消息
+					    获取数据的URL: 
+						http://60.205.181.47/myPHPCode2/chat.php,
+						参数: type=query
+				*/
+				
+				var myName = prompt("请输入您的大名", "张三");
+				if (!myName) {
+					//location.reload();
+					return;
+				}
+				
+				var olist = document.getElementById("list");
+				var otxt = document.getElementsByTagName("textarea")[0];
+				var obtn = document.getElementsByTagName("input")[0];
+				
+				//发送消息
+				var sendXhr = createXHR();
+				sendXhr.onreadystatechange = function(){
+					if (sendXhr.readyState==4 && sendXhr.status==200) {
+						//console.log(sendXhr.responseText);
+						//发送成功后， 重新获取所有消息
+						getDate();
+					}
+				}
+				obtn.onclick = function(){
+					if (otxt.value.length>4 && otxt.value.length<50) {
+						var url = "http://60.205.181.47/myPHPCode2/chat.php?type=send&sender="+myName+"&msg="+otxt.value;
+						sendXhr.open("get", url, true);
+						sendXhr.send(null);
+						
+						otxt.value = ""; 
+					}
+					else {
+						alert("输入内容的长度在4~50之间");
+					}
+					
+				}
+				
+				
+				//获取消息
+				var getXhr = createXHR();
+				getXhr.onreadystatechange = function(){
+					if (getXhr.readyState==4 && getXhr.status==200) {
+						//console.log(getXhr.responseText);
+						
+						var arr = JSON.parse(getXhr.responseText);
+						
+						//移除旧节点
+						olist.innerHTML = "";
+						
+						//添加新节点
+						for (var i=0; i<arr.length; i++) {
+							var obj = arr[i];
+							
+							//创建节点
+							var li = document.createElement("li");
+							li.innerHTML = "<span>["+ obj.name +"]"+ obj.content +"</span>";
+							olist.appendChild(li);
+						}
+						
+					}
+				}
+				getDate();
+				function getDate(){
+					getXhr.open("get", "http://60.205.181.47/myPHPCode2/chat.php?type=query", true);
+					getXhr.send(null);
+				}
+				
+				
+				//轮询
+				setInterval(getDate, 3000);
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<!--<li>
+					<span>[张三]你好</span>
+				</li>
+				<li>
+					<span>[李四]你也好</span>
+				</li>-->
+			</ul>
+			<textarea></textarea>
+			<input type="button" value="发送" />
+		</div>
+	</body>
+</html>

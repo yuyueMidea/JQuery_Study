@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {margin: 0; padding: 0; border: none;}
+			ul,li {list-style: none;}
+			ul {
+				width: 400px;
+				margin: 100px auto;
+			}
+			li {
+				width: 398px;
+				border: 1px solid red;
+				margin-bottom: 10px;
+			}
+			.cnt {
+				color:  orange;
+			}
+		</style>
+		
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				//http://60.205.181.47/myPHPCode2/weibo.php
+				
+				var olist = document.getElementById("list");
+				
+				//获取数据
+				var xhr = createXHR();
+				xhr.open("GET", "http://60.205.181.47/myPHPCode2/weibo.php", true);
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState==4 && xhr.status==200) {
+						
+						//console.log(xhr.responseText);
+						
+						//json解析
+						var arr = JSON.parse(xhr.responseText);
+						
+						for (var i=0; i<arr.length; i++) {
+							var obj = arr[i];
+							
+							//创建节点
+							var li = document.createElement("li");
+							li.innerHTML = "<p>"+ obj.content +"</p><p class=cnt>"+ obj.comtcnt+"人评论 " + obj.likecnt +"人赞</p>"
+							olist.appendChild(li);
+						}
+						
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<!--<li>
+				<p>小明10年前背井离乡，家乡人从此再也喝不到井水。</p>
+				<p class="cnt">50评论，100人赞</p>
+			</li>-->
+		</ul>
+	</body>
+</html>

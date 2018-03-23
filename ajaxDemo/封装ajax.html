@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="ajax.js"></script>
+		<script type="text/javascript">
+			onload = function(){
+				
+			ajax({
+				type: "post",
+				url: "http://60.205.181.47/myPHPCode2/checkname.php",
+				data: {regname:"zhangsan",pwd:"123456"},
+				async: true,
+				success: function(responseText) {
+				console.log("获取数据成功: " + responseText);
+				},
+				failure: function(errorObj) {
+				console.log("获取数据失败! 状态码:"+errorObj.status + ", 状态信息:"+errorObj.statusText);
+				}
+			});
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

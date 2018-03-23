@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload = function(){
+				
+				var obtn = document.getElementsByTagName("input")[0];   
+				obtn.onclick = function(){
+					
+					//创建script标签
+					var script = document.createElement("script"); 
+					script.src = "http://10.36.142.2/21-25/day22/code/08_jsonp.php?callback=fn1";
+					//fn1({status:1,msg:success})
+					document.body.appendChild(script);
+//					document.body.removeChild(script);
+				}
+				
+			}
+			
+			function fn1(data){
+				console.log("fn");
+				console.log(data); //[object Object]
+				console.log(data.status); //1
+				console.log(data.msg); //success
+			}
+			
+		</script>
+		<!--<script src="http://10.36.142.2/21-25/day22/code/08_jsonp.php"></script>-->
+	</head>
+	<body>
+		<input type="button" value="按钮" />
+	</body>
+</html>

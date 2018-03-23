@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload=function(){
+				//
+				var tab=document.getElementById("tab");
+				var btn=document.getElementById("btn");
+				//
+				btn.onclick=function(){
+				
+					function createXhr(){
+						if(window.XMLHttpRequest){
+							return new XMLHttpRequest()
+						}
+						else{
+							return new ActiveXObject("Microsoft.XMLHttp")
+						}
+					}
+					//
+					var xhr = createXhr();
+					
+					xhr.open("get","0717.json",true);
+					
+					xhr.send(null);
+					
+					xhr.onreadystatechange = function(){
+						if(xhr.status==200 && xhr.readyState==4 ){
+							console.log(xhr.responseText)
+							var arr=JSON.parse(xhr.responseText);
+							//console.log(arr)
+							//
+							
+							for(var i=0;i<arr.length;i++){
+								var tr=document.createElement("tr");
+								tab.children[0].appendChild(tr);
+								
+								var td1=document.createElement("td");
+								var td2=document.createElement("td");
+								var td3=document.createElement("td");
+								var td4=document.createElement("td");
+								var td5=document.createElement("td");
+								tr.appendChild(td1);
+								tr.appendChild(td2);
+								tr.appendChild(td3);
+								tr.appendChild(td4);
+								tr.appendChild(td5);
+								td1.innerHTML=arr[i].name;
+								td2.innerHTML=arr[i].age;
+								td3.innerHTML=arr[i].phone;
+								td4.innerHTML=arr[i].address;
+								td5.innerHTML=arr[i].qq;
+								//
+								
+							}
+							
+							
+						}
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btn" value="点我加载" /><br />
+		<table border="1" cellspacing="0" cellpadding="0" id="tab">
+			<tr>
+				<th>name</th>
+				<th>age</th>
+				<th>phone</th>
+				<th>address</th>
+				<th>qq</th>
+			</tr>
+			<!--<tr>
+				<td>Data</td>
+			</tr>-->
+		</table>
+	</body>
+</html>

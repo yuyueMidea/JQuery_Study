@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li {list-style: none;}
+			/*ul {
+				border: 1px solid #ddd;
+			}*/
+		</style>
+		<script>
+			onload = function(){
+				
+				/*
+				 练习
+					使用 jsonp获取百度搜索提示接口的数据并实时显示： 
+					https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=miqi&cb=fn
+				*/
+				
+				var oTxt = document.getElementsByTagName("input")[0];
+				
+				oTxt.onkeyup = function(){
+					
+					//jsonp
+					var script = document.createElement("script");
+					script.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+ this.value +"&cb=fn2";
+					document.body.appendChild(script);
+					document.body.removeChild(script);
+				}
+			}
+			
+			function fn2(data){
+				console.log(data);
+				var arr = data.s;
+				
+				var oul = document.getElementsByTagName("ul")[0];
+				oul.innerHTML = "";
+				
+				for (var i=0; i<arr.length; i++) {
+					
+					//创建li
+					var li = document.createElement("li");
+					li.innerHTML = arr[i];
+					oul.appendChild(li);
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入搜索关键字" />
+		<ul>
+			
+		</ul>
+	</body>
+</html>

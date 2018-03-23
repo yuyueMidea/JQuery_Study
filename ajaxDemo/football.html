@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload=function(){
+				
+			btn.onclick=function(){
+				function createXhr(){
+					if(window.XMLHttpRequest){
+						return new XMLHttpRequest()
+					}
+					else{
+						return new ActiveXObject("Microsoft.XMLHttp")
+					}
+				}
+				//
+				var xhr=createXhr();
+				xhr.open("GET","http://60.205.181.47/myPHPCode2/football.php",true);
+				xhr.send(null);
+				xhr.onreadystatechange=function(){
+					if( xhr.status==200 && xhr.readyState==4 ){
+						//console.log(xhr.responseText);
+						var arr=JSON.parse(xhr.responseText);
+						for(var i=0;i<arr.length;i++){
+							var div=document.createElement("div");
+							div.style.width="800px";
+							div.style.height="100px";
+							div.style.marginTop="20px";
+							div.style.background="pink";
+							document.body.appendChild(div);
+							//
+							div.innerHTML = arr[i].name +"<br/>"+ arr[i].content;
+						}
+					}
+				}
+				
+				
+			}
+				//
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btn" value="点我加载下一页" />
+	</body>
+</html>

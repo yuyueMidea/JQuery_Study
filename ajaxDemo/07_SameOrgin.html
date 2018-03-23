@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				//接口： http://10.36.142.2/21-25/day22/code/07_sameOrigin.php
+				var xhr = createXHR();
+				xhr.open("GET", "http://10.36.142.2/21-25/day22/code/07_sameOrigin.php", true);
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState==4 && xhr.status==200) {
+						console.log("success");
+						console.log(xhr.responseText);
+					} 
+				}
+				
+				//同源策略
+				
+				//跨域了: 指的是当前html的域名（ip+端口）和你所请求的接口的域名10.36.142.2不一致
+				//ajax请求不可以跨域
+				//域(源)： http://127.0.0.1:8020
+				/*
+					XMLHttpRequest cannot load http://10.36.142.2/21-25/day22/code/07_sameOrigin.php. 
+					No 'Access-Control-Allow-Origin' header is present on the requested resource.
+					Origin 'http://127.0.0.1:8020' is therefore not allowed access.
+				*/
+				
+				
+				//解决跨域
+				//JSONP
+				//后台支持
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				position: absolute;
+				left: 300px;
+				top: 500px;
+			}
+		</style>
+		
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				var btn = document.getElementsByTagName("input")[0];
+				var oTable = document.getElementsByTagName("table")[0];
+				
+				//点击按钮
+				btn.onclick = function(){
+					
+					//静态页面: 使用假数据
+					//动态页面： 使用了动态数据（服务器端的数据）
+					
+					//1, 获取数据
+					//1,xhr
+					var xhr = createXHR();
+					
+					//2, open
+					xhr.open("GET", "http://60.205.181.47/myPHPCode2/person.php", true);
+					 
+					//3, send
+					xhr.send(null);
+					
+					//4，接收服务器数据
+					xhr.onreadystatechange = function(){
+						if (xhr.readyState==4 && xhr.status==200) {
+							
+							//请求服务器成功了
+							//console.log(xhr.responseText);
+							//console.log(typeof xhr.responseText); //string
+							
+							//JSON解析
+							var arr = JSON.parse(xhr.responseText);
+							//console.log(arr);
+							
+							
+							
+							//2， 将数据显示在页面上
+							for (var i=0; i<arr.length; i++) {
+								var obj = arr[i]; //每个人的信息
+								
+								//创建节点tr
+								var tr = document.createElement("tr");
+								
+								//tr.innerHTML = "<td>"+ obj.name +"</td><td>"+ obj.age +"</td><td>"+ obj.sex +"</td><td>"+ obj.phone +"</td><td>"+ obj.address +"</td><td>"+ obj.qq +"</td>";  
+								
+								//创建td
+								var td1 = document.createElement("td");
+								var td2 = document.createElement("td");
+								var td3 = document.createElement("td");
+								var td4 = document.createElement("td");
+								var td5 = document.createElement("td");
+								var td6 = document.createElement("td");
+								
+								td1.innerHTML = obj.name;
+								td2.innerHTML = obj.age;
+								td3.innerHTML = obj.sex;
+								td4.innerHTML = obj.phone;
+								td5.innerHTML = obj.address;
+								td6.innerHTML = obj.qq;
+								
+								tr.appendChild(td1);
+								tr.appendChild(td2);
+								tr.appendChild(td3);
+								tr.appendChild(td4);
+								tr.appendChild(td5);
+								tr.appendChild(td6);
+								
+								//将tr添加到table的tbody中
+								oTable.children[0].appendChild(tr);
+								
+							}
+							
+							
+						}
+					}
+					
+					
+				}
+				
+				//滚动文字
+				var box = document.getElementById("box");
+				setInterval(function(){
+					var x = box.offsetLeft - 5;
+					if (x < 0) 
+						x = 300;
+					box.style.left = x + "px";
+				}, 30)
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="点击我加载数据" />
+		<table border="1">
+			<tr>
+				<th>name</th>
+				<th>age</th>
+				<th>sex</th>
+				<th>phone</th>
+				<th>address</th>
+				<th>qq</th>
+			</tr>
+			<!--<tr>
+				<td>张三</td>
+				<td>25</td>
+				<td>男</td>
+				<td>165432323123</td>
+				<td>深圳</td>
+				<td>34234234</td>
+			</tr>-->
+		</table>
+		
+		<div id="box">滚动文字</div>
+	</body>
+</html>

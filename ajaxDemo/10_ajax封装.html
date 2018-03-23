@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="(laoshi)ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				//
+				/*
+				 * type: 请求方式
+				 * url: 接口
+				 * data: 参数
+				 * async: 是否异步
+				 * success: 请求成功后的回调函数
+				 * error: 请求失败后的回调函数
+				 */
+				ajax({
+					//type:"post",
+					url: "http://60.205.181.47/myPHPCode2/checkname.php",
+					data: {regname:"zhangsan",pwd:"123456"},
+					//async: true,
+					 
+					success: function(data){
+						console.log("success");
+						console.log(data);
+					},
+//					error: function(){
+//						console.log("error");
+//					}
+				});
+				
+				//简化后
+				ajax({
+					url: "http://60.205.181.47/myPHPCode2/checkname.php",
+					data: {regname:"zhangsan",pwd:"123456"},
+					 
+					success: function(data){
+						console.log("success");
+						console.log(data);
+					}
+				});
+				
+				/*
+				var xhr = createXHR()
+				xhr.open("get", "url", true);
+				xhr.send();
+				xhr.onreadystatechange = function(){}
+				*/
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

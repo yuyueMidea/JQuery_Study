@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			onload =  function(){
+				
+				//Ajax: 同步请求服务器数据的一种技术
+				
+				//同步：按顺序执行
+				//异步：会开一个线程执行代码， 不会影响后面代码的执行
+				
+				/*
+				var n = 10;
+				setTimeout(function(){
+					n++;
+				}, 0)
+				console.log(n); //10
+				*/
+				
+				
+				
+				//同步请求
+				
+				//创建xhr对象
+				//var xhr = new XMLHttpRequest(); //不支持IE6
+				//var xhr = new ActiveXObject("Microsoft.XMLHTTP"); //支持IE6
+				//console.log(xhr); //[object XMLHttpRequest]
+				
+				function createXHR(){
+					if (window.XMLHttpRequest){
+						return new XMLHttpRequest();
+					}
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				/*
+				//1,创建xhr对象
+				var xhr = createXHR();
+				
+				//2, 调用xhr.open()： 准备好要提交的内容
+				//第一个参数： http协议的请求方式: get, post, put, delete, head..
+				//第二个参数： 接口(url,网址)
+				//第三个参数： 是否异步， false表示同步， true表示异步
+				xhr.open("get", "json/person.json", false);
+				
+				//3，调用xhr.send() : 向服务器发送请求
+				xhr.send(null);
+				
+				//4, 接收服务器的响应数据
+				//console.log(xhr.status); //状态码
+				//console.log(xhr.statusText); //状态码的说明
+				//console.log(xhr.responseText); //服务器的响应数据
+				//console.log(xhr.responseXML); //null
+				
+				//请求成功
+				if (xhr.status == 200) {
+					console.log(xhr.responseText);
+				}
+				else {
+					console.log("error： "  + xhr.status); 
+				}
+				*/
+				
+				//状态码:
+				//200: 请求成功
+				//4XX: 客户端错误
+				//5XX: 服务器错误
+				
+				
+				
+				//异步请求
+				// http://60.205.181.47/myPHPCode2/person.php 
+				
+				//1, 创建xhr对象
+				var xhr = createXHR();
+				
+				//2, xhr.open()
+				xhr.open("get", "http://60.205.181.47/myPHPCode2/person.php", true);
+				
+				//3, xhr.send()
+				xhr.send(null);
+				
+				//取消异步请求
+				//xhr.abort();
+				
+				//4, 接收服务器的响应数据
+				//console.log(xhr.responseText); //""
+				xhr.onreadystatechange = function(){
+					//console.log("222");
+					//console.log(xhr.readyState);  
+					//xhr.readyState: 表示服务器处理了
+					//xhr.status: 表示处理的结果是成功
+					/*
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							console.log(xhr.responseText); //
+						}
+						else {
+							console.log("失败");
+						}
+					}
+					*/
+					if (xhr.readyState==4 && xhr.status==200) {
+						console.log(xhr.responseText);
+					}
+					
+				}
+				
+				//111会先打印， 222会后打印
+//				console.log("111");
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

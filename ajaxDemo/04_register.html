@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				/*
+				 注册（POST）
+					注册接口:  http://60.205.181.47/myPHPCode3/register.php
+					参数:username=zhangsan, 用户名（必须）
+					参数:password=123456,密码（必须）
+					参数:age=33,年龄（必须）
+				*/
+				
+				//
+				//用户
+				//
+				//注册：将注册信息提交给服务器端， 将注册信息在数据库中的用户表添加一条记录； 
+				//登录：将登录信息提交给服务器端， 将登录信息和用户表中的记录匹配；
+				//
+				// 浏览器 -> 服务器 -> 数据库
+				//
+				
+				//
+				//第三方登录（微信登录， qq登录）
+				//
+				
+				var aInput = document.getElementsByTagName("input");
+				
+				//注册
+				aInput[3].onclick = function(){
+					// http://60.205.181.47/myPHPCode3/register.php
+					var xhr = createXHR();
+					xhr.open("POST", "http://60.205.181.47/myPHPCode3/register.php", true);
+					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+					xhr.send("username="+aInput[0].value+ "&password="+aInput[1].value +"&age="+aInput[2].value);
+					xhr.onreadystatechange = function(){
+						if (xhr.readyState==4 && xhr.status==200) {
+							//console.log(xhr.responseText);
+							var obj = JSON.parse(xhr.responseText);
+							
+							//注册成功
+							if (obj.status == 1) {
+								alert(obj.msg);
+								
+								//注册成功后跳转到登录页面
+								location.href = "05_login.html";
+							}
+							//用户名已经存在
+							else if (obj.status == 0) {
+								alert(obj.msg);
+							}
+							//注册失败
+							else {
+								alert(obj.msg);
+							}
+							
+						}
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h2>注册</h2>
+		<input type="text" placeholder="用户名"/> <br />
+		<input type="password" placeholder="密码"/> <br />
+		<input type="text" placeholder="年龄"/> <br />
+		<input type="button" value="注册"/> 
+	</body>
+</html>

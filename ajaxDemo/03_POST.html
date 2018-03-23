@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				
+				
+				/*
+				//请求头
+				var xhr = createXHR();
+				xhr.open("GET", "http://60.205.181.47/myPHPCode2/checkname.php?regname=zhangsan", true);
+				
+				//设置请求头
+				//usertoken: fasjdfajddfadf34234
+				//userid
+				xhr.setRequestHeader("usertoken", "fasjdfajddfadf34234");
+				
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState==4 && xhr.status==200) {
+						//console.log(xhr.responseText);
+						
+						//获取响应头信息
+						console.log(xhr.getAllResponseHeaders());
+						console.log(xhr.getResponseHeader("Content-Type"));
+						
+					}
+				}
+				*/
+				
+				
+				//POST
+				//接口： http://60.205.181.47/myPHPCode2/checkname.php
+				//参数： regname=zhangsan
+				
+				var xhr = createXHR();
+				xhr.open("post", "http://60.205.181.47/myPHPCode2/checkname.php", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //模拟表单提交
+				xhr.send("regname=zhangsan");
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState==4 && xhr.status==200) {
+						console.log(xhr.responseText);
+					}
+				}
+				
+				//GET 和 POST的区别: 
+				// GET速度比POST快
+				// GET传参在url后面， POST是在请求体中
+				// GET传参的大小比较小,一般在1K内， POST传参大小比较大，一般为4G内
+				
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
