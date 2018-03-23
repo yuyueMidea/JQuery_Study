@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body, html {
+				width: 100%; height: 100%; background: url(images/bg.jpg) center;
+				overflow: hidden;
+			}
+			.fireworm {
+				width: 18px;
+				height: 18px;
+				position: absolute;
+			}
+		</style>
+		
+		<script src="move.js"></script>
+		<script>
+
+			
+			onload = function(){
+				
+				//构造函数
+				function Fireworm(){
+					//属性
+					this.ele = document.createElement("img");
+					
+					//初始化属性
+					this.init = function(){
+						document.body.appendChild(this.ele);
+						this.ele.src = "images/1.jpg";
+						this.ele.className = "fireworm";
+						this.ele.style.left = this.randomPoint().left + "px";
+						this.ele.style.top = this.randomPoint().top + "px";
+						return this;
+					}
+					
+					//fly
+					this.fly = function(){
+						var that = this;
+						animate(this.ele, this.randomPoint(), function(){
+							that.fly(); //继续飞
+						});
+						 
+					}
+					//创建一个点
+					this.randomPoint = function (){
+						var x = parseInt(Math.random()*document.documentElement.clientWidth);
+						var y = parseInt(Math.random()*document.documentElement.clientHeight);
+						return {left:x, top:y};
+					}
+				}
+								
+				
+				var count = 20;
+				var timer = setInterval(function(){
+					if (count-- > 0) {
+						//创建萤火虫对象
+						var fireworm = new Fireworm();
+						fireworm.init().fly(); //初始化并飞
+					}
+					else  {
+						clearInterval(timer);
+					}
+				}, 1000);
+				
+				
+				
+			}
+			
+			//
+					//
+					//数组越界
+					//null,undefined不可以使用
+					//json解析: JSON.parse()， 如果参数不是严格的json字符串，
+					//          则会报错，一般报错在第0行或第1行
+					//
+					
+					//
+					//自学能力
+					//解决问题的能力
+					//
+		</script>
+	</head>
+	<body>	
+	</body>
+</html>

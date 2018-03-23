@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+		onload=function(){
+				
+			/*
+				var arr=[2,4,3,7,3,9,4,7,5,3,7];
+				var arr2=[];
+				
+				for(var i=0;i<arr.length;i++){
+						if(arr2.indexOf(arr[i])==-1 ){
+							arr2.push(arr[i]);
+						}
+				}
+				console.log(arr);
+				console.log(arr2);
+
+			var arr=[2,4,3,7,3,9,4,7,5,3,7];
+			var arr2=[];
+			for(var i=0;i<arr.length;i++){
+				for(var j=i+1;j<arr.length;j++){
+					if(arr[j]==arr[i]){
+						arr.splice(j,1);
+						j--;
+						
+					}
+				}
+			}
+			console.log(arr)	
+			
+			var arr=[2,4,3,7,3,9,4,7,5,3,7];
+			var set=new Set(arr);
+			var arr2=new Array(...set);
+			console.log(arr2);
+			
+			//
+				
+			
+				document.cookie="name="+encodeURIComponent("[赵六,");
+				console.log(decodeURIComponent(document.cookie));
+			//
+			var b=11;
+			console.log(`hello ${b}`);
+			
+			//
+			onkeypress = function(e){
+					e = e||event;
+					console.log(String.fromCharCode(e.keyCode))
+			}
+			
+			//
+			onkeydown = function(e){
+					e = e||event;
+					console.log(String.fromCharCode(e.keyCode))
+			}
+			
+			//
+			onkeypress = function(e){
+					e = e||event;
+					console.log(String.fromCharCode(e.charCode))
+			}
+			
+			console.log(parseInt(null));//NaN
+			console.log(Number(null));//0
+			console.log(NaN+0+1);//NaN
+			//
+			var str = "I am good boy Boy BOY";
+			var reg = /boy/gi;
+			console.log( str.match(reg) );//"boy,Boy,BOY"
+			console.log( str.replace(reg,"girl") )//"I am good girl girl girl"
+			console.log( str.split(reg) )//"I am good , , ,"
+			*/
+			//
+			var str="( I am a Big man, I have so mach bag, so veryone call me  beg man,  bog bog bog, I hate you! )";
+			var reg=/bag|beg|big|bog/gi;
+			console.log(str.replace(reg,"bug"));//
+			//( I am a bug man, I have so mach bug, so veryone call me  bug man,  bug bug bug, I hate you! )"
+			var str = "I am good boy Boy BOY";
+			var reg = /\s/gi;
+			var arr = str.replace(reg,",")
+			console.log( arr )//"I,am,good,boy,Boy,BOY"
+			//
+			var arr = [1,2,3,4,5];
+			var sum=0;
+			var tmp=1;
+			for(var i=0;i<arr.length;i++){
+				tmp *=arr[i];
+				sum +=tmp;
+			}
+			console.log(sum)
+			//
+//			var arr = [1,2,3,4,5];
+//			var s=0;
+//			var tmp=1;
+//			for(let n of arr){
+//				tmp *=n;
+//				s +=tmp;
+//			}
+//			console.log(s);
+			//
+
+//			var foo = function bar(){
+// 				console.log("foo");
+//			}
+//			foo();//bar is not defined
+			//
+//			var arr3=[1,[2,[[3,4],5],6]] ;
+//			console.log(arr3)
+			//
+			/*
+		function foo(x) {
+	    	var tmp = 3;
+		    function bar(y) {
+		        alert(x + y + (++tmp));
+		    }
+	    	bar(10);
+		}
+		foo(2);//16,这还不是闭包
+		
+		function foo(x) {
+		    var tmp = 3;
+		    return function (y) {
+		        alert(x + y + (++tmp));
+		    }
+		}
+		var bar = foo(2); // bar 现在是一个闭包
+		bar(10);
+		
+		var f6 = (function f5(){
+						
+						var c = 10;
+						return function(){
+							console.log("f6, c=" + c++);
+						}
+						
+				})();
+			f6();
+			f6();
+			f6();
+			f6();
+			
+		var fn8 = (function(){
+			var tmp=3;
+			return function(){
+				console.log(tmp++);
+			}
+		})();
+		fn8();
+		fn8();
+		*/
+		function a(){
+			var i=0;
+			return function(){
+				console.log(i++);
+			}
+		}
+		var c=a();
+		c();
+		console.log(c);//"function b(){	alert(i++);}"
+		//
+		var arr=[2,4,4,4,3,7,2,3,9,4,7,5,3,7];
+			for(var i=0;i<arr.length;i++){
+				for(var j=i+1;j<arr.length;j++){
+					if(arr[j]==arr[i]){
+						arr.splice(j,1);
+						j--;
+					}
+				}
+			}
+		console.log(arr);
+		
+		
+		
+			
+		}	
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

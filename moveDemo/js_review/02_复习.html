@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			
+			//1， 变量
+			//  var: 声明变量 
+			//  let：声明变量，形成块级作用域， 不会提前声明
+			//  const: 声明常量， 形成块级作用域， 不会提前声明
+			//
+			// 数据类型： Boolean, String, Number, Object, Null, Undefined, Symbol, Array
+			//
+			// 运算符： ++， --，  
+			// &&， || : 短路操作
+			var a = 1 && 2;
+			var b = 3 || false;
+			var s = a*b + 3;
+			//console.log(s); //9
+			
+			//2, if 
+			//  
+			
+			//3, for循环, for-in, while, do-while
+			for (var i=0; i<9; i++) {
+				if (i==8) continue;
+			}
+			//console.log(i);
+			
+			//4, 函数
+			var fn = function (){				
+				console.log("fn");
+			}
+			
+			//5, 数组
+			//属性： length
+			//方法： push, pop, shift, unshift, slice, splice, join, 
+			//      indexOf, lastIndexOf,sort,reverse,..
+			//for循环遍历
+			//
+			// map, reduce, filter, forEach, Array.from , Array.of, find, findIndex.
+			//
+			// 排序算法： 冒泡排序
+			var arr = [3,4,5,2,2,3,1,9];
+			for (var i=0; i<arr.length-1; i++){
+				for (var j=0; j<arr.length-1-i; j++) {
+					if (arr[j] > arr[j+1]){
+						//[arr[j],arr[j+1]] = [arr[j+1], arr[j]];
+						var tmp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = tmp;
+					}
+				}
+			}
+			console.log(arr);
+			
+			//6， 字符串
+			//属性： length
+			//方法： charAt, charCodeAt, substring, concat, indexOf, lastIndexOf,
+			//      search, replace, split, toLowerCase, toUpperCase, slice,match..
+			//
+			//includes,startsWith, endsWith, repeat,..
+			//
+			//  var a = "张三";
+			//  模板字符串  `hello ${a}`
+			//
+			//
+			
+			//7，BOM
+			//location.href : 页面跳转
+			//open, location.assign()
+			//location.search
+			//
+			
+			//8, DOM
+			//document.getElementById, getElementsByTagName, getElementsByName, getElementsByClassName
+			//元素节点的常用属性： innerHTML, value, id, className, style,...
+			//
+			// DOM操作
+			// document.createElement(), appendChild(), removeChild(), cloneNode(), replaceChild... 
+			//
+			
+			
+			//9，事件
+			//鼠标事件， 键盘事件， html事件
+			//鼠标事件： onclick, ondblclick, onmousedown, onmousemove, onmouseup, 
+			//          onmouseenter, onmouseleave,onmouseover, onmouseout
+			//键盘事件： onkeydown, onkeypress, onkeyup
+			//html事件： onscroll, onblur, onfocus, onresize, onchange...
+			//
+			//事件对象Event
+			//属性： button, which, target, type, clientX/Y, pageX/Y, screenX/Y, offsetX/Y
+			//      keyCode, charCode
+			//
+			//阻止事件冒泡： e.stopPropagation(), e.cancelBubble=true
+			//阻止默认行为： e.preventDefault(), e.returnValue=false
+			//
+			//事件监听器：
+			//addEventListener, removeEventListener
+			//attachEvent, detachEvent
+			// 
+			// 拖拽
+			// 
+			
+			//
+			//事件委托： target
+			//
+			onload = function() {
+				var div = document.getElementsByTagName("div")[0];
+				div.onclick = function(e){
+					e = e || event;
+					
+					if (e.target.className == "btn"){
+						console.log("ddd");
+					}
+				}
+			}
+			
+			
+//			var adiv = document.getElementsByTagName("div");
+//			for (var i=0; i<adiv.length; i++) {
+//				adiv[i].index = i;
+//				adiv[i].onclick = function(){
+//					console.log(this.index); 
+//				}
+//			}
+			
+			
+			//10， cookie
+			//存储字符串，不超过4K
+			// document.cookie = "name=value;expires=过期时间;path=访问路径;domain=访问域名;secure";
+			// 
+			// setCookie(), getCookie(), removeCookie()
+			// 
+			// JSON解析： JSON.parse(); 将字符串转对象
+			// JSON序列化： JSON.stringify(); 将对象转字符串
+			//
+			
+			
+			
+			//11,正则
+			// . : 任意单个字符
+			
+			// * ： 前面字符可以出现0或多次
+			// + ： 前面字符可以出现1或多次
+			//{3} : 前面字符出现3次
+			//{3,} : 前面字符出现至少3次
+			//{3,5} : 前面字符出现3-5次
+			
+			//[a-z] : 小写字母
+			//[a-zA-Z0-9_] : \w 
+			//  /^[a-zA-Z_]\w{4,9}$/ : 数字字母下划线， 第一个不能为数字， 长度5-10
+			//\d
+			//\D
+			//\s 
+			//手机号
+			
+			//12， ES5,ES6
+			//let, const
+			//严格模式: "use strict";
+			//bind
+			//模板字符串 `hello ${a}`
+			//箭头函数: n=>n; ()=>{}
+			//class, constructor
+			//
+			//
+			
+			//13，运动
+			//move.js
+			//
+			
+			//14， 面向对象
+			//构造函数
+			//闭包
+			//this
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<button class="btn">按钮</button>
+		</div>
+	</body>
+</html>
