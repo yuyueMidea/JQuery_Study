@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body,html{
+				width: 100%;height: 100%;background: url(images/bg.jpg);
+				overflow: hidden;position: relative;
+			}
+			.fireworm{
+				width: 20px;height: 20px;position: absolute;
+			}
+		</style>
+		<script type="text/javascript" src="move.js"></script>
+		<script type="text/javascript">
+			onload = function(){
+				function fireworm(){
+					this.ele=document.createElement("img");
+					//
+					this.init = function(){
+						document.body.appendChild(this.ele);
+						this.ele.src="images/1.jpg";
+						this.ele.className="fireworm";
+						this.ele.style.left=this.randomPoint().left+"px";
+						this.ele.style.top=this.randomPoint().top+"px";
+						return this;
+						
+					}
+					
+					//
+					this.randomPoint=function(){
+						var x=parseInt(Math.random()*document.documentElement.clientWidth);
+						var y=parseInt(Math.random()*document.documentElement.clientHeight);
+						return{left:x,top:y};
+					}
+					//
+					this.fly=function(){
+						var that = this;
+						animate(this.ele,this.randomPoint(),function(){
+							that.fly();
+						})
+					}
+				}
+				//
+				
+				//
+				var count = 20;
+				
+				var timer = setInterval(function(){
+					var that=this;
+					if(count-->0){
+						var fire =new fireworm();
+						fire.init().fly();
+					}
+					else{
+						clearInterval(timer);
+					}
+				},1000)
+				
+			
+			}
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

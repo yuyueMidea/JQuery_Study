@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.fire {
+				width: 3px;
+				height: 30px;
+				background: white;
+				position: absolute;
+			}
+			.spark {
+				width: 3px;
+				height: 3px;
+				position: absolute;
+			}
+		</style>
+		
+		<script src="move.js"></script>
+		<script>
+			onload = function(){
+				
+				document.onclick = function(e){
+					e = e || event;
+					
+					new Fire(e.pageX, e.pageY).init().launch();
+				}
+				
+				//Fire
+				function Fire(x, y){
+					//属性
+					this.ele = document.createElement("div");
+					this.x = x;
+					this.y = y;
+				}
+				
+				//方法
+				//init
+				Fire.prototype.init = function(){
+					document.body.appendChild(this.ele);
+					this.ele.className = "fire";
+					this.ele.style.left = this.x + "px";
+					this.ele.style.top = document.documentElement.clientHeight-30 + "px";
+					return this;
+				}
+				
+				//launch
+				Fire.prototype.launch = function(){
+					var that = this;
+					animate(this.ele, {top:this.y, height:3}, function(){
+						document.body.removeChild(that.ele);
+						that.boom();
+					});
+				}
+				
+				//boom
+				Fire.prototype.boom = function(){
+					var count = 30 + parseInt(Math.random()*31); //30~60
+					for (var i=0; i<count; i++) {
+						//创建星火对象，初始化， 做抛物线运动
+						new Spark(this.x, this.y).init().fall();
+					}
+				}				
+				//Spark
+				function Spark(x, y){
+					
+					//属性
+					this.ele = document.createElement("div");	
+					this.x = x;
+					this.y = y;
+				}
+				
+				//方法
+				//init
+				Spark.prototype.init = function(){
+					document.body.appendChild(this.ele);
+					this.ele.className = "spark";
+					this.ele.style.left = this.x + "px";
+					this.ele.style.top = this.y + "px";
+					this.ele.style.backgroundColor = this.randomColor();
+					return this;
+				}
+				
+				//fall: 抛物线运动
+				Spark.prototype.fall = function(){
+					
+					var xSpeed = parseInt(Math.random()*20) * (Math.random()>0.5 ? 1 : -1);
+					var ySpeed = parseInt(Math.random()*20) * (Math.random()>0.5 ? 1 : -1);
+					
+					var that = this;
+					var timer = setInterval(function(){
+						ySpeed++;
+						
+						that.ele.style.left = that.ele.offsetLeft + xSpeed + "px";
+						that.ele.style.top = that.ele.offsetTop + ySpeed + "px";
+						
+						if (that.ele.offsetLeft < 0 
+							|| that.ele.offsetLeft > document.documentElement.clientWidth 
+							|| that.ele.offsetTop > document.documentElement.clientHeight) 
+							{
+								document.body.removeChild(that.ele);
+								clearInterval(timer);
+							}
+						
+					}, 30);
+					
+				}
+				
+				//随机颜色
+				Spark.prototype.randomColor = function(){
+					return "rgb(" + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + ")";
+				}
+				
+			}
+		</script>
+	</head>
+	<body style="background: black; overflow: hidden;">
+	</body>
+</html>

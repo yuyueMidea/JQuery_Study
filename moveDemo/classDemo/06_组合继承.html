@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//组合继承
+			//原型链继承+对象冒充
+			
+			//父类
+			function Person(name,sex){
+				this.name = name;
+				this.sex = sex;
+			}
+			Person.prototype.eat = function(){
+				console.log("eat");
+			}
+			
+			//子类
+			function Man(name, age, sex){
+				//对象冒充
+				Person.call(this, name, sex); //继承父类的属性并初始化
+				
+				this.age = age;
+			}
+			Man.prototype = new Person(); //原型链继承父类的属性和方法
+			Man.prototype.sleep = function(){
+				console.log("sleep");
+			}
+			
+			//实例对象
+			var man = new Man("王五", 55, "男");
+			console.log(man.name + man.age + man.sex);
+			man.eat();
+			man.sleep();
+			
+			
+			
+			
+			//Ipod
+			function Ipod(color){
+				this.color = color;
+			}
+			Ipod.prototype.listenMusic = function(){
+				console.log("听音乐");
+			}
+			
+			//Ipad
+			function Ipad(color, type){
+				Ipod.call(this,color); //继承Ipod属性，并初始化
+				this.type = type;
+			}
+			Ipad.prototype = new Ipod(); //继承Ipod的方法
+			Ipad.prototype.watchMovie = function(){
+				console.log("看电影");
+			}
+			
+			//Iphone
+			function Iphone(color, type, size){
+				Ipad.call(this, color, type);
+				this.size = size;
+			}
+			Iphone.prototype = new Ipad(); //继承Ipad的方法
+			Iphone.prototype.call = function(){
+				console.log("打电话");
+			}
+			
+			//iphone对象
+			var iphone = new Iphone("骚红色", "iphone7", "4.7寸");
+			console.log(iphone.color + iphone.type + iphone.size);
+			iphone.call();
+			iphone.watchMovie();
+			iphone.listenMusic();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

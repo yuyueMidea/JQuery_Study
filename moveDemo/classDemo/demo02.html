@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				
+				/*
+				function cat(){
+					this.attr="fur";
+					this.eat=function(){
+						console.log("什么都吃")
+					}
+					this.miao=function(){
+						console.log("miao")
+					}
+				}
+				//
+				function carcat(){
+					this.attr="fur,glasses";
+					this.eat=function(){
+						console.log("只吃肉")
+					}
+					this.talk=function(){
+						console.log("可以说话")
+					}
+				}
+				//
+				function tomcat(){
+					this.attr="fur,friend";
+					this.eat=function(){
+						console.log("只吃面包")
+					}
+					this.catchMouse=function(){
+						console.log("捉老鼠")
+					}
+				}
+				//
+				carcat.prototype = new cat();
+				tomcat.prototype = new cat();
+				//
+				var carcat=new carcat();
+				var tomcat=new tomcat();
+				
+				console.log(tomcat.attr);//fur,friend
+				tomcat.eat();//只吃面包
+				carcat.eat();//只吃肉
+				carcat.talk();//可以说话
+				*/
+				//
+				function Person(name,age){
+					this.name=name;
+					this.age=age;
+					this.eat=function(){
+						console.log("吃饭")
+					}
+				}
+				//
+				function Man(name,age,sex){
+					Person.call(this,name,age);
+					this.sex=sex;
+					this.sleep=function(){
+						console.log("睡觉")
+					}
+				}
+				//
+				var man=new Man("李四",44,"男")
+				console.log(man.name);
+				console.log(man.age);
+				console.log(man.sex);
+				man.sleep();
+				man.eat()
+				
+				//父类
+				function Cat(fur){
+					this.fur=fur;
+				}
+				Cat.prototype.eat=function(){
+					console.log("什么都吃")
+				}
+				//子类
+				function Tomcat(fur,fd){
+					Cat.call(this,fur);
+					this.friend=fd;
+					this.catch=function(){
+						console.log("chiyu");
+					}
+				}
+				Tomcat.prototype=new Cat();
+				var tc=new Tomcat("ss","gg");
+				console.dir(tc)
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

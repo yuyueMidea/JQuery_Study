@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			/*
+			 
+			 1, 继承的概念    封装， 继承， 多态
+			    继承是面向对象的一个非常重要的特征. 继承指的是: 子类继承父类的属性和方法.
+			我们可以通过继承的方式, 在父类的属性和方法基础上, 在无需修改父类的情况下, 让子类也有拥有这些属性和方法, 并可以扩展其他属性和方法.
+			
+			继承的特点: 
+			1, 子类拥有父类的属性和方法；
+			2, 子类可以有自己新的属性和方法；
+			3, 子类可以重写父类的方法
+			
+			继承的优点
+			1, 代码复用：子类可以继承父类的属性和方法
+			2, 更灵活：子类可以追加或修改属性和方法
+			3, 更利于维护
+			
+			 * */
+			
+			//动物类
+			//细胞
+			//动
+			//狗类
+			//
+			
+			//人类
+			/*
+			class Person {
+				name, 
+				age,
+				height,
+			}
+			
+			//男人类
+			class Man extends Person{
+				huzi
+			}
+			
+			//女人类
+			class Female extends Person{
+				
+			}
+			*/
+			
+			
+			//原型链继承
+			//构造函数
+			//Ipod
+			function Ipod(){
+				this.color = "黑色";
+				this.listenMusic = function(){
+					console.log("听音乐");
+				}
+			}
+			
+			//Ipad
+			function Ipad(){
+				//this.color = "白色"; //重写了父类ipod的color属性
+				this.type = "ipad mini";
+				this.watchMovie = function(){
+					console.log("看电影");
+				}
+			}
+			//var ipod = new Ipod();
+			//Ipad.prototype = ipod;  //原型链继承
+			Ipad.prototype = new Ipod();  //原型链继承, 继承Ipod
+			
+			//子类ipad实例对象，拥有了父类的属性和方法
+			var ipad = new Ipad();
+			console.log(ipad.color);  //黑色
+			console.log(ipad.type);  //ipad mini
+			ipad.listenMusic(); //听音乐
+			ipad.watchMovie(); //看电影
+			
+			
+			
+			//Iphone 
+			function Iphone(){
+				this.size = "5.5寸";
+				this.call = function(){
+					console.log("打电话");
+				}
+			}
+			Iphone.prototype = new Ipad(); //继承父类Ipad
+			
+			//iphone的实例对象
+			var iphone7 = new Iphone();
+			console.log(iphone7.color);
+			console.log(iphone7.type);
+			console.log(iphone7.size);
+			iphone7.listenMusic();
+			iphone7.watchMovie();
+			iphone7.call();
+			
+			
+			var ipod = new Ipod(); //爷爷类
+			var ipad = new Ipad(); //父类
+			var iphone = new Iphone(); //子类
+			
+			//构造函数默认继承Object
+			console.log( ipod instanceof Object ); //true
+			console.log( ipod instanceof Ipod ); //true
+			console.log( ipod instanceof Ipad ); //false
+			console.log( ipod instanceof Iphone ); //false
+			
+			console.log( ipad instanceof Object ); //true
+			console.log( ipad instanceof Ipod ); //true
+			console.log( ipad instanceof Ipad ); //true
+			console.log( ipad instanceof Iphone ); //false
+			
+			console.log( iphone instanceof Object ); //true
+			console.log( iphone instanceof Ipod ); //true
+			console.log( iphone instanceof Ipad ); //true
+			console.log( iphone instanceof Iphone ); //true
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;margin: 0;border: none;
+			}
+			#box1,#box2,#box3{
+				width: 100px;height: 100px;background: palegoldenrod;
+				position: absolute;
+			}
+			#box2{background: cornflowerblue;top: 120px;}
+			#box3{background: yellowgreen;top: 250px;}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				
+				function drag(id){
+					this.box=document.getElementById(id);
+					var that=this;
+					//
+					
+					this.box.onmousedown=function(e){
+						e=e||event;
+						//console.log(e.pageX,e.pageY);
+						that.startMove(e.pageX,e.pageY);
+						
+					}
+					//
+					this.startMove=function(x,y){
+						this.disX=x-this.box.offsetLeft;
+						this.disY=y-this.box.offsetTop;
+						that.moving();
+						that.stopMove();
+					}
+					this.moving=function(){
+						document.onmousemove=function(e){
+							e=e||event;
+							that.box.style.left=e.pageX-that.disX+"px";
+							that.box.style.top=e.pageY-that.disY+"px";
+						}
+					}
+					this.stopMove=function(){
+						document.onmouseup=function(){
+							document.onmousemove=null;
+							document.onmouseup=null;
+						}
+					}
+					
+					
+				}
+				//
+				drag1=new drag("box1");
+				//drag2=new drag("box2");
+				//drag3=new drag("box3");
+				
+				//drag2
+				function drag2(){
+					drag1.call(this)
+				}
+				drag2.prototype=new drag("box2");
+				drag2.prototype.moving=function(){
+					var that=this;
+					document.onmousemove=function(e){
+						e=e||event;
+						//console.log(11)
+						that.box.style.left=e.pageX-that.disX+"px";
+						that.box.style.top=e.pageY-that.disY+"px";
+						if(that.box.offsetTop<0){
+								that.box.style.top=0;
+							}
+						if(that.box.offsetLeft<0){
+								that.box.style.left=0;
+							}
+					}
+				}
+				//
+				function drag3(){
+					drag1.call(this);
+				}
+				drag3.prototype = new drag("box3");
+				drag3.prototype.moving = function(){
+					var that=this;
+					document.onmousemove=function(e){
+						e=e||event;
+						e.preventDefault();
+						var left = e.pageX-that.disX;
+						var top = e.pageY-that.disY;
+						that.box.style.left = left+"px";
+						that.box.style.top = top+"px";
+						that.box.innerHTML=left+","+top;
+					}
+				}
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box1"></div>
+		<div id="box3"></div>
+		<div id="box2"></div>
+	</body>
+</html>

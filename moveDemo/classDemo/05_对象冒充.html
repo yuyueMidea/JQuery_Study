@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			
+			//对象冒充：借用构造函数
+			//call() , apply()
+			
+			//父类
+			function Person(name, sex){
+				this.name = name;
+				this.sex = sex;
+				this.eat = function(){
+					console.log("eat");
+				}
+			}
+			
+			//子类
+			function Man(name, age, sex){
+				
+				//对象冒充， call中的参数this会冒充Person函数中的this
+				Person.call(this, name, sex);
+				//Person.apply(this, [name, sex]);
+				
+				this.age = age;
+				this.sleep = function(){
+					console.log("sleep");
+				}
+			}
+			
+			//子类的实例对象man
+			var man = new Man("李四", 44, "男");
+			console.log(man.name);
+			console.log(man.age);
+			console.log(man.sex);
+			man.eat();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

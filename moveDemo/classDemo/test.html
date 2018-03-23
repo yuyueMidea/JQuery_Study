@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			var test =(function(a){ //a=3
+			 	//this.a = a;
+			  	return function(b){
+			   	   return a+b;
+			  	}
+			})(function(a,b){
+			  	return a+b;
+			}(1,2))
+			
+			//console.log(a); 
+			
+			console.log(test(1)); //结果是：4
+			console.log(test(4)); //结果是：7
+			
+			/*
+			var test = (function(a) {
+				this.a = a;
+				return function(b) {
+					return this.a + b;
+				}
+			})((function(a, b) {
+				return a;
+			})(1, 2));
+			*/
+			
+			
+		
+							
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
