@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jqDemo01</title>
+	<style type="text/css">
+		*{
+			padding: 0; margin: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload =function(){
+			function $(id){		//封装一个$方法 方便调用
+				return new JqDemo(id);
+			}
+			//
+			function JqDemo(attr){
+				// this.element =[];
+				this.query(attr);
+			}
+			//
+			JqDemo.prototype.query =function(attr){		//获取选择器的dom节点
+				this.ele =document.querySelectorAll(attr);
+			}
+			JqDemo.prototype.css =function(attr, value){		 /*获取css属性的值*/
+				if((arguments.length ==1) && (typeof attr =='object')){		//对象设置值
+					for(var item in attr){		
+						for (var i = this.ele.length - 1; i >= 0; i--) {
+							this.ele[i].style[item] =attr[item];
+						}
+					}
+				}else{
+					for (var i = this.ele.length - 1; i >= 0; i--) {
+						this.ele[i].style[attr] =value;
+					}
+				}
+				return this;	/*方便连缀操作*/
+			}
+			JqDemo.prototype.html =function(val){		/*设置innerHTML*/
+				for (var i = this.ele.length - 1; i >= 0; i--) {
+					this.ele[i].innerHTML =val;
+				}
+				return this;
+			}
+			//
+			debugger
+			$('.box1').css('color', 'red').css('background', 'pink');
+			// $(".box1").css('background', 'yellow')
+			$("#p1").css('color','yellow').css('background','purple');
+			$("#head1").html('qwe').css({'color':'red', 'background':'yellow'});
+
+		}
+	</script>
+</head>
+<body>
+	<div class="box1">box1</div>
+	<hr>
+	<p id='p1'>paragraph!</p>
+	<br>
+	<h2 id='head1'>h2</h2>
+</body>
+</html>
