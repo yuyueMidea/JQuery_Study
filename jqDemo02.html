@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jqDemo02</title>
+	<style type="text/css">
+		*{
+			padding: 0; margin: 0;
+		}
+	
+
+	</style>
+	<script type="text/javascript">
+	window.onload =function(){
+		function $(id){
+			return new JqDemo(id);
+		}
+		function JqDemo(attr){
+			this.elements=[];   /*dom节点的集合*/
+			if(typeof attr =='object'){
+				this.elements[0] =attr;
+			}else{
+				this.query(attr);
+			}
+		}
+		//获取计算后的css样式
+		function getStyle(element,attr){			
+			if(getComputedStyle){				
+				return getComputedStyle(element,'')[attr];
+			}else{				
+				return element.currentStyle[attr];
+			}		
+		}
+		JqDemo.prototype.query =function(attr){
+			this.elements =document.querySelectorAll(attr);
+		}
+		JqDemo.prototype.css =function(attr, value){
+			if(arguments.length ==1 && typeof attr =='object'){
+				for(var item in attr){
+					for (var i = this.elements.length - 1; i >= 0; i--) {
+						this.elements[i].style[item] =attr[item];
+					}
+				}
+			}else{
+				if(arguments.length ==1){
+					for (var i = this.elements.length - 1; i >= 0; i--) {
+						 return getStyle(this.elements[i], attr);
+					}
+				}else{
+					for (var i = this.elements.length - 1; i >= 0; i--) {
+						this.elements[i].style[attr] =value;
+					}
+				}
+			}
+			return this;
+		}
+		JqDemo.prototype.html =function(val){
+
+			for (var i = this.elements.length - 1; i >= 0; i--) {
+				if(arguments.length ==0){
+					return this.elements[i].innerHTML;
+				}else{
+					this.elements[i].innerHTML =val;
+				}
+				
+			}
+			return this;
+		}
+		JqDemo.prototype.click =function(cb){		//绑定onclick事件
+			for (var i = this.elements.length - 1; i >= 0; i--) {
+				this.elements[i].onclick =cb;		/*绑定事件执行回调函数*/
+			}
+		}
+		JqDemo.prototype.hover =function(cb1, cb2){
+			for (var i = this.elements.length - 1; i >= 0; i--) {
+				this.elements[i].onmouseover =cb1;	
+				this.elements[i].onmouseout =cb2;	
+			}
+		}
+		JqDemo.prototype.find =function(attr){
+			var childNodes =[];		//获取当前父节点对应的子节点
+			for (var i = this.elements.length - 1; i >= 0; i--) {
+				var childs =this.elements[i].querySelectorAll(attr);
+				for(var j=0; j<childs.length; j++){
+					childNodes.push(childs[j]);
+				}
+			}
+			//改变this.elements    $('li').find('ol') 要把this.elements 改变为当前的子节点
+			this.elements =childNodes;
+			return this;
+		}
+		JqDemo.prototype.show =function(){
+			for (var i = this.elements.length - 1; i >= 0; i--) {
+				this.elements[i].style.display ='block';
+			}
+		}
+		JqDemo.prototype.hide =function(){
+			for (var i = this.elements.length - 1; i >= 0; i--) {
+				this.elements[i].style.display ='none';
+			}
+		}
+		JqDemo.prototype.first =function(){
+			var tmp =this.elements[0];
+			this.elements =[];
+			this.elements.push(tmp);
+			return this;
+		}
+		JqDemo.prototype.last =function(){
+			var tmp=this.elements[this.elements.length-1];	
+			this.elements=[];	
+			this.elements.push(tmp);	
+			return this;
+		}
+		JqDemo.prototype.eq =function(num){
+			var tmp=this.elements[num -1];	
+			this.elements=[];	
+			this.elements.push(tmp);	
+			return this;
+		}
+		
+
+
+		//
+		$(".box1").css('color','red');
+		$("#p1").css({'color':'blue','background':'pink','font-size':'22px'});
+		debugger
+		$('#btn').click(function(){
+			$('.h2').css({'font-size':'33px','color':'red'});
+		})
+		$('.h2').hover(function(){
+			$(this).css('color','blue')
+		},function(){
+			$(this).css('color','pink')
+		})
+
+	
+	}
+	</script>
+</head>
+<body>
+	<div class="box1" style="width: 100px;height: 100px;background: pink;">box1</div>
+	<hr>
+	<p id="p1" class='para'>paragraph!</p>
+	<br>
+	<h2 class="h2">h2</h2>
+	<hr>
+	<button id="btn">btn</button>
+	<ul id='uList'>
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+</body>
+</html>
