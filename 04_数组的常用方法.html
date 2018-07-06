@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//数组的常用方法
+/*			
+			//push() : 在数组末尾添加元素
+			var arr = [1,2,3,4,5];
+			arr.push(6);
+			//arr.push(6,7);
+			console.log(arr);
+			
+			//pop(): 在数组末尾删除一个元素
+			var arr = [1,2,3,4,5];
+			var res = arr.pop();
+			console.log(arr); //[1,2,3,4]
+			console.log(res); //5
+			
+			
+			//push()
+			//shift() : 在数组前面删除元素
+			var arr = [1,2,3,4,5];
+			arr.shift();
+			console.log(arr); //[2,3,4,5]
+			
+			//unshift() : 在数组的前面添加元素
+			var arr = [1,2,3,4,5];
+			arr.unshift(0);
+			//arr.unshift(-1,0);
+			console.log(arr); //[0,1,2,3,4,5]
+			
+			
+			//reverse(): 逆序
+			var arr = [1,2,3,4,5];
+			arr.reverse();
+			console.log(arr); //[5,4,3,2,1]
+			
+			//sort(): 升序排序
+			//按字符串的排序规则排序
+			var arr = [1,5,4,2,7,6];
+			arr.sort();
+			console.log(arr); //[1,2,4,5,6,7]
+			
+			var arr = [1,5,11,22,15,4,2,7,6];
+			arr.sort();
+			console.log(arr); //[1,11,15,2,22,4,5,6,7]
+			
+			
+			//
+			var arr = [1,5,11,22,15,4,2,7,6];
+			arr.sort(function (a, b){
+				if (a > b) {
+					return 1;
+				}
+				return 0;
+			})
+			console.log(arr); //[1,2,4,5,6,7,11,15,22]
+			
+			
+			//回调函数
+			function fn1(a, b){ 
+				console.log("a:" + a); //a:10
+				
+				var res = b(1,5); //调用b函数， 回调函数
+				console.log(res); //0
+			}
+			
+			fn1(10, function(c,d){
+				if (c > d) {
+					return 1;
+				}
+				return 0;
+			});
+			
+			
+			
+			//concat() : 追加数据, 不会改变原数组
+			var arr = [1,2,3,4];
+			var arr2 = arr.concat("美国队长","擎天柱");
+			console.log(arr); //[1,2,3,4]
+			console.log(arr2); //[1,2,3,4,美国队长,擎天柱]
+			
+			var arr = [1,2,3,4];
+			var arr2 = arr.concat([5,6,7]);
+			console.log(arr2); //[1,2,3,4,5,6,7]
+			
+			
+			//slice() :  不修改原数组, 将原数组中的指定区域数据提取出来
+			var arr = ["美国队长","雷神","钢铁侠","绿巨人","绿箭侠","蜘蛛侠","蚁人","猪猪侠","煎饼侠"];
+			var arr2 = arr.slice(2); //从下标为2开始到最后截取
+			console.log(arr); //[美国队长,雷神,钢铁侠,绿巨人,绿箭侠,蜘蛛侠,蚁人,猪猪侠,煎饼侠]
+			console.log(arr2); //[钢铁侠,绿巨人,绿箭侠,蜘蛛侠,蚁人,猪猪侠,煎饼侠]
+			
+			var arr = ["美国队长","雷神","钢铁侠","绿巨人","绿箭侠","蜘蛛侠","蚁人","猪猪侠","煎饼侠"];
+			var arr2 = arr.slice(2,5); //[2,5), 包含2，不包含5
+			console.log(arr2); //[钢铁侠,绿巨人,绿箭侠]
+			
+			
+			//splice() : 截取数组， 会修改原数组
+			//删除：两个参数，且第二个参数不为0
+			var arr = [1,2,3,4,5,6,7,8];
+			var arr2 = arr.splice(2,5); //第一个参数是起始下标， 第二个参数是长度
+			console.log(arr); //[1,2,8]
+			console.log(arr2); //[3,4,5,6,7]
+			
+			//替换： 至少有3个参数
+			var arr = [1,2,3,4,5,6,7,8];
+			arr.splice(2,5, "hello","world");
+			console.log(arr); //[1,2,hello,world,8]
+			
+			//插入： 至少3个参数， 第二个参数为0
+			var arr = [1,2,3,4,5,6,7,8];
+			arr.splice(2,0, "hello", "world");
+			console.log(arr); //[1,2,hello,world,3,4,5,6,7,8]
+			
+			//增删改查
+			
+			
+			//join() : 将数组中的每个元素拼接成字符串
+			var arr = [1,2,3,4,5,6,7,8];
+			var str = arr.join(); //默认是用逗号连接
+			console.log(str); //"1,2,3,4,5,6,7,8", string
+			
+			var str = arr.join("+");
+			console.log(str); //"1+2+3+4+5+6+7+8"
+			
+			var str = arr.join("");
+			console.log(str); //"12345678"
+			
+			
+			//indexOf(): 查找元素第一次出现的位置, 如果查找不到则返回-1
+			var arr = [1,0,3,3,2,4,0,-1,4];
+			var index = arr.indexOf(4);
+			console.log(index); //5
+			
+			var index = arr.indexOf(9);
+			console.log(index); //-1
+			//end
+			var str=("hello world")
+			var str1=("hello");
+			var str2=str1.concat(" world");
+			var index=str2.indexOf( "d" );//记得加引号
+			var str3=str.replace("hello"," baby");
+			console.log(str2);
+			console.log(index);
+			console.log(str3)
+			
+			
+			var str=("how are you");
+			var str2=str.replace("are","old are");
+			console.log(str2);
+			//
+			var arr=[];
+			for(var i=1;i<5;i++){
+				var ran = parseInt(Math.random()*10);
+				arr.push(ran);
+			}
+			console.log(arr);
+			//end
+			var str="hello world";
+			var str2=str.substring(2,5);//不改变原有string
+			var str3 = str.toUpperCase();
+			console.log(str2);
+			console.log(str);
+			console.log(str3);
+			//end
+			
+			console.log( Math.max(13,7) ); 
+			console.log( Math.min(13,7) ); 
+			console.log( Math.floor(13.7) ); //向下取整
+			console.log( Math.ceil(13.7) ); //向上取整
+			console.log( Math.pow(5,3) ); //x的y次方
+			console.log( Math.sqrt(16) ); //开平方
+			console.log( Math.abs(-22));
+			console.log(Math.sin(1.57));
+			console.log(Math.E);
+			console.log(Math.PI);
+			*/
+		
+			var date=new Date();//自动获取当前时间
+			var d2=date.toLocaleDateString();//以 [年月日] 显示时间
+			var d3=date.toLocaleTimeString();//以 [时分秒] 显示时间
+			var d4=date.toUTCString();
+			console.log(date);
+			console.log(d2);
+			console.log(d3);
+			console.log(d4);
+			//end
+			var obj={name:"张三",age:18};
+			delete obj.name;
+			console.log(obj.name);
+			console.log(obj.age);
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

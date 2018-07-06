@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			//var arr = [1,2,3,4,5,33];
+			//var arr = [{name:"张三", age:33},
+			//{name:"李四", age:44},{name:"王五", age:16}];
+			
+			//排序算法： 冒泡排序， 选择排序， 快速排序， ....
+			
+			//冒泡排序升序排序
+			var arr = [8,9,7,6,5,4];
+			
+			/*
+			var arr = [8,7,6,5,4, 9];
+			var arr = [7,6,5,4, 8,9];
+			var arr = [6,5,4, 7,8,9];
+			var arr = [5,4, 6,7,8,9];
+			var arr = [4, 5,6,7,8,9];
+			*/
+			
+			for (var i=0; i<arr.length-1; i++) { //排序的趟数
+				
+				for (var j=0; j<arr.length-1-i; j++){
+					if (arr[j] > arr[j+1]) {
+						var tmp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = tmp;
+					}
+				}
+			}
+			console.log(arr); //[4,5,6,7,8,9]
+			
+			
+			//练习: 
+			//1, 将数组[1, 5, 6, 3, 2, 8, 9, 4] 降序排序
+			var arr = [1, 5, 6, 3, 2, 8, 9, 4];
+			for (var i=0; i<arr.length-1; i++) { //7趟
+				for (var j=0; j<arr.length-1-i; j++) {
+					if (arr[j] > arr[j+1]) {
+						var tmp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = tmp;
+					}
+				}
+			}
+			console.log(arr); //[9,8,6,5,4,3,2,1]
+			
+			
+			//2, 请将数组[1,46,74,3,5,5]中的元素右移1位 =>
+				//[5,1,46,74,3,5]
+			var arr = [1,46,74,3,5,5];
+			var last = arr[arr.length-1];
+			for (var i=arr.length-1; i>0; i--) {
+				arr[i] = arr[i-1];
+			}
+			arr[0] = last;
+			console.log(arr); //[5,1,46,74,3,5]
+			
+			
+			//3, 插数:在数组[1,46,74,3,5,5]的下标为2的位置插入一个数字8，
+			//    结果为[1,46,8,74,3,5,5]
+			var arr = [1,46,74,3,5,5];
+			arr.splice(2,0,8);
+			console.log(arr); //[1,46,8,74,3,5,5]
+			
+			
+			
+			//var n = 1342
+			// n%10 = 2   n=parseInt(n/10);
+			//
+			var n = 1342;
+			var arr = [];
+			while(n){
+				arr.push(n%10);
+				n = parseInt(n/10);
+			}
+			console.log(arr.reverse()); //[1,3,4,2]
+			
+			console.log(parseInt(1342/10))
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
