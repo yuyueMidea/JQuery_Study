@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>video_demo1</title>
+	<style type="text/css">
+		*{
+			padding: 0; margin: 0;
+		}
+		video{
+			width: 500px; margin: 0 auto; display: block;
+			border:1px solid red;
+		}
+		.controller{
+			width: 500px; margin: 0 auto; display: block;
+		}
+		.controller button {
+			padding: 3px 11px; margin: 5px; cursor: pointer;
+		}
+		.controller .timer{
+			    padding: 3px 11px;  background: pink;
+			    float: right; margin: 5px
+		}
+		.controller .volume{
+			width: 100%; height: 10px; margin: 10px 0px;
+			background: pink; border-radius: 5px;
+			position: relative;
+		}
+		.controller .volume .handle{
+			width: 10px; height: 30px; background: lightblue;
+			position: absolute; top: -11px; right: 0px;
+		}
+	</style>
+</head>
+<body>
+	<h1>hello~</h1>
+	<!-- <video src="MyOhMy.mp4"></video> -->
+	<video src="Intermission-Walk-in_512kb.mp4"></video>
+
+	<div class="controller">
+		<button class="play">播放</button>
+		<button class="reload">重置</button>
+		<button class="loud">音量</button>
+		<span class="timer">00:00:00</span>
+		<br><br>
+		<p>音量控制<span class="showVol">(100%)</span></p>
+		<div class="volume">
+			<span class="handle"></span>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		onload = function(){
+			
+			var ov =document.querySelector('video');
+			var showtimer =document.querySelector('.timer');
+			var btn =document.querySelectorAll("button");
+			var timer =null, allTime = formatTime(ov.duration);
+			var volume = document.querySelector('.volume');
+			var handle = document.querySelector('.handle');
+			showtimer.innerText ='00:00:00 / '+ allTime;
+			btn[0].onclick =function(){		//play
+				if(ov.paused){
+					ov.play();
+					this.innerText ='暂停';
+					timer = setInterval(function(){
+						showtimer.innerText = formatTime(ov.currentTime) +' / '+ allTime;
+					},1000)
+				} else {
+					ov.pause()
+					this.innerText ='播放';
+					showtimer.innerText = formatTime(ov.currentTime) +' / '+ allTime;
+					clearInterval(timer);
+				}
+			}
+			btn[1].onclick =function(){		//reload
+				if(ov.paused){
+					ov.load()
+					showtimer.innerText = formatTime(ov.currentTime) +' / '+ allTime;
+				} else {
+					ov.load()
+					ov.play()
+				}
+			
+			}
+			btn[2].onclick =function(){		//loud
+				if(ov.muted) {
+					ov.muted =false;
+					this.innerText ='静音'
+				} else {
+					ov.muted =true;
+					this.innerText ='取消静音'
+				}
+			}
+			
+			//
+			function formatTime(time) {
+				var h =Math.floor(time/3600);
+				var s =Math.floor(time%3600 /60);
+				var m =Math.round(time%60);
+				h =h<10 ?'0'+h :h;
+				s =s<10 ?'0'+s :s;
+				m =m<10 ?'0'+m :m;
+				return h+':'+s+':'+m;
+			}
+			
+			handle.onmousedown = function(e) {
+				debugger
+
+				var e =e || window.event;
+				var disX = e.clientX - handle.offsetLeft;
+				document.onmousemove = function(e) {
+					var e =e || window.event;
+					var left = e.clientX - disX;
+					if(left <0) left =0;
+					if(left > (volume.offsetWidth -handle.offsetWidth))
+						left = volume.offsetWidth- handle.offsetWidth;
+					handle.style.left = left +'px';
+					ov.volume = left / (volume.offsetWidth -handle.offsetWidth);
+					document.querySelector('.showVol').innerText ='('+Math.round(ov.volume *100)+'%)';
+				}
+				document.onmouseup =function(){
+					document.onmousemove =null;
+					document.onmouseup =null;
+				}
+			}
+			
+		}
+	</script>
+
+</body>
+</html>
