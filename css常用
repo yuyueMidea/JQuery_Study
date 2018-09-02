@@ -1,0 +1,6 @@
+1.怎么让一个不定宽高的 DIV，垂直水平居中?
+只需要在父盒子设置：display: flex; justify-content: center;align-items: center;
+//
+父盒子设置:display:relative
+Div 设置: transform: translate(-50%，-50%);position: absolute;top: 50%;left: 50%;
+//
