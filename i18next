@@ -1,0 +1,50 @@
+//多语言切换
+/************html**************/
+<script src="https://unpkg.com/i18next/i18next.js"></script>
+<div style="height: 100px">
+  <button onclick="i18next.changeLanguage('en')">
+  english
+  </button>
+  <button onclick="i18next.changeLanguage('de')">
+  german
+  </button>
+  <div id="output" />
+</div>
+
+
+
+/***********javascript***************/
+
+// import i18next from 'i18next';
+
+i18next.init({
+  lng: 'en',
+  debug: true,
+  resources: {
+    en: {
+      translation: {
+        "key": "hello world"
+      }
+    },
+    de: {
+      translation: {
+        "key": "你好~世界~"
+      }
+    }
+  }
+}, function(err, t) {
+  // init set content
+  updateContent();
+});
+
+function updateContent() {
+  document.getElementById('output').innerHTML = i18next.t('key');
+}
+
+function changeLng(lng) {
+  i18next.changeLanguage(lng);
+}
+
+i18next.on('languageChanged', () => {
+  updateContent();
+});
