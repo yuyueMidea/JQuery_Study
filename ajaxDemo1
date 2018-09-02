@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajaxDemo1</title>
+	<style type="text/css">
+		*{
+			padding: 0; margin: 0; border:  none;
+		}
+		.header{
+			    background: pink; text-align: center;
+   				line-height: 44px;
+		}
+		.addUser{
+			text-align: center;
+		}
+		ul,li{
+			list-style: none;
+		}
+		table{
+			border-collapse: collapse;     margin: 11px auto;
+		}
+		table tr th,table tr td{
+			border: 1px solid #ccc; padding: 3px;
+		}
+		table tr td a{
+			padding: 3px;
+		}
+		table thead tr{
+			height: 33px; text-align: left;
+		}
+		
+		table thead tr th{
+			width: 111px; overflow: hidden; 
+		}
+		#resText{
+			padding: 11px;
+		}
+		
+		#bg {
+		    display: none;  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+		    background-color: black;  z-index: 101;
+		    -moz-opacity: 0.3; opacity: .30; filter: alpha(opacity=30);
+		}
+
+		#show {
+		    display: none; position: fixed;top: 50%; left: 50%;
+		    width: 500px;height: 300px;margin-left: -250px;margin-top: -150px;
+		    padding: 10px;
+		    box-sizing: border-box;
+		    border: 8px solid #E8E9F7;
+		    background-color: white;
+		    z-index: 1002;    
+		}
+		#show p button{
+			    float: right; padding: 5px 22px; margin-left: 11px; cursor: pointer;
+			    
+		}
+		#show p button:nth-child(2){
+			background: lightblue;
+		}
+		#show form{
+			margin: 80px auto; width: 311px;
+		}
+		#show form span{
+			width: 60px; display: inline-block;
+		}
+		#show form input{
+			border: 1px solid #ccc; padding: 5px 11px;border-radius: 5px;
+		}
+		#show form p{
+			line-height: 45px;
+		}
+		
+		
+	</style>
+	
+</head>
+<body>
+	<div class="header">
+		<h2>我是头部！！</h2>
+	</div>
+	<h3 class="addUser"><a href="#add" class="addNewUser">增加用户</a></h3>
+	<table border="1">
+		<thead>
+			<tr><th class="index">编号</th><th class="name">用户名</th><th class="age">年龄</th><th class="operator">操作</th></tr>
+		</thead>
+		<tbody id="resText">
+			
+		</tbody>
+	</table>
+
+	<!-- 新增弹出框 -->
+	<div id="show">
+		<p><button class="closeAdd">取消</button><button class="toSubmit">确定</button></p>
+		<form action="/doAdd" method="post">
+		    <p><span>用户名:</span><input type="text" name="name" class="username" /></p>
+		    <p><span>年龄:</span><input type="text" name="age" class="userage" /></p>
+		</form>
+		
+	</div>
+	<div id="bg"></div>
+
+
+</body>
+</html>
+
+<script type="text/javascript" src="./jquery.js"></script>
+	<script type="text/javascript">
+		window.onload =function(){
+			var trigger, editID;
+			$.ajax({
+	             type: "GET",
+	             url: "http://39.108.4.12:3003/",
+	             data: { },
+	             dataType: "json",
+	             success: function(data){
+	            	console.log(data);
+	                init(data);
+	             }
+	         });
+			
+			function init(data){
+				$('#resText').empty();   //清空resText里面的所有内容
+                 var html = ''; 
+                 data.forEach(function(val, index){                     
+                       html += '<tr class="comment"><td>'+index+'</td><td>'+val.name+'</td><td>'+val.age+'</td>'+'<td><a class="toEdit" href="#edit?id='+ val._id +'">编辑</a><a class="toDel" href="#delete?id='+ val._id +'">删除</a></td></tr>';
+                 });
+                 $('#resText').html(html);
+			}
+			//
+			document.addEventListener("click",function(e){
+				if(e.target.className=="addNewUser"){		//打开弹出框
+					trigger = true;
+					showdiv();
+				}else if(e.target.className=="closeAdd"){	//关闭弹出框
+					hidediv();
+				}else if(e.target.className=="toEdit"){		//编辑数据
+					trigger =false;
+					var id = e.target.href.split('?id=')[1];	
+					$.ajax({
+			             type: "GET",
+			             url: "http://39.108.4.12:3003/edit?id=" +id,
+			             data: {},
+			             success: function(data){
+			                console.log(data);
+			                debugger
+			                showdiv();
+			                editID = data[0]._id;
+			                $(".username").val(data[0].name);
+			                $(".userage").val(data[0].age);
+			              }
+			        });
+				}else if(e.target.className=="toDel"){		//删除数据
+					var id = e.target.href.split('?id=')[1];	
+					$.ajax({
+			             type: "GET",
+			             url: "http://39.108.4.12:3003/delete?id=" +id,
+			             data: {},
+			             success: function(data){
+			                console.log(data);
+			                init(data);
+			             }
+			        });
+				}else if(e.target.className=="toSubmit"){		//编辑以后保存数据
+					if(!($(".username").val() && $(".userage").val())){
+						alert('用户名或年龄不能为空！')
+						return;
+					}
+					var nameAndAge = {
+						'name': $(".username").val(),
+						'age': $(".userage").val(),
+					};
+					var url;
+					if(trigger){		//新增保存
+						url = "http://39.108.4.12:3003/add?nameAndAge=" + JSON.stringify(nameAndAge);
+					}else{				//编辑保存
+						url = "http://39.108.4.12:3003/doEdit?nameAndAge=" + JSON.stringify(nameAndAge);
+					}
+					debugger					
+					$.ajax({
+			             type: "GET",
+			             url: url,
+			             data: {editID: editID},
+			             success: function(data){
+			                console.log(data);
+			                hidediv();
+			                init(data);
+			              }
+			        });
+				}
+
+			})
+			function showdiv() {
+				$("#bg").show();
+				$("#show").show();
+				$("html,body").css("overflow", "hidden");
+
+			}
+			function hidediv() {
+				$("#bg").hide();
+				$("#show").hide();
+				$("html,body").css("overflow", "auto");
+				$(".username").val("");
+			    $(".userage").val("");
+			};
+
+		}
+	</script>
