@@ -1,0 +1,7 @@
+localStorage.setItem('name','yuyue')
+localStorage.getItem('name')  //yuyue
+**********************
+localStorage.setItem('obj',JSON.stringify({'name':'yuyue','age':'26','married':'no'}))
+JSON.parse(localStorage.getItem('obj'))   //{name: "yuyue", age: "26", married: "no"}
+**********************
+localStorage.removeItem('obj')
