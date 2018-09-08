@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html >
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="iconfont2.css"/>
+  <title>日历操作</title>
+  <style type="text/css">
+  	*{
+  		padding: 0;margin: 0;
+  	}
+  	button{
+          padding: 4px; margin: 4px; width: 55px;background: lightblue;color: #fff;
+          border: 1px solid #ccc; border-radius: 3px;cursor: pointer;
+    }
+  	#monitor{
+  		border-collapse: collapse;width: 1000px;
+      margin: 0 auto; border: 1px solid #f45; text-align: center;
+  	}	
+    #monitor .the_head{
+      height: 55px;
+    }
+    #showW{
+      border: 1px solid #ccc; border-radius: 3px;cursor: pointer; padding: 3px 11px;
+      font-size: 16px;
+    }
+  </style>
+  <!-- <script src="js/jquery.js"></script> -->
+  <script>
+    window.onload = function(){     
+      var cells = $('monitor').getElementsByTagName('td');
+      var clen = cells.length;
+      var currentFirstDate;
+      var x=0;
+      var flag =1; 
+      var showW;  
+      
+      var yyy = new Date().getFullYear();
+      var mmm = new Date().getMonth() +1;
+      var ddd = new Date().getDate();
+      var intDay = getwhichDay(yyy,mmm);
+   
+      // setDate(new Date(yyy, mmm-1, intDay),x);
+      setDate(new Date(),x);
+      function $(id){
+        return document.getElementById( id );
+      }
+      function showWeek(date){
+          [yyy, mmm, ddd] = (date.split('(')[0]).split('-');
+          var getFirstDay = getwhichDay(yyy, mmm);
+          var weekLength = (ddd -getFirstDay +1);
+          // console.log(weekLength);         
+          if(weekLength <=0){
+            mmm--;
+            showW = getWeek(yyy, mmm);           
+          }else{
+            showW = Math.ceil(weekLength/7);
+          }      
+          $('showW').value =(yyy+'-' +mmm+'~'+showW +'w');
+      }
+    
+      function getwhichDay(year, month){
+          var firstWeekday = new Date(year, month -1, 1).getDay();////获取一个月的一号是周几？
+          //获取一个月的周一是几号？
+          firstWeekday =firstWeekday ||7;
+          var whichDay = (9- firstWeekday )%7;  
+          whichDay = whichDay ||7;
+          return whichDay;     
+      }
+      function getWeek(year, month){
+          var weekCount;
+          var firstWeekday = new Date(year, month -1, 1).getDay();////获取一个月的一号是周几？
+          var dayCount  = new Date(year, month, 0).getDate();//总天数
+          firstWeekday = firstWeekday ||7;
+          if(firstWeekday ===1){
+            weekCount = Math.ceil(dayCount/7);
+          }else{
+            var lastDays = dayCount -(8- firstWeekday);
+            weekCount = Math.ceil(lastDays/7);
+          }
+          return weekCount;     
+      }
+      function formatDate(date){       
+          var year = date.getFullYear()+'-';
+          var month = (date.getMonth()+1)+'-';
+          var day = date.getDate();
+          var weekArr = ['日','一','二','三','四','五','六'] ; 
+          var week = '('+ weekArr[date.getDay()] +')'; 
+          return year+month+day +' '+week;
+      };
+
+      function addDate(date,n){    
+          date.setDate(date.getDate()+n);    
+          return date; 
+      };
+      function setDate(date, x){       
+          var week = date.getDay()-1 +x;
+          console.log(x)
+          week =week%7;
+          date = addDate(date,week*-1);
+          currentFirstDate = new Date(date);     
+          for(var i = 0;i<clen;i++){              
+              var html1 = formatDate(i==0 ? date : addDate(date,1));
+              if(i==0){
+                cells[i].style.color ='red'; 
+                showWeek(html1);             
+              }
+              cells[i].innerHTML = html1;
+          } 
+      };       
+      $('last-week').onclick = function(){        //week--
+          var borderFlag = x%7;
+          x=0;
+          if(borderFlag ==1 || borderFlag ==-6){
+              setDate(addDate(currentFirstDate,-7),x);
+              flag =1; 
+              return;   
+          }
+          if(flag == 'lastFlag' || flag == 'nextFlag'){
+              setDate(addDate(currentFirstDate, 0),x);  
+              flag =1; 
+          }else{
+              setDate(addDate(currentFirstDate,-7),x);   
+          }           
+      };       
+      $('next-week').onclick = function(){        //week++    
+          var borderFlag = x%7;
+          x=0;
+          if(borderFlag ==1 || borderFlag ==-6){
+              setDate(addDate(currentFirstDate,0),x);
+          }else{
+              setDate(addDate(currentFirstDate,7),x);
+          }        
+          flag =1;
+      };
+      $('last-day').onclick = function(){         //day--
+          if(flag == 'nextFlag'){            
+              currentFirstDate = addDate(currentFirstDate,-1)
+              for (var i = 0; i <7; i++) {
+                  var html12 = formatDate(i==0 ? currentFirstDate : addDate(currentFirstDate,1));
+                  cells[i].innerHTML = html12;
+                  if(i==0){
+                      cells[i].style.color ='red'; 
+                      showWeek(html12);             
+                  }
+              } 
+              currentFirstDate = addDate(currentFirstDate,-6)
+              if(x%7 ==0){
+                x=1;
+              }else if(x%7 ==-1){
+                x=0;
+              }
+              else if(x%7 ==-2){
+                x=-1;
+              }
+              else if(x%7 ==-3){
+                x=5;
+              }
+              else if(x%7 ==-4){
+                x=4;
+              }
+              else if(x%7 ==-5){
+                x=3;
+              }
+              else if(x%7 ==-6){
+                x=2;
+              }
+          }else{
+              setDate(addDate(currentFirstDate,0), ++x);       
+          }         
+          flag = 'lastFlag';         
+      };       
+      $('next-day').onclick = function(){         //day++   
+          if(flag == 'lastFlag'){            
+              currentFirstDate = addDate(currentFirstDate,1)
+              for (var i = 0; i <7; i++) {
+                  var html12 = formatDate(i==0 ? currentFirstDate : addDate(currentFirstDate,1));
+                  cells[i].innerHTML = html12;
+                  if(i==0){
+                      cells[i].style.color ='red'; 
+                      showWeek(html12);             
+                  }
+              } 
+              currentFirstDate = addDate(currentFirstDate,-6);
+              if(x%7 ==0){
+                x=-1;
+              }else if(x%7 ==1){
+                x=0;
+              }else if(x%7 ==2){
+                x=1;
+              }else if(x%7 ==3){
+                x=-5;
+              }else if(x%7 ==4){
+                x=-4;
+              }else if(x%7 ==5){
+                x=-3;
+              }else if(x%7 ==6){
+                x=-2;
+              }            
+          }else{              
+              setDate(addDate(currentFirstDate,0), --x);
+          }          
+          flag = 'nextFlag';          
+      };
+     
+      $('selectMonth').addEventListener('change',function(){
+          var aaa,bbb;
+          [aaa, bbb] = this.value.split('-');
+          console.log(aaa+'~'+bbb)
+          setDate(new Date(aaa,bbb),x);
+      },false);
+			  
+    }
+  </script>
+</head>
+<body>
+  <button id="last-week">上周</button><button id="next-week">下周</button>
+  <input type="text" id="showW">
+  <select name="" id="selectMonth">
+      <option value="2017-11">2017-11</option>
+      <option value="2017-12">2017-12</option>
+      <option value="2018-1">2018-1</option>
+      <option value="2018-2">2018-2</option>
+      <option value="2018-3">2018-3</option>
+      <option value="2018-4">2018-4</option>
+      <option value="2018-5">2018-5</option>
+      <option value="2018-6">2018-6</option>
+      <option value="2018-7">2018-7</option>
+      <option value="2018-8">2018-8</option>
+      <option value="2018-9">2018-9</option>
+      <option value="2018-10">2018-10</option>
+      <option value="2018-11">2018-11</option>
+      <option value="2018-12">2018-12</option>
+      <option value="2019-1">2019-1</option>
+      <option value="2019-2">2019-2</option>
+  </select>
+  <hr>
+  <button id="last-day">昨天</button><button id="next-day">明天</button>
+  <table id="monitor" border="1" cellpadding="0" cellspacing="0">
+    <tr class="the_head">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+   
+</body>
+</html>
