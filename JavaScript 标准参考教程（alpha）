@@ -1,0 +1,78 @@
+JavaScript 标准参考教程（alpha）
+GitHub 
+TOP 
+JavaScript 标准参考教程（alpha）
+英文标题：JavaScript Standards Reference Guide
+
+作者：　　阮一峰
+
+授权方式：创意共享“署名-非商业性使用”许可证
+
+重要说明：本教程已经搬迁，此处不再维护，请访问新网址：wangdoc.com/javascript。
+
+目录
+导论
+语法
+标准库
+面向对象编程
+语法专题
+DOM 模型
+浏览器环境
+导论
+概述
+JavaScript的历史
+语法
+基本语法
+数据类型
+数值
+字符串
+对象
+数组
+函数
+运算符
+数据类型转换
+错误处理机制
+编程风格
+标准库
+Object对象
+Array对象
+包装对象
+Number对象
+String对象
+Math对象
+Date对象
+RegExp对象
+JSON对象
+console对象
+属性描述对象
+面向对象编程
+概述
+this 关键字
+prototype 对象
+Object 对象与继承
+面向对象编程的模式
+语法专题
+异步操作概述
+定时器
+Promise 对象
+严格模式
+DOM 模型
+概述
+Document 节点
+Element 节点
+属性的操作
+Text节点和DocumentFragment节点
+事件模型
+事件类型
+CSS操作
+Mutation Observer
+浏览器环境
+概述
+window对象
+History对象
+Cookie
+Web Storage：浏览器端数据储存机制
+同源政策
+Ajax
+CORS
+版权声明 | last modified on 2014-05-18
