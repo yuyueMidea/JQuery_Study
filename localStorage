@@ -5,3 +5,11 @@ localStorage.setItem('obj',JSON.stringify({'name':'yuyue','age':'26','married':'
 JSON.parse(localStorage.getItem('obj'))   //{name: "yuyue", age: "26", married: "no"}
 **********************
 localStorage.removeItem('obj')
+
+JSON序列化,
+var book={
+  'title': 'professional javascript',
+  'author': 'Nicholas',
+  'year': 2011
+}
+var jsonText = JSON.stringify(book, ['title','year'])   //在返回的字符串中，就只会包含'title','year'这两个属性
