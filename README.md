@@ -1,1 +1,2 @@
 jQuery的学习记录和demo
+原生JS的常用方法
