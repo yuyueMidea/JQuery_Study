@@ -2,17 +2,20 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>nicescroll</title>
+		<link rel="stylesheet" href="css/zTreeStyle.css">
 		<style>
-			#boxscroll{
+			#boxscroll,#treeDemo{
 				width: 300px;height: 200px;
 				overflow: auto;
 				border: 1px solid #ccc;
 				margin: 22px auto;
 			}
+			
 		</style>
 		<!-- 引入脚本 -->
 		<script type="text/javascript" src='js/jquery.js'></script>
+		<script type="text/javascript" src='js/jquery.ztree.core.js'></script>
 		<script type="text/javascript" src='js/jquery.nicescroll.min.js'></script>
 		<script type="text/javascript">
 			onload = function(){
@@ -68,7 +71,44 @@
 				
 				$("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#aaa",boxzoom:true}); // First scrollable DIV
 				
-				
+				var zTreeObj;
+			   // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+			   var setting = {
+			   		callback:{
+			   			onExpand:function(){
+			   			
+			   				$("#treeDemo").getNiceScroll().resize();
+			   			},
+			   			onCollapse:function(){
+			   				$("#treeDemo").getNiceScroll().resize();
+			   			}
+			   		}
+			   };
+			   // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+			   function getchildren(key,val){
+				   var childArr =[];
+				   for(var i=0;i<val;i++){
+				   		childArr.push({
+				   			name: "test" +key +"_"+i
+				   		})
+				   }
+				   return childArr;
+			   }
+			   var zNodes = [
+				   {name:"test1", open:true, 
+				   		children: getchildren(1,5)
+				    },
+				   {name:"test2", open:false, 
+				   		children: getchildren(2,15)
+			      	},
+			      	{name:"test3", open:false, 
+				   		children: getchildren(3,8)
+			      	}
+			   ];
+
+      		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+  			//设置滚动条
+  				$("#treeDemo").niceScroll({cursorborder:"",cursorcolor:"#aaa",boxzoom:true});
 			}
 		</script>
 	</head>
@@ -79,11 +119,15 @@
 			<p>hello~scroll</p>
 			<p>hello~scroll</p>
 			<p>hello~scrollhello~scrollhello~scrollhello~scrollhello~scrollhello~scrollhello~scroll</p>
+			
 			<p>hello~scroll</p>
 			<p>hello~scroll</p>
 			<p>hello~scroll</p>
 			<p>hello~scroll</p>
 			<p>hello~scroll</p>
 		</div>
+
+		<ul id="treeDemo" class="ztree"></ul>
+
 	</body>
 </html>
