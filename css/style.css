@@ -1,0 +1,313 @@
+/*公共样式、样式重置*/
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: 0;
+}
+
+ul li,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #6c6c6c;
+}
+
+a:hover {
+    color: #f22e00;
+}
+
+input {
+    outline: none;
+}
+
+th,
+i,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    font-style: normal;
+    font-weight: normal;
+}
+
+body {
+    color: #333;
+    font: 12px/22px Tahoma, Arial ;
+    background: #fff;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    word-wrap: break-word;
+    resize: none;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0
+}
+
+/* reset--end */
+.calendar_content {
+	width: 900px; margin: 100px auto; padding: 10px;
+	border: 1px solid #ccc;
+	overflow: hidden;
+}
+.calendar_content .nav {
+    width: 800px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+.calendar_content .nav input[type=text]{
+	width: 80px;
+}
+.calendar_content .nav .btnGroup {
+    width: 800px;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.calendar_content .nav .btnGroup li {
+    flex: 1;
+}
+.calendar_content .nav .btnGroup li:last-child {
+    font-size: 18px;
+}
+.calendar_content .nav .btnGroup li button {
+    line-height: 20px;
+    width: 80%;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.calendar_content .header {
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background: #fefefe;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 微软雅黑;
+}
+
+.calendar_content .header a {
+    text-decoration: none;
+    color: #333;
+}
+
+.calendar_content .header .prev {
+    float: left;
+}
+
+.calendar_content .header .next {
+    float: right;
+}
+
+.calendar_content .wraper {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.calendar_content .wraper .tab table {
+    margin: 0 auto;
+}
+.calendar_content .wraper .tab table th,
+.calendar_content .wraper .tab table td {
+    border: 1px solid #ddd;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 120px;
+    box-sizing: border-box;
+}
+.calendar_content .wraper .tab table th {
+    height: 30px;
+    background: #e4e4e4;
+}
+
+.calendar_content .wraper .tab table td {
+    height: 120px; overflow: hidden;box-sizing: border-box;
+    padding-top: 30px;
+}
+
+.calendar_content .wraper .tab table td .showDate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffcc;
+    color: #4f004f;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #ddd;
+}
+.calendar_content .wraper .tab table td .editable{
+	cursor: pointer;
+}
+.calendar_content .wraper .tab table td h4{
+	height: 20px;line-height: 20px; border-radius: 3px;margin: 3px 0;
+}
+.calendar_content #bg {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 101;
+    -moz-opacity: 0.3;
+    opacity: .30;
+    filter: alpha(opacity=30);
+}
+
+.calendar_content #show {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 600px;
+    margin-left: -400px;
+    margin-top: -300px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 8px solid #E8E9F7;
+    background-color: white;
+    z-index: 1002;
+}
+
+.calendar_content #show #chooseTime {
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.calendar_content #show #chooseTime {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.calendar_content #show #chooseTime h2 {
+    font-weight: bolder;
+}
+
+.calendar_content #show #chooseTime #btnclose {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.calendar_content #show #chooseTime #btnSave {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #fff;
+    width: 80px;
+    height: 40px;
+    background: #148ef5;
+    border: 1px solid #148ef5;
+    border-radius: 3px;
+}
+
+.calendar_content #show #chooseTime #chooseEvent {
+    width: 300px;
+    line-height: 24px;
+}
+
+.calendar_content #show #chooseTime #chooseEvent tr td:nth-child(1) {
+    width: 100px;
+}
+.calendar_content #show #chooseTime #chooseEvent #planTime {
+    background: #ccc;
+}
+.calendar_content #show #chooseTime #checkGroup {
+    width: 300px;text-align: center;
+    line-height: 24px;
+}
+.calendar_content #show #chooseTime #chooseType {
+    width: 300px;text-align: center;
+    line-height: 24px;
+}
+.calendar_content #show #chooseTime #chooseType tr:nth-child(1){
+    background: #00ccff;
+}
+
+/*编辑和删除*/
+.showEdit{
+	width: 300px; height: 200px; border: 1px solid #aaa; border-radius: 5px; background: #fff;
+	position: absolute; top: 0;left: 0;  z-index: 1000;
+	display: none;
+}
+.showEdit .the_info{
+	width: 100%; text-align: left; padding: 20px; box-sizing: border-box;
+}
+.showEdit .the_info .the_title{
+	font-size: 18px; font-weight: bold;
+}
+.showEdit .editAndDel{
+	width: 100%;height: 80px; border-top: 1px solid #aaa; position: absolute; bottom: 0; left: 0;
+}
+
+.showEdit .editAndDel .toEdit, .showEdit .editAndDel .toDel{
+	width: 80px; height: 40px; border: 1px solid #aaa; border-radius: 5px; background: #fff;
+	float: right; margin: 20px 10px;
+}
+.showEdit .editAndDel .toEdit{
+	width: 80px; height: 40px; border: 1px solid #aaa; border-radius: 5px; background: #148ef5;
+}
+.showEdit .toClose{
+	position: absolute;top: 5px; right: 5px; cursor: pointer; font-size: 22px; 
+	transform: rotate(45deg);
+}
