@@ -11,65 +11,32 @@
 				border: 1px solid #ccc;
 				margin: 22px auto;
 			}
-			
+			.tableWrapper{
+				width: 300px;height: 200px;	border: 1px solid #ccc;
+				margin: 22px auto;
+				padding: 4px; padding-top: 0px;
+				overflow: hidden; overflow-y: auto;
+			}
+			#tableDemo{
+				border-collapse: collapse;
+			}
+			#tableDemo th,#tableDemo td{
+				border: 1px solid #ccc;
+			}
+			.floatThead-container{
+				background: lightblue;
+			}
 		</style>
 		<!-- 引入脚本 -->
 		<script type="text/javascript" src='js/jquery.js'></script>
 		<script type="text/javascript" src='js/jquery.ztree.core.js'></script>
 		<script type="text/javascript" src='js/jquery.nicescroll.min.js'></script>
+		<script type="text/javascript" src='js/jquery.floatThead.min.js'></script>
+		<script type="text/javascript" src='js/validate.js'></script>
 		<script type="text/javascript">
 			onload = function(){
-//				var Super;
-//				function Sub(value){
-//					Super.call(this);
-//					this.prop =value;
-//				}
-////				Sub.prototype = Object.create( Super.prototype);
-//				console.log( Sub.prototype.constructor ===Sub);
-				function Shape(){
-					this.x =11;
-					this.y =22;
-				}
-				Shape.prototype.move = function(x, y){
-					this.x +=x;
-					this.y +=y;
-					console.log(this.x+' ~ '+ this.y)
-				}
-				var zzz = new Shape( );
-				zzz.move(1,4)
-				//
-				function M1(){
-					this.hello ='hello';
-				}
-				function M2(){
-					this.world ='world!!';
-				}
-				function X(){
-					M1.call(this);
-					M2.call(this);
-				}
-				
-				var x =new X();
-				console.log( x.hello +'~' +x.world);
-				//
-				var module1 = (function () {
-					　var _count = 0;
-					　var m1 = function () {
-					　  	console.log('mmmm11');
-					　};
-					　var m2 = function () {
-					　　	console.log('mmmm222');
-					　};
-					　return {
-					　　m1 : m1,
-					　　m2 : m2
-					　};
-				})();
-				module1.m1();
-				console.log( module1._count)
-				
-				
-				$("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#aaa",boxzoom:true}); // First scrollable DIV
+	
+				$("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#aaa"}); // First scrollable DIV
 				
 				var zTreeObj;
 			   // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
@@ -108,8 +75,19 @@
 
       		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
   			//设置滚动条
-  				$("#treeDemo").niceScroll({cursorborder:"",cursorcolor:"#aaa",boxzoom:true});
+  				$("#treeDemo").niceScroll({cursorborder:"",cursorcolor:"#aaa"});
+  				//
+			var _html ='';
+			for(var j=0;j<55;j++){
+				_html +='<tr><td>'+j*11+'</td><td>'+j*111+'</td></tr>'
 			}
+			$("#tableDemo tbody").html(_html);
+			var $table = $('#tableDemo');
+			$table.floatThead('destroy');
+			$(".tableWrapper").niceScroll({cursorborder:"",cursorcolor:"#aaa"});
+			$table.floatThead();  
+			debugger
+		}
 		</script>
 	</head>
 	<body>
@@ -128,6 +106,21 @@
 		</div>
 
 		<ul id="treeDemo" class="ztree"></ul>
-
+		<div class="tableWrapper">
+			<table id="tableDemo">
+				<thead>
+					<tr>
+						<th>userCode</th>
+						<th>userName</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>111</td>
+						<td>222</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</body>
 </html>
