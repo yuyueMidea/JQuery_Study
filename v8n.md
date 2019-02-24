@@ -21,6 +21,7 @@ Dead simple fluent API. Customizable. Reusable.
 </p>
 
 ## Introducing v8n
+# <script src="https://unpkg.com/v8n/dist/v8n.min.js"></script>
 
 > **v8n** is an acronym for **v**_alidatio_**n**. Notice that it has exactly
 > eight letters between **v** and **n** in the _"validation"_ word. This is the
