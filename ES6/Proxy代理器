@@ -1,1 +1,14 @@
 Proxy可以理解为一个拦截层，可以对外界的访问进行过滤和改写
+
+
+//对一个空对象进行一层拦截，重新定义了属性的读取和设置行为
+var obj = new Proxy({},{
+	get: function(target, key, val, receiver){
+		console.log(`gettting ${key}`);
+		return Reflect.get(target, key,  receiver)
+	},
+	set: function(target, key, val, receiver){
+		console.log(`settting ${key}`);
+		return Reflect.set(target, key,  receiver)
+	}
+})
