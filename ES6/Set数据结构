@@ -24,3 +24,6 @@ Weakset的成员只能是对象，不能是其他类型的值，不能是数字�
 let m = new Map()
 let o = {z:1}
 m.set(o,'hiiiii')
+
+let m22= new Map().set('o','ooo').set('w','www')
+//Map(2) {"o" => "ooo", "w" => "www"}
