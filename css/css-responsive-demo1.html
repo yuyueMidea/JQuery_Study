@@ -22,7 +22,8 @@
 .container2 {
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: repeat(auto-fit, 300px);
+    /*grid-template-columns: repeat(auto-fit, 300px);*/
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-template-rows: repeat(5, 100px);
 }
 .container2 div:nth-child(2n){
