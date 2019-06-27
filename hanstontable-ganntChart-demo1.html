@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hanstontable-ganntChart-demo1</title>
+	<script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+</head>
+<body style="padding: 22px">
+
+
+<div id="example2-source"></div>
+<hr>
+<div id="example2"></div>
+
+</body>
+</html>
+
+<script>
+onload=function(){
+	var example2 = document.getElementById('example2');
+	var sourceHot = document.getElementById('example2-source');
+
+	var hotSource = new Handsontable(sourceHot, {
+	  data: [
+	    ['Label 1进度1', '01/12/2015', '01/26/2015'],
+	    ['Label 2项目2', '01/11/2015', '02/29/2015'],
+	    ['Label 3', '01/15/2015', '02/20/2015'],
+	    ['Label 4开始干活了', '01/03/2015', '03/29/2015'],
+	    ['Label 5', '04/05/2015', '04/20/2015'],
+	    ['Label 6', '02/11/2015', '05/29/2015'],
+	    ['Label 7', '02/15/2015', '03/20/2015'],
+	    ['Label 8', '03/02/2015', '04/12/2015']
+	  ],
+	  columns: [
+	    {title: 'Label', type: 'text'},
+	    {title: 'Start Date', type: 'date', dateFormat: 'MM/DD/YYYY', correctFormat: true},
+	    {title: 'End Date', type: 'date', dateFormat: 'MM/DD/YYYY', correctFormat: true}
+	  ],
+	  stretchH: 'all',
+	  licenseKey: 'non-commercial-and-evaluation'
+	});
+
+	var hot2 = new Handsontable(example2, {
+	  data: [],
+	  hiddenColumns: true,
+	  colHeaders: true,
+	  ganttChart: {
+	    allowSplitWeeks: false,
+	    dataSource: {
+	      instance: hotSource,
+	      startDateColumn: 1,
+	      endDateColumn: 2,
+	      additionalData: {
+	        label: 0
+	      }
+	    },
+	    firstWeekDay: 'monday',
+	    startYear: 2015
+	  },
+	  width: '100%',
+	  height: 255,
+	  licenseKey: 'non-commercial-and-evaluation'
+	});
+}
+</script>
