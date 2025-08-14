@@ -1,4 +1,5 @@
 /&****************生成随机颜色******************/
+```
 // Returns a hex code for an attractive color
 randomColor(); 
 
@@ -44,3 +45,4 @@ randomColor({
    luminosity: 'light',
    format: 'hsla' // e.g. 'hsla(27, 88.99%, 81.83%, 0.6450211517512798)'
 });
+```
